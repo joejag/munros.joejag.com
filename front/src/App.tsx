@@ -16,6 +16,8 @@ import Badge from '@mui/material/Badge'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 
+import Link from '@mui/material/Link'
+
 const munroOrder = [
   {
     area: 'Loch Lomond to Loch Tay',
@@ -231,7 +233,14 @@ const TripCard: React.FC<{ trip: Trip }> = ({ trip }: any) => {
       <CardMedia component="img" height="140" image={trip.image} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {trip.title}
+          <Link
+            href={trip.url}
+            target="_blank"
+            rel="noreferrer"
+            underline="none"
+          >
+            {trip.title}
+          </Link>
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {trip.desc}

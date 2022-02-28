@@ -123,19 +123,21 @@ const munroOrder = [
 ]
 
 const App = () => {
-  return munroOrder.map(({ area, groups }) => (
+  return (
     <>
-      <Typography variant="h3">{area}</Typography>
-      {groups.map((group) => (
+      {munroOrder.map(({ area, groups }) => (
         <>
-          <MunroGroup area={area} group={group} />
+          <Typography variant="h3">{area}</Typography>
+          {groups.map((group) => (
+            <MunroGroup group={group} />
+          ))}
         </>
       ))}
     </>
-  ))
+  )
 }
 
-const MunroGroup = ({ area, group }) => {
+const MunroGroup = ({ group }: any) => {
   const munros = Object.values(MUNROS).filter(
     (m: any) => m.location.steveFallon.group === group
   )
@@ -183,7 +185,7 @@ const Item = styled('span')(({ theme }) => ({
   border: 'none',
 }))
 
-const Grade = ({ grade }) => {
+const Grade = ({ grade }: any) => {
   if (grade === 3) {
     return <Item sx={{ backgroundColor: '#2196f3' }}>E</Item>
   }
@@ -196,7 +198,7 @@ const Grade = ({ grade }) => {
   return <Item>{grade}</Item>
 }
 
-const TripCard: React.FC<{ trip: Trip }> = ({ trip }) => {
+const TripCard: React.FC<{ trip: Trip }> = ({ trip }: any) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActions>

@@ -107,7 +107,7 @@ const MunroGroupSummary = ({ group }: any) => {
   )
 
   return (
-    <ListItem>
+    <ListItem disablePadding>
       <ListItemIcon sx={{ fontSize: 20 }}>{trips.length}</ListItemIcon>
       <ListItemButton component="a" href={`#/group/${group}`}>
         <ListItemText primary={group} />

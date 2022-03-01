@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,EACE,qBACF,CAEA,UAEE,sCAAwC,CACxC,WAAY,CACZ,SAAU,CACV,QAAS,CACT,eACF","file":"main.c24d3a91.chunk.css","sourcesContent":["* {\n  box-sizing: border-box;\n}\n\nhtml,\nbody {\n  font-family: \"Titillium Web\", sans-serif;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  font-weight: 400;\n}\n"]}

@@ -8,6 +8,7 @@ import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 
 import { Trip } from './TripCard'
 import Item from './Item'
@@ -43,7 +44,9 @@ const MunroAreaSummary = ({ area, groups }: any) => {
       />
       <CardContent>
         <Typography variant="h6" color="text.secondary">
-          {area}
+          <Link href={`#/area/${area}`} color="inherit" underline="none">
+            {area}
+          </Link>
           <List>
             {groups.map((group: string) => (
               <MunroGroupSummary group={group} key={group} />
@@ -106,7 +109,7 @@ const MunroGroupSummary = ({ group }: any) => {
   return (
     <ListItem>
       <ListItemIcon sx={{ fontSize: 20 }}>{trips.length}</ListItemIcon>
-      <ListItemButton component="a" href={`#${group}`}>
+      <ListItemButton component="a" href={`#/group/${group}`}>
         <ListItemText primary={group} />
       </ListItemButton>
     </ListItem>

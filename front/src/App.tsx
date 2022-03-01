@@ -6,6 +6,7 @@ import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 
 import TripCard, { Trip } from './components/TripCard'
 import MunroAreaSummary from './components/MunroAreaSummary'
@@ -17,7 +18,11 @@ export const AllMunros = () => {
       component="main"
       sx={{ paddingBottom: '2em', paddingTop: '1em' }}
     >
-      <Typography variant="h4">All Munro Trips</Typography>
+      <Typography variant="h4">
+        <Link href="/" color="inherit" underline="none">
+          All Munros
+        </Link>
+      </Typography>
       <Grid container spacing={4}>
         {MUNRO_GROUPING.map(({ area, groups }) => (
           <Grid item xs={3} key={area}>
@@ -26,6 +31,45 @@ export const AllMunros = () => {
             </Paper>
           </Grid>
         ))}
+      </Grid>
+    </Container>
+  )
+}
+
+export const MunroArea = ({ area }: any) => {
+  const munros: Trip[] = Object.values(MUNROS).filter(
+    (m: Trip) => m.location.steveFallon.area === area
+  )
+
+  munros.sort((a, b) => {
+    if (a.grade === b.grade) {
+      return a.time.naismith > b.time.naismith ? 1 : -1
+    }
+    return a.grade > b.grade ? 1 : -1
+  })
+
+  return (
+    <Container
+      maxWidth="xl"
+      component="main"
+      sx={{ paddingBottom: '2em', paddingTop: '1em' }}
+    >
+      <Typography variant="h4">
+        <Link href="/" color="inherit" underline="none">
+          All Munros
+        </Link>{' '}
+        <ArrowForwardIosIcon /> {area}
+      </Typography>
+      <Grid container spacing={4}>
+        {munros.map((trip) => {
+          return (
+            <Grid item xs={3} key={trip.title}>
+              <Paper elevation={1}>
+                <TripCard trip={trip}></TripCard>
+              </Paper>
+            </Grid>
+          )
+        })}
       </Grid>
     </Container>
   )
@@ -50,6 +94,10 @@ export const MunroGroup = ({ group }: any) => {
       sx={{ paddingBottom: '2em', paddingTop: '1em' }}
     >
       <Typography variant="h4">
+        <Link href="/" color="inherit" underline="none">
+          All Munros
+        </Link>{' '}
+        <ArrowForwardIosIcon />
         {munros[0].location.steveFallon.area} <ArrowForwardIosIcon /> {group}
       </Typography>
       <Grid container spacing={4}>

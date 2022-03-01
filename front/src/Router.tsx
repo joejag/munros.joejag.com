@@ -3,11 +3,9 @@ import {
   HashRouter as Router,
   Switch,
   Route,
-  Link,
-  useLocation,
   useParams,
 } from 'react-router-dom'
-import { AllMunros, MunroGroup } from './App'
+import { AllMunros, MunroArea, MunroGroup } from './App'
 
 function ScrollToTopOnMount() {
   React.useEffect(() => {
@@ -24,9 +22,20 @@ export default function Routes() {
         <Route exact path="/">
           <AllMunros />
         </Route>
-        <Route path="/:id" children={<MunroGroupRoute />} />
+        <Route path="/area/:id" children={<MunroAreaRoute />} />
+        <Route path="/group/:id" children={<MunroGroupRoute />} />
       </Switch>
     </Router>
+  )
+}
+
+function MunroAreaRoute() {
+  let { id }: any = useParams()
+  return (
+    <>
+      <ScrollToTopOnMount />
+      <MunroArea area={id} />
+    </>
   )
 }
 

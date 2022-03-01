@@ -2347,10 +2347,6 @@ export const MUNROS = {
         name: 'Sgòr na h-Ulaidh',
         uri: '/munros/sgor-na-h-ulaidh',
       },
-      {
-        name: 'Meall Lighiche',
-        uri: '/corbetts/meall-lighiche',
-      },
     ],
     location: {
       walkHighlands: {
@@ -2380,10 +2376,6 @@ export const MUNROS = {
       {
         name: 'Sgùrr Mòr',
         uri: '/munros/sgurr-mor-loch-quoich',
-      },
-      {
-        name: 'Sgùrr an Fhuarain',
-        uri: '/corbetts/sgurr-an-fhuarain',
       },
     ],
     location: {
@@ -2844,10 +2836,6 @@ export const MUNROS = {
       {
         name: 'Ciste Dhubh',
         uri: '/munros/ciste-dhubh',
-      },
-      {
-        name: 'Am Bathach',
-        uri: '/corbetts/am-bathach',
       },
     ],
     location: {
@@ -3412,10 +3400,6 @@ export const MUNROS = {
       {
         name: 'An Riabhachan',
         uri: '/munros/an-riabhachan',
-      },
-      {
-        name: '',
-        uri: '',
       },
       {
         name: 'An Socach',
@@ -4041,6 +4025,36 @@ export const MUNROS = {
       },
     },
   },
+  perthshire_schiehallion: {
+    url: 'https://www.walkhighlands.co.uk/perthshire/schiehallion.shtml',
+    title: 'Schiehallion',
+    desc: "One of Scotland's best known hills, Schiehallion is one of the easiest Munros to climb on a fine summers day. It takes the form of a broad ridge, with the famous conical appearance only apparent from across Loch Rannoch.",
+    image: 'https://www.walkhighlands.co.uk/perthshire/1_6/1_6_1l.JPG',
+    rating: 3.37,
+    distance: 10,
+    ascent: 731,
+    grade: 3,
+    time: {
+      naismith: 3.75,
+      walkHighlands: '4 - 6 hours',
+    },
+    munros: [
+      {
+        name: 'Schiehallion',
+        uri: '/munros/schiehallion',
+      },
+    ],
+    location: {
+      walkHighlands: {
+        area: 'Perthshire',
+        group: 'Pitlochry and Blair Atholl: North Perthshire',
+      },
+      steveFallon: {
+        area: 'Loch Tay to Rannoch Moor',
+        group: 'Glen Lyon',
+      },
+    },
+  },
   perthshire_stuchd_an_lochain: {
     url: 'https://www.walkhighlands.co.uk/perthshire/stuchd-an-lochain.shtml',
     title: 'Stuchd an Lochain',
@@ -4087,7 +4101,7 @@ export const MUNROS = {
     munros: [
       {
         name: 'Am Basteir',
-        uri: 'http://www.walkhighlands.co.uk/munros/am-basteir',
+        uri: '/munros/am-basteir',
       },
     ],
     location: {
@@ -4147,7 +4161,7 @@ export const MUNROS = {
     munros: [
       {
         name: 'Bruach na Frithe',
-        uri: 'http://www.walkhighlands.co.uk/munros/bruach-na-frithe',
+        uri: '/munros/bruach-na-frithe',
       },
     ],
     location: {
@@ -4177,7 +4191,7 @@ export const MUNROS = {
     munros: [
       {
         name: 'Inaccessible Pinnacle',
-        uri: 'http://www.walkhighlands.co.uk/munros/inaccessible-pinnacle',
+        uri: '/munros/inaccessible-pinnacle',
       },
     ],
     location: {
@@ -4237,11 +4251,11 @@ export const MUNROS = {
     munros: [
       {
         name: "Sgùrr a' Ghreadaidh",
-        uri: 'http://www.walkhighlands.co.uk/munros/sgurr-a-ghreadaidh',
+        uri: '/munros/sgurr-a-ghreadaidh',
       },
       {
         name: "Sgùrr a' Mhadaidh",
-        uri: 'http://www.walkhighlands.co.uk/munros/sgurr-a-mhadaidh',
+        uri: '/munros/sgurr-a-mhadaidh',
       },
     ],
     location: {
@@ -4271,7 +4285,7 @@ export const MUNROS = {
     munros: [
       {
         name: 'Sgùrr Alasdair',
-        uri: 'http://www.walkhighlands.co.uk/munros/sgurr-alasdair',
+        uri: '/munros/sgurr-alasdair',
       },
     ],
     location: {
@@ -4301,7 +4315,7 @@ export const MUNROS = {
     munros: [
       {
         name: 'Sgùrr na Banachdich',
-        uri: 'http://www.walkhighlands.co.uk/munros/sgurr-na-banachdich',
+        uri: '/munros/sgurr-na-banachdich',
       },
     ],
     location: {
@@ -4331,11 +4345,11 @@ export const MUNROS = {
     munros: [
       {
         name: 'Sgùrr nan Eag',
-        uri: 'http://www.walkhighlands.co.uk/munros/sgurr-nan-eag',
+        uri: '/munros/sgurr-nan-eag',
       },
       {
         name: 'Sgùrr Dubh Mòr',
-        uri: 'http://www.walkhighlands.co.uk/munros/sgurr-dubh-mor',
+        uri: '/munros/sgurr-dubh-mor',
       },
     ],
     location: {
@@ -4365,7 +4379,7 @@ export const MUNROS = {
     munros: [
       {
         name: 'Sgùrr nan Gillean',
-        uri: 'http://www.walkhighlands.co.uk/munros/sgurr-nan-gillean',
+        uri: '/munros/sgurr-nan-gillean',
       },
     ],
     location: {
@@ -4713,10 +4727,6 @@ export const MUNROS = {
         name: 'Moruisg',
         uri: '/munros/moruisg',
       },
-      {
-        name: 'Sgùrr nan Ceannaichean',
-        uri: '/corbetts/sgurr-nan-ceannaichean',
-      },
     ],
     location: {
       walkHighlands: {
@@ -5038,10 +5048,6 @@ export const MUNROS = {
       {
         name: 'Ruadh Stac Mòr',
         uri: '/munros/ruadh-stac-mor',
-      },
-      {
-        name: "Beinn a' Chlaidheimh",
-        uri: '/corbetts/beinn-a-chlaidheimh',
       },
     ],
     location: {

@@ -43,8 +43,8 @@ const Grade = ({ grade }: any) => {
 
 const TripCard = ({ trip }: { trip: Trip }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActions>
+    <Card>
+      <CardActions sx={{ paddingTop: '1em' }}>
         <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={2}>
             <Item>
@@ -71,7 +71,7 @@ const TripCard = ({ trip }: { trip: Trip }) => {
           </Grid>
         </Grid>
       </CardActions>
-      <CardMedia component="img" height="140" image={trip.image} />
+      <CardMedia component="img" height="140" image={`/images/${trip.image}`} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           <Link

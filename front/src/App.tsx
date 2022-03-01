@@ -13,26 +13,28 @@ import MunroAreaSummary from './components/MunroAreaSummary'
 
 export const AllMunros = () => {
   return (
-    <Container
-      maxWidth="xl"
-      component="main"
-      sx={{ paddingBottom: '2em', paddingTop: '1em' }}
-    >
+    <>
       <Typography variant="h4">
         <Link href="/" color="inherit" underline="none">
           All Munros
         </Link>
       </Typography>
-      <Grid container spacing={4}>
-        {MUNRO_GROUPING.map(({ area, groups }) => (
-          <Grid item xs={3} key={area}>
-            <Paper elevation={1}>
-              <MunroAreaSummary area={area} groups={groups} />
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+      <Container
+        maxWidth="xl"
+        component="main"
+        sx={{ paddingBottom: '2em', paddingTop: '1em' }}
+      >
+        <Grid container spacing={4}>
+          {MUNRO_GROUPING.map(({ area, groups }) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={area}>
+              <Paper elevation={1}>
+                <MunroAreaSummary area={area} groups={groups} />
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
   )
 }
 
@@ -49,29 +51,31 @@ export const MunroArea = ({ area }: any) => {
   })
 
   return (
-    <Container
-      maxWidth="xl"
-      component="main"
-      sx={{ paddingBottom: '2em', paddingTop: '1em' }}
-    >
+    <>
       <Typography variant="h4">
         <Link href="/" color="inherit" underline="none">
           All Munros
         </Link>{' '}
         <ArrowForwardIosIcon /> {area}
       </Typography>
-      <Grid container spacing={4}>
-        {munros.map((trip) => {
-          return (
-            <Grid item xs={3} key={trip.title}>
-              <Paper elevation={1}>
-                <TripCard trip={trip}></TripCard>
-              </Paper>
-            </Grid>
-          )
-        })}
-      </Grid>
-    </Container>
+      <Container
+        maxWidth="xl"
+        component="main"
+        sx={{ paddingBottom: '2em', paddingTop: '1em' }}
+      >
+        <Grid container spacing={4}>
+          {munros.map((trip) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
+                <Paper elevation={1}>
+                  <TripCard trip={trip}></TripCard>
+                </Paper>
+              </Grid>
+            )
+          })}
+        </Grid>
+      </Container>
+    </>
   )
 }
 
@@ -88,11 +92,7 @@ export const MunroGroup = ({ group }: any) => {
   })
 
   return (
-    <Container
-      maxWidth="xl"
-      component="main"
-      sx={{ paddingBottom: '2em', paddingTop: '1em' }}
-    >
+    <>
       <Typography variant="h4">
         <Link href="/" color="inherit" underline="none">
           All Munros
@@ -100,17 +100,23 @@ export const MunroGroup = ({ group }: any) => {
         <ArrowForwardIosIcon />
         {munros[0].location.steveFallon.area} <ArrowForwardIosIcon /> {group}
       </Typography>
-      <Grid container spacing={4}>
-        {munros.map((trip) => {
-          return (
-            <Grid item xs={3} key={trip.title}>
-              <Paper elevation={1}>
-                <TripCard trip={trip}></TripCard>
-              </Paper>
-            </Grid>
-          )
-        })}
-      </Grid>
-    </Container>
+      <Container
+        maxWidth="xl"
+        component="main"
+        sx={{ paddingBottom: '2em', paddingTop: '1em' }}
+      >
+        <Grid container spacing={4}>
+          {munros.map((trip) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
+                <Paper elevation={1}>
+                  <TripCard trip={trip}></TripCard>
+                </Paper>
+              </Grid>
+            )
+          })}
+        </Grid>
+      </Container>
+    </>
   )
 }

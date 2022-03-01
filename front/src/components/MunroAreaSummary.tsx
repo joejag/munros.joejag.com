@@ -15,7 +15,6 @@ import Item from './Item'
 
 import Badge from '@mui/material/Badge'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
-import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
 
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -36,11 +35,39 @@ const MunroAreaSummary = ({ area, groups }: any) => {
   const hardMunros = areaTrips.filter((t) => t.grade === 5).length
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
+      <CardActions sx={{ paddingTop: '1em' }}>
+        <Grid container>
+          <Grid item xs={6}>
+            {easyMunros > 0 && (
+              <Badge badgeContent={easyMunros} color="primary">
+                <Item sx={{ backgroundColor: '#2196f3' }}>E</Item>
+              </Badge>
+            )}
+            {mediumMunros > 0 && (
+              <Badge badgeContent={mediumMunros} color="primary">
+                <Item sx={{ backgroundColor: '#cddc39' }}>M</Item>
+              </Badge>
+            )}
+            {hardMunros > 0 && (
+              <Badge badgeContent={hardMunros} color="primary">
+                <Item sx={{ backgroundColor: '#f44336' }}>H</Item>
+              </Badge>
+            )}
+          </Grid>
+          <Grid item xs={6} textAlign="right">
+            <Item>
+              <Badge badgeContent={munroCount} color="secondary">
+                <FilterHdrIcon fontSize="large" />
+              </Badge>
+            </Item>
+          </Grid>
+        </Grid>
+      </CardActions>
       <CardMedia
         component="img"
         height="140"
-        image={areaTrips[areaTrips.length - 1].image}
+        image={`/images/${areaTrips[areaTrips.length - 1].image}`}
       />
       <CardContent>
         <Typography variant="h6" color="text.secondary">
@@ -53,49 +80,6 @@ const MunroAreaSummary = ({ area, groups }: any) => {
             ))}
           </List>
         </Typography>
-        <CardActions>
-          <Grid
-            container
-            rowSpacing={0}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          >
-            <Grid item xs={2}>
-              <Item>
-                <Badge badgeContent={areaTrips.length} color="primary">
-                  <DirectionsWalkIcon fontSize="large" />
-                </Badge>
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                <Badge badgeContent={munroCount} color="primary">
-                  <FilterHdrIcon fontSize="large" />
-                </Badge>
-              </Item>
-            </Grid>
-            <Grid item xs={2}>
-              {easyMunros > 0 && (
-                <Badge badgeContent={easyMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#2196f3' }}>E</Item>
-                </Badge>
-              )}
-            </Grid>
-            <Grid item xs={2}>
-              {mediumMunros > 0 && (
-                <Badge badgeContent={mediumMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#cddc39' }}>M</Item>
-                </Badge>
-              )}
-            </Grid>
-            <Grid item xs={2}>
-              {hardMunros > 0 && (
-                <Badge badgeContent={hardMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#f44336' }}>H</Item>
-                </Badge>
-              )}
-            </Grid>
-          </Grid>
-        </CardActions>
       </CardContent>
     </Card>
   )
@@ -108,7 +92,9 @@ const MunroGroupSummary = ({ group }: any) => {
 
   return (
     <ListItem disablePadding>
-      <ListItemIcon sx={{ fontSize: 20 }}>{trips.length}</ListItemIcon>
+      <ListItemIcon sx={{ fontSize: 20, minWidth: 0 }}>
+        {trips.length}
+      </ListItemIcon>
       <ListItemButton component="a" href={`#/group/${group}`}>
         <ListItemText primary={group} />
       </ListItemButton>

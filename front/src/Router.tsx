@@ -7,7 +7,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom'
-import App, { MunroGroup } from './App'
+import { AllMunros, MunroGroup } from './App'
 
 function ScrollToTopOnMount() {
   React.useEffect(() => {
@@ -22,7 +22,7 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <App />
+          <AllMunros />
         </Route>
         <Route path="/:id" children={<MunroGroupRoute />} />
       </Switch>

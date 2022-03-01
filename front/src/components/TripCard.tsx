@@ -14,6 +14,8 @@ import Grid from '@mui/material/Grid'
 
 import Link from '@mui/material/Link'
 
+import Item from './Item'
+
 export interface Trip {
   title: string
   desc: string
@@ -26,15 +28,6 @@ export interface Trip {
   time: any
   location: any
 }
-
-const Item = styled('span')(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  border: 'none',
-}))
 
 const Grade = ({ grade }: any) => {
   if (grade === 3) {

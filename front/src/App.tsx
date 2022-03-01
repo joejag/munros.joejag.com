@@ -4,7 +4,6 @@ import { MUNROS, MUNRO_GROUPING } from './munros'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
-import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 
 import Card from '@mui/material/Card'
@@ -19,12 +18,16 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemButton from '@mui/material/ListItemButton'
 
 import IconButton from '@mui/material/IconButton'
 import FolderIcon from '@mui/icons-material/Folder'
 import Badge from '@mui/material/Badge'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+
+import { useHistory } from 'react-router-dom'
 
 const App = () => {
   return (
@@ -60,7 +63,11 @@ const MunroAreaSummary = ({ area, groups }: any) => {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" height="140" image={areaTrips[0].image} />
+      <CardMedia
+        component="img"
+        height="140"
+        image={areaTrips[areaTrips.length - 1].image}
+      />
       <CardContent>
         <Typography variant="h6" color="text.secondary">
           {area}
@@ -128,43 +135,36 @@ const Item = styled('span')(({ theme }) => ({
 }))
 
 const MunroGroupSummary = ({ group }: any) => {
+  const history = useHistory()
+
   const trips: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => m.location.steveFallon.group === group
   )
 
   return (
-    <ListItem
-      secondaryAction={
-        <IconButton
-          edge="end"
-          aria-label="view"
-          onClick={() => {
-            alert('clicked: ' + group)
-          }}
-        >
-          <FolderIcon />
-        </IconButton>
-      }
-    >
+    <ListItem>
       <ListItemIcon sx={{ fontSize: 20 }}>{trips.length}</ListItemIcon>
-      <ListItemText primary={group} />
+      <ListItemButton component="a" href={`#${group}`}>
+        <ListItemText primary={group} />
+      </ListItemButton>
     </ListItem>
   )
 }
 
-/* <Typography variant="h3">{area}</Typography> */
-/* {groups.map((group) => (
-            <MunroGroup group={group} key={group} />
-          ))} */
-
-const MunroGroup = ({ group }: any) => {
+export const MunroGroup = ({ group }: any) => {
   const munros: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => m.location.steveFallon.group === group
   )
 
   return (
-    <>
-      <Typography variant="h4">{group}</Typography>
+    <Container
+      maxWidth="xl"
+      component="main"
+      sx={{ paddingBottom: '2em', paddingTop: '1em' }}
+    >
+      <Typography variant="h4">
+        {munros[0].location.steveFallon.area} <ArrowForwardIosIcon /> {group}
+      </Typography>
       <Grid container spacing={4}>
         {munros.map((trip) => {
           return (
@@ -176,7 +176,7 @@ const MunroGroup = ({ group }: any) => {
           )
         })}
       </Grid>
-    </>
+    </Container>
   )
 }
 

@@ -1,51 +1,41 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import App from './App'
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+  useParams,
+} from 'react-router-dom'
+import App, { MunroGroup } from './App'
+
+function ScrollToTopOnMount() {
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  return null
+}
 
 export default function Routes() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route exact path="/">
-            <App />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/">
+          <App />
+        </Route>
+        <Route path="/:id" children={<MunroGroupRoute />} />
+      </Switch>
     </Router>
   )
 }
 
-function Home() {
-  return <h2>Home</h2>
-}
-
-function About() {
-  return <h2>About</h2>
-}
-
-function Users() {
-  return <h2>Users</h2>
+function MunroGroupRoute() {
+  let { id }: any = useParams()
+  return (
+    <>
+      <ScrollToTopOnMount />
+      <MunroGroup group={id} />
+    </>
+  )
 }

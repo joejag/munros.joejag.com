@@ -29,14 +29,14 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
           {!area && !group && (
             <Typography variant="h4">
               <Link href="/#" color="inherit" underline="none">
-                All Munros
+                Munros
               </Link>
             </Typography>
           )}
           {area && !group && (
             <Typography variant="h4">
               <Link href="/#" color="inherit" underline="none">
-                All Munros
+                Munros
               </Link>{' '}
               <ArrowForwardIosIcon /> {area}
             </Typography>
@@ -44,7 +44,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
           {area && group && (
             <Typography variant="h4">
               <Link href="/#" color="inherit" underline="none">
-                All Munros
+                Munros
               </Link>{' '}
               <ArrowForwardIosIcon />
               {area} <ArrowForwardIosIcon /> {group}

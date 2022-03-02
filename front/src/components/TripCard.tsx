@@ -7,6 +7,8 @@ import CardMedia from '@mui/material/CardMedia'
 import Badge from '@mui/material/Badge'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import DoneIcon from '@mui/icons-material/Done'
+import HikingIcon from '@mui/icons-material/Hiking'
 
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
@@ -14,6 +16,7 @@ import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 
 import Item from './Item'
+import { WalkHighlandsContext } from './Context'
 
 export interface Trip {
   title: string
@@ -41,7 +44,17 @@ const Grade = ({ grade }: any) => {
   return <Item>{grade}</Item>
 }
 
+const allContains = (arr: any, target: any) =>
+  target.every((v: any) => arr.includes(v))
+
 const TripCard = ({ trip }: { trip: Trip }) => {
+  const { completed } = React.useContext(WalkHighlandsContext)
+
+  const hasCompleted = allContains(
+    completed?.munros || ([] as string[]),
+    trip.munros.map((m) => m.uri)
+  )
+
   return (
     <Card>
       <CardActions sx={{ paddingTop: '1em' }}>
@@ -88,6 +101,16 @@ const TripCard = ({ trip }: { trip: Trip }) => {
           {trip.desc}
         </Typography>
       </CardContent>
+      <CardActions>
+        <Grid container>
+          <Grid item xs={12} textAlign="end">
+            <Item>
+              {hasCompleted && <DoneIcon color="success" />}
+              {!hasCompleted && <HikingIcon color="info" />}
+            </Item>
+          </Grid>
+        </Grid>
+      </CardActions>
     </Card>
   )
 }

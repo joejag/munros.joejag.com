@@ -4,21 +4,16 @@ import { MUNROS, MUNRO_GROUPING } from './munros'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
 
 import TripCard, { Trip } from './components/TripCard'
 import MunroAreaSummary from './components/MunroAreaSummary'
 
+import Banner from './components/Banner'
+
 export const AllMunros = () => {
   return (
     <>
-      <Typography variant="h4">
-        <Link href="/" color="inherit" underline="none">
-          All Munros
-        </Link>
-      </Typography>
+      <Banner />
       <Container
         maxWidth="xl"
         component="main"
@@ -52,12 +47,7 @@ export const MunroArea = ({ area }: any) => {
 
   return (
     <>
-      <Typography variant="h4">
-        <Link href="/" color="inherit" underline="none">
-          All Munros
-        </Link>{' '}
-        <ArrowForwardIosIcon /> {area}
-      </Typography>
+      <Banner area={area} />
       <Container
         maxWidth="xl"
         component="main"
@@ -93,13 +83,7 @@ export const MunroGroup = ({ group }: any) => {
 
   return (
     <>
-      <Typography variant="h4">
-        <Link href="/" color="inherit" underline="none">
-          All Munros
-        </Link>{' '}
-        <ArrowForwardIosIcon />
-        {munros[0].location.steveFallon.area} <ArrowForwardIosIcon /> {group}
-      </Typography>
+      <Banner area={munros[0].location.steveFallon.area} group={group} />
       <Container
         maxWidth="xl"
         component="main"

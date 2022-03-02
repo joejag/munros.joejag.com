@@ -9,6 +9,7 @@ import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import DoneIcon from '@mui/icons-material/Done'
 import HikingIcon from '@mui/icons-material/Hiking'
+import DriveEtaIcon from '@mui/icons-material/DriveEta'
 
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
@@ -17,6 +18,7 @@ import Link from '@mui/material/Link'
 
 import Item from './Item'
 import { WalkHighlandsContext } from './Context'
+import { FROM_GLASGOW } from '../biz/distances'
 
 export interface Trip {
   title: string
@@ -54,6 +56,8 @@ const TripCard = ({ trip }: { trip: Trip }) => {
     completed?.munros || ([] as string[]),
     trip.munros.map((m) => m.uri)
   )
+
+  const driveTime = Math.round(FROM_GLASGOW[trip.url].seconds / 60)
 
   return (
     <Card>
@@ -103,7 +107,12 @@ const TripCard = ({ trip }: { trip: Trip }) => {
       </CardContent>
       <CardActions>
         <Grid container>
-          <Grid item xs={12} textAlign="end">
+          <Grid item xs={6} textAlign="start">
+            <Badge badgeContent={`${driveTime}m`} color="secondary" max={999}>
+              <DriveEtaIcon />
+            </Badge>
+          </Grid>
+          <Grid item xs={6} textAlign="end">
             <Item>
               {hasCompleted && <DoneIcon color="success" />}
               {!hasCompleted && <HikingIcon color="info" />}

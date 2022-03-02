@@ -22,6 +22,8 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 
+import { WalkHighlandsContext } from './Context'
+
 const MunroAreaSummary = ({ area, groups }: any) => {
   const areaTrips: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => m.location.steveFallon.area === area
@@ -85,15 +87,28 @@ const MunroAreaSummary = ({ area, groups }: any) => {
   )
 }
 
+const allContains = (arr: any, target: any) =>
+  target.every((v: any) => arr.includes(v))
+
 const MunroGroupSummary = ({ group }: any) => {
+  const { completed } = React.useContext(WalkHighlandsContext)
+
   const trips: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => m.location.steveFallon.group === group
   )
 
+  const userMunros = completed?.munros || ([] as string[])
+  const tripsCompleted = trips.filter((t) =>
+    allContains(
+      userMunros,
+      t.munros.map((m) => m.uri)
+    )
+  ).length
+
   return (
     <ListItem disablePadding>
       <ListItemIcon sx={{ fontSize: 20, minWidth: 0 }}>
-        {trips.length}
+        {tripsCompleted}/{trips.length}
       </ListItemIcon>
       <ListItemButton component="a" href={`#/group/${group}`}>
         <ListItemText primary={group} />

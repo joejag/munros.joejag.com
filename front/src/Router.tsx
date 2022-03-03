@@ -49,8 +49,8 @@ export default function Routes() {
           <Route exact path="/">
             <AllMunros />
           </Route>
-          <Route path="/munros/:area" children={<MunroAreaRoute />} />
           <Route path="/munros/:area/:group" children={<MunroGroupRoute />} />
+          <Route path="/munros/:area" children={<MunroAreaRoute />} />
           <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
           <Route path="/driving" children={<DrivingPreferences />} />
         </Switch>

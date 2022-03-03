@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Container from '@mui/material/Container'
 import Alert from '@mui/material/Alert'
+import Typography from '@mui/material/Typography'
 
 import Banner from './Banner'
 
@@ -33,7 +34,11 @@ const DrivingPreferences = () => {
             Driving origin changed!
           </Alert>
         )}
-        <FormControl fullWidth>
+        <Typography>
+          You can choose the starting location for driving estimates here.
+        </Typography>
+
+        <FormControl fullWidth sx={{ marginTop: '1em' }}>
           <InputLabel id="demo-simple-select-label">Origin</InputLabel>
           <Select
             labelId="demo-simple-select-label"

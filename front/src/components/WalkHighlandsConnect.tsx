@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
+import Link from '@mui/material/Link'
 
 import { fetchData } from '../biz/fetchData'
 import { WalkHighlandsContext, INITIAL_STATE } from './Context'
@@ -30,30 +31,28 @@ const WalkHighlandsConnect = () => {
   return (
     <>
       <Banner />
-      <Container
-        maxWidth="xl"
-        component="main"
-        sx={{ paddingBottom: '2em', paddingTop: '1em' }}
-      >
+      <Container maxWidth="xl" component="main" sx={{ marginTop: '1em' }}>
         <Typography variant="h4">Link your Walk Highlands data</Typography>
-        <Typography color="inherit">
+        <Typography color="inherit" sx={{ marginTop: '1em' }}>
           Your Walk Highlands Munro Map is publicly available and can be linked
           with this site to offer you a better experience.
         </Typography>
 
         <Typography color="inherit" sx={{ paddingTop: '1em' }}>
-          To link the data you need to find your Walk Highlands id and enter in
-          here.
+          Find the id by going to your 'Munro Map' on{' '}
+          <Link href="https://www.walkhighlands.co.uk/munros/">
+            Walk Highlands
+          </Link>{' '}
+          and taking the number off the end of the URL.
+        </Typography>
+        <Typography
+          color="inherit"
+          sx={{ paddingTop: '1em', marginBottom: '1em' }}
+        >
+          For example <em>182131</em> is the id for this URL:
         </Typography>
 
-        <Typography color="inherit" sx={{ paddingTop: '1em' }}>
-          Find the id by going to your 'Munro Map' and taking the number off the
-          end of the URL.
-        </Typography>
-        <Typography color="inherit" sx={{ paddingTop: '1em' }}>
-          For example <em>182131</em> is the id for this URL:
-          https://www.walkhighlands.co.uk/Forum/memberlist.php?mode=viewmap&u=182131
-        </Typography>
+        <img src="/images/wh_url.png" />
 
         <Grid container sx={{ paddingTop: '2em' }}>
           <TextField

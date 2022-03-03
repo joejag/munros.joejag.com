@@ -149,7 +149,7 @@ const MunroGroupSummary = ({ group }: any) => {
           {tripsCompleted}/{trips.length}
         </ListItemIcon>
       </Tooltip>
-      <ListItemButton component="a" href={`#/group/${group}`}>
+      <ListItemButton component="a" href={`/group/${group}`}>
         <ListItemText primary={group} />
       </ListItemButton>
     </ListItem>

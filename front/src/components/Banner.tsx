@@ -77,7 +77,14 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
                 Munros
               </Link>{' '}
               <ArrowForwardIosIcon />
-              {area} <ArrowForwardIosIcon /> {groupReadable}
+              <Link
+                href={`/munros/${safeName(area)}`}
+                color="inherit"
+                underline="none"
+              >
+                {area}
+              </Link>{' '}
+              <ArrowForwardIosIcon /> {groupReadable}
             </Typography>
           )}
         </Grid>

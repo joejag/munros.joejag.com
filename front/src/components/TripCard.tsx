@@ -131,7 +131,7 @@ const TripCard = ({ trip }: { trip: Trip }) => {
             <Tooltip
               title={`Time to drive from ${origin}. Click to change the start point`}
             >
-              <Link href="#/driving" color="inherit" underline="none">
+              <Link href="/driving" color="inherit" underline="none">
                 <Badge
                   badgeContent={`${driveTime}m`}
                   color="secondary"

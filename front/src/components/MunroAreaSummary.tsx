@@ -82,7 +82,7 @@ const MunroAreaSummary = ({ area, groups }: any) => {
           </Grid>
         </Grid>
       </CardActions>
-      <Link href={`#/area/${area}`} color="inherit" underline="none">
+      <Link href={`/area/${area}`} color="inherit" underline="none">
         <CardMedia
           component="img"
           height="140"
@@ -91,7 +91,7 @@ const MunroAreaSummary = ({ area, groups }: any) => {
       </Link>
       <CardContent>
         <Typography variant="h6" color="text.secondary">
-          <Link href={`#/area/${area}`} color="inherit" underline="none">
+          <Link href={`/area/${area}`} color="inherit" underline="none">
             {area}
           </Link>
           <List>
@@ -104,7 +104,7 @@ const MunroAreaSummary = ({ area, groups }: any) => {
       <CardActions>
         <Grid container>
           <Grid item xs={6} textAlign="start">
-            <Link href="#/driving" color="inherit" underline="none">
+            <Link href="/driving" color="inherit" underline="none">
               <Tooltip
                 title={`Average time to drive from ${origin} to any of these trips. Click to change the start point`}
               >

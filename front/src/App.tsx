@@ -11,6 +11,7 @@ import TripCard, { Trip } from './components/TripCard'
 import MunroAreaSummary from './components/MunroAreaSummary'
 
 import Banner from './components/Banner'
+import { safeName } from './biz/utils'
 
 export const AllMunros = () => {
   return (
@@ -53,7 +54,7 @@ export const AllMunros = () => {
 
 export const MunroArea = ({ area }: any) => {
   const munros: Trip[] = Object.values(MUNROS).filter(
-    (m: Trip) => m.location.steveFallon.area === area
+    (m: Trip) => safeName(m.location.steveFallon.area) === area
   )
 
   munros.sort((a, b) => {
@@ -89,7 +90,7 @@ export const MunroArea = ({ area }: any) => {
 
 export const MunroGroup = ({ group }: any) => {
   const munros: Trip[] = Object.values(MUNROS).filter(
-    (m: Trip) => m.location.steveFallon.group === group
+    (m: Trip) => safeName(m.location.steveFallon.group) === group
   )
 
   munros.sort((a, b) => {

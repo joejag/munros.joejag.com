@@ -52,7 +52,10 @@ const WalkHighlandsConnect = () => {
           For example <em>182131</em> is the id for this URL:
         </Typography>
 
-        <img src="/images/wh_url.png" />
+        <img
+          src="/images/wh_url.png"
+          alt="Example of the URL for the Walk Highlands Munro Map page"
+        />
 
         <Grid container sx={{ paddingTop: '2em' }}>
           <TextField

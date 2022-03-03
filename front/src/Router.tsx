@@ -49,8 +49,8 @@ export default function Routes() {
           <Route exact path="/">
             <AllMunros />
           </Route>
-          <Route path="/area/:id" children={<MunroAreaRoute />} />
-          <Route path="/group/:id" children={<MunroGroupRoute />} />
+          <Route path="/munros/:area" children={<MunroAreaRoute />} />
+          <Route path="/munros/:area/:group" children={<MunroGroupRoute />} />
           <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
           <Route path="/driving" children={<DrivingPreferences />} />
         </Switch>
@@ -60,21 +60,21 @@ export default function Routes() {
 }
 
 function MunroAreaRoute() {
-  let { id }: any = useParams()
+  let { area }: any = useParams()
   return (
     <>
       <ScrollToTopOnMount />
-      <MunroArea area={id} />
+      <MunroArea area={area} />
     </>
   )
 }
 
 function MunroGroupRoute() {
-  let { id }: any = useParams()
+  let { group }: any = useParams()
   return (
     <>
       <ScrollToTopOnMount />
-      <MunroGroup group={id} />
+      <MunroGroup group={group} />
     </>
   )
 }

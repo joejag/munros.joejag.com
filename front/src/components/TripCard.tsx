@@ -19,6 +19,7 @@ import Link from '@mui/material/Link'
 import Item from './Item'
 import { WalkHighlandsContext } from './Context'
 import { DISTANCES } from '../biz/distances'
+import { allContains } from '../biz/utils'
 
 export interface Trip {
   title: string
@@ -47,9 +48,6 @@ const Grade = ({ grade }: any) => {
     </Tooltip>
   )
 }
-
-const allContains = (arr: any, target: any) =>
-  target.every((v: any) => arr.includes(v))
 
 const TripCard = ({ trip }: { trip: Trip }) => {
   const { completed } = React.useContext(WalkHighlandsContext)

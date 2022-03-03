@@ -10,6 +10,32 @@ import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import Tooltip from '@mui/material/Tooltip'
 
 import { WalkHighlandsContext } from './Context'
+import { MUNRO_GROUPING } from '../munros'
+import { safeName } from '../biz/utils'
+
+const urlAreaToHumanArea = (area?: string) => {
+  if (area) {
+    const p = MUNRO_GROUPING.find((mg) => safeName(mg.area) === area)
+    if (p) {
+      return p.area
+    }
+  }
+  return area
+}
+
+const urlGroupToHumanArea = (group?: string) => {
+  let result = group
+  MUNRO_GROUPING.forEach(({ groups }) => {
+    groups.forEach((g) => {
+      if (safeName(g) === group) {
+        result = g
+        return
+      }
+    })
+  })
+
+  return result
+}
 
 const Banner = ({ area, group }: { area?: string; group?: string }) => {
   const { completed } = React.useContext(WalkHighlandsContext)
@@ -17,6 +43,9 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
     completed?.id !== '' &&
     completed?.name !== '' &&
     localStorage.getItem('walkHighlandsId')
+
+  const areaReadable = urlAreaToHumanArea(area)
+  const groupReadable = urlGroupToHumanArea(group)
 
   return (
     <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -39,7 +68,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
               <Link href="/" color="inherit" underline="none">
                 Munros
               </Link>{' '}
-              <ArrowForwardIosIcon /> {area}
+              <ArrowForwardIosIcon /> {areaReadable}
             </Typography>
           )}
           {area && group && (
@@ -48,7 +77,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
                 Munros
               </Link>{' '}
               <ArrowForwardIosIcon />
-              {area} <ArrowForwardIosIcon /> {group}
+              {area} <ArrowForwardIosIcon /> {groupReadable}
             </Typography>
           )}
         </Grid>

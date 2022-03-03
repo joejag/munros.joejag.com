@@ -1,4 +1,4 @@
-export const MUNRO_GROUPING = [
+export const MUNRO_GROUPING: { area: string; groups: string[] }[] = [
   {
     area: 'Loch Lomond to Loch Tay',
     groups: [

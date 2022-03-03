@@ -26,6 +26,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 
 import { WalkHighlandsContext } from './Context'
 import { DISTANCES } from '../biz/distances'
+import { allContains, safeName } from '../biz/utils'
 
 const MunroAreaSummary = ({ area, groups }: any) => {
   const areaTrips: Trip[] = Object.values(MUNROS).filter(
@@ -82,7 +83,7 @@ const MunroAreaSummary = ({ area, groups }: any) => {
           </Grid>
         </Grid>
       </CardActions>
-      <Link href={`/area/${area}`} color="inherit" underline="none">
+      <Link href={`/munros/${safeName(area)}`} color="inherit" underline="none">
         <CardMedia
           component="img"
           height="140"
@@ -91,12 +92,16 @@ const MunroAreaSummary = ({ area, groups }: any) => {
       </Link>
       <CardContent>
         <Typography variant="h6" color="text.secondary">
-          <Link href={`/area/${area}`} color="inherit" underline="none">
+          <Link
+            href={`/munros/${safeName(area)}`}
+            color="inherit"
+            underline="none"
+          >
             {area}
           </Link>
           <List>
             {groups.map((group: string) => (
-              <MunroGroupSummary group={group} key={group} />
+              <MunroGroupSummary area={area} group={group} key={group} />
             ))}
           </List>
         </Typography>
@@ -124,10 +129,7 @@ const MunroAreaSummary = ({ area, groups }: any) => {
   )
 }
 
-const allContains = (arr: any, target: any) =>
-  target.every((v: any) => arr.includes(v))
-
-const MunroGroupSummary = ({ group }: any) => {
+const MunroGroupSummary = ({ area, group }: any) => {
   const { completed } = React.useContext(WalkHighlandsContext)
 
   const trips: Trip[] = Object.values(MUNROS).filter(
@@ -149,7 +151,10 @@ const MunroGroupSummary = ({ group }: any) => {
           {tripsCompleted}/{trips.length}
         </ListItemIcon>
       </Tooltip>
-      <ListItemButton component="a" href={`/group/${group}`}>
+      <ListItemButton
+        component="a"
+        href={`/munros/${safeName(area)}/${safeName(group)}`}
+      >
         <ListItemText primary={group} />
       </ListItemButton>
     </ListItem>

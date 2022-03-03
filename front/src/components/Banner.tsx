@@ -7,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Grid from '@mui/material/Grid'
 import PersonIcon from '@mui/icons-material/Person'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
+import Tooltip from '@mui/material/Tooltip'
 
 import { WalkHighlandsContext } from './Context'
 
@@ -63,15 +64,28 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
           )}
           {loggedIn && (
             <>
-              <Typography variant="body1">
-                <Link href="/#/walkhighlands" color="inherit">
-                  <PersonIcon />
-                  {completed?.name}
-                </Link>
+              <Typography variant="body1" alignContent="center">
+                <Tooltip
+                  title={`Click to change your linked Walk Highlands account`}
+                >
+                  <Link href="/#/walkhighlands" color="inherit">
+                    {completed?.name}
+                    <PersonIcon
+                      sx={{ marginLeft: '0.1em', verticalAlign: 'bottom' }}
+                    />
+                  </Link>
+                </Tooltip>
               </Typography>
-              <Typography variant="body1">
-                <FilterHdrIcon /> {completed?.munros?.length}
-              </Typography>
+              <Tooltip
+                title={`Number of Munros you've completed. You can refresh if this number is wrong`}
+              >
+                <Typography variant="body1">
+                  {completed?.munros?.length}
+                  <FilterHdrIcon
+                    sx={{ marginLeft: '0.1em', verticalAlign: 'bottom' }}
+                  />{' '}
+                </Typography>
+              </Tooltip>
             </>
           )}
         </Grid>

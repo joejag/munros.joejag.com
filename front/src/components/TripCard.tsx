@@ -13,7 +13,7 @@ import DriveEtaIcon from '@mui/icons-material/DriveEta'
 
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-
+import Tooltip from '@mui/material/Tooltip'
 import Link from '@mui/material/Link'
 
 import Item from './Item'
@@ -34,16 +34,18 @@ export interface Trip {
 }
 
 const Grade = ({ grade }: any) => {
-  if (grade === 3) {
-    return <Item sx={{ backgroundColor: '#2196f3' }}>E</Item>
+  const styling: { [grade: number]: any } = {
+    3: { color: '#2196f3', letter: 'E' },
+    4: { color: '#cddc39', letter: 'M' },
+    5: { color: '#f44336', letter: 'H' },
   }
-  if (grade === 4) {
-    return <Item sx={{ backgroundColor: '#cddc39' }}>M</Item>
-  }
-  if (grade === 5) {
-    return <Item sx={{ backgroundColor: '#f44336' }}>H</Item>
-  }
-  return <Item>{grade}</Item>
+  const details = styling[grade]
+
+  return (
+    <Tooltip title={`WalkHiglands grade for this trip is ${grade}/5`}>
+      <Item sx={{ backgroundColor: details.color }}>{details.letter}</Item>
+    </Tooltip>
+  )
 }
 
 const allContains = (arr: any, target: any) =>
@@ -64,32 +66,49 @@ const TripCard = ({ trip }: { trip: Trip }) => {
     <Card>
       <CardActions sx={{ paddingTop: '1em' }}>
         <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={2}>
-            <Item>
-              <Badge badgeContent={trip.munros.length} color="primary">
-                <FilterHdrIcon />
-              </Badge>
-            </Item>
+          <Grid item xs={1}>
+            <Grade grade={trip.grade} />
           </Grid>
-          <Grid item xs={3}>
-            <Item>{trip.distance}k</Item>
+          <Grid item xs={6} textAlign="center">
+            <Typography>
+              <Tooltip title="Kilometers on this trip">
+                <span>{trip.distance}km</span>
+              </Tooltip>
+              &nbsp;&amp;&nbsp;
+              <Tooltip title="Ascent on this trip">
+                <span>{trip.ascent}m</span>
+              </Tooltip>
+            </Typography>
           </Grid>
-          <Grid item xs={3}>
-            <Item>{trip.ascent}m </Item>
-          </Grid>
-          <Grid item xs={2}>
-            <Item>
-              <Badge badgeContent={trip.time.naismith} color="secondary">
+          <Grid item xs={5} textAlign="right">
+            <Tooltip title="Estimate to complete this trip using Naismith's rule. Allow one hour for every 5km forward, plus an additional hour for every 600m of ascent">
+              <Badge
+                badgeContent={trip.time.naismith}
+                color="secondary"
+                sx={{ marginRight: '1em' }}
+              >
                 <AccessTimeIcon />
               </Badge>
-            </Item>
-          </Grid>
-          <Grid item xs={2}>
-            <Grade grade={trip.grade}></Grade>
+            </Tooltip>
+            <Tooltip title="Number of Munros on this trip">
+              <Badge
+                badgeContent={trip.munros.length}
+                color="primary"
+                sx={{ marginRight: '0.3em' }}
+              >
+                <FilterHdrIcon />
+              </Badge>
+            </Tooltip>
           </Grid>
         </Grid>
       </CardActions>
-      <CardMedia component="img" height="140" image={`/images/${trip.image}`} />
+      <Link href={trip.url} target="_blank" rel="noreferrer">
+        <CardMedia
+          component="img"
+          height="140"
+          image={`/images/${trip.image}`}
+        />
+      </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           <Link
@@ -109,16 +128,32 @@ const TripCard = ({ trip }: { trip: Trip }) => {
       <CardActions>
         <Grid container>
           <Grid item xs={6} textAlign="start">
-            <Link href="#/driving" color="inherit" underline="none">
-              <Badge badgeContent={`${driveTime}m`} color="secondary" max={999}>
-                <DriveEtaIcon />
-              </Badge>
-            </Link>
+            <Tooltip
+              title={`Time to drive from ${origin}. Click to change the start point`}
+            >
+              <Link href="#/driving" color="inherit" underline="none">
+                <Badge
+                  badgeContent={`${driveTime}m`}
+                  color="secondary"
+                  max={999}
+                >
+                  <DriveEtaIcon />
+                </Badge>
+              </Link>
+            </Tooltip>
           </Grid>
           <Grid item xs={6} textAlign="end">
             <Item>
-              {hasCompleted && <DoneIcon color="success" />}
-              {!hasCompleted && <HikingIcon color="info" />}
+              {hasCompleted && (
+                <Tooltip title={`You have completed this Munro`}>
+                  <DoneIcon color="success" />
+                </Tooltip>
+              )}
+              {!hasCompleted && (
+                <Tooltip title={`You have not yet completed this Munro`}>
+                  <HikingIcon color="info" />
+                </Tooltip>
+              )}
             </Item>
           </Grid>
         </Grid>

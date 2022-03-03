@@ -18,7 +18,7 @@ import Link from '@mui/material/Link'
 
 import Item from './Item'
 import { WalkHighlandsContext } from './Context'
-import { FROM_GLASGOW } from '../biz/distances'
+import { DISTANCES } from '../biz/distances'
 
 export interface Trip {
   title: string
@@ -57,7 +57,8 @@ const TripCard = ({ trip }: { trip: Trip }) => {
     trip.munros.map((m) => m.uri)
   )
 
-  const driveTime = Math.round(FROM_GLASGOW[trip.url].seconds / 60)
+  const origin: string = localStorage.getItem('drivingOrigin') || 'Glasgow'
+  const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
 
   return (
     <Card>
@@ -108,9 +109,11 @@ const TripCard = ({ trip }: { trip: Trip }) => {
       <CardActions>
         <Grid container>
           <Grid item xs={6} textAlign="start">
-            <Badge badgeContent={`${driveTime}m`} color="secondary" max={999}>
-              <DriveEtaIcon />
-            </Badge>
+            <Link href="#/driving" color="inherit" underline="none">
+              <Badge badgeContent={`${driveTime}m`} color="secondary" max={999}>
+                <DriveEtaIcon />
+              </Badge>
+            </Link>
           </Grid>
           <Grid item xs={6} textAlign="end">
             <Item>

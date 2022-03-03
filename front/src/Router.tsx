@@ -8,6 +8,7 @@ import {
 import { AllMunros, MunroArea, MunroGroup } from './App'
 import { WalkHighlandsContext, INITIAL_STATE } from './components/Context'
 import WalkHighlandsConnect from './components/WalkHighlandsConnect'
+import DrivingPreferences from './components/DrivingPreferences'
 import { fetchData } from './biz/fetchData'
 
 function ScrollToTopOnMount() {
@@ -51,6 +52,7 @@ export default function Routes() {
           <Route path="/area/:id" children={<MunroAreaRoute />} />
           <Route path="/group/:id" children={<MunroGroupRoute />} />
           <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
+          <Route path="/driving" children={<DrivingPreferences />} />
         </Switch>
       </WalkHighlandsContext.Provider>
     </Router>

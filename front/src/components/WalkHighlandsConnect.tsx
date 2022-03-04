@@ -7,6 +7,9 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
 import Link from '@mui/material/Link'
+import CircularProgress from '@mui/material/CircularProgress'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 
 import { fetchData } from '../biz/fetchData'
 import { WalkHighlandsContext, INITIAL_STATE } from './Context'
@@ -15,6 +18,8 @@ import Banner from './Banner'
 const WalkHighlandsConnect = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContext)
   const [id, setId] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
+
   const loggedIn =
     completed?.id !== '' &&
     completed?.name !== '' &&
@@ -22,6 +27,7 @@ const WalkHighlandsConnect = () => {
 
   const fetchWalkHighlandsUser = (userId: string) => {
     fetchData(setCompleted, userId)
+    setLoading(true)
   }
 
   if (loggedIn) {
@@ -76,6 +82,13 @@ const WalkHighlandsConnect = () => {
             }}
           >
             Link
+            {loading && (
+              <CircularProgress
+                sx={{ marginLeft: '0.5em' }}
+                color="inherit"
+                size="1rem"
+              />
+            )}
           </Button>
         </Grid>
       </Container>
@@ -96,14 +109,17 @@ const WalkHighlandsDetails = () => {
   const refreshWalkHighlandsUser = () => {
     localStorage.removeItem('cached')
     const userId = localStorage.getItem('walkHighlandsId') || ''
-    fetchWalkHighlandsUser(userId)
     setRefreshing(true)
+    fetchWalkHighlandsUser(userId)
   }
 
   const changeWalkHighlandsUser = () => {
     localStorage.removeItem('walkHighlandsId')
     setCompleted(INITIAL_STATE)
   }
+
+  const currentlyRefreshing =
+    refreshing && localStorage.getItem('cached') === null
 
   return (
     <>
@@ -113,7 +129,11 @@ const WalkHighlandsDetails = () => {
         component="main"
         sx={{ paddingBottom: '2em', paddingTop: '1em' }}
       >
-        {refreshing && <Alert severity="info">Refreshing data!</Alert>}
+        {refreshing && !currentlyRefreshing && (
+          <Alert severity="info" sx={{ marginBottom: '1em' }}>
+            Refreshed data
+          </Alert>
+        )}
         <Typography variant="h4">Linked to {completed?.name}</Typography>
 
         <Typography
@@ -124,7 +144,9 @@ const WalkHighlandsDetails = () => {
           user.
         </Typography>
 
-        <Typography color="inherit">Last refreshed at {lastRefresh}</Typography>
+        <Typography color="inherit" sx={{ marginBottom: '1em' }}>
+          Last refreshed at {lastRefresh}
+        </Typography>
 
         <Grid container>
           <Button
@@ -133,7 +155,15 @@ const WalkHighlandsDetails = () => {
               refreshWalkHighlandsUser()
             }}
           >
+            <RefreshIcon sx={{ paddingRight: '0.3em' }} />
             Refresh data
+            {currentlyRefreshing && (
+              <CircularProgress
+                sx={{ marginLeft: '0.5em' }}
+                color="inherit"
+                size="1rem"
+              />
+            )}
           </Button>
         </Grid>
 
@@ -144,6 +174,7 @@ const WalkHighlandsDetails = () => {
               changeWalkHighlandsUser()
             }}
           >
+            <ManageAccountsIcon sx={{ paddingRight: '0.3em' }} />
             Change user
           </Button>
         </Grid>

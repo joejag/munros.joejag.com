@@ -47,9 +47,14 @@ const DrivingPreferences = () => {
             label="Origin"
             onChange={handleChange}
           >
+            <MenuItem value={'Aberdeen'}>Aberdeen</MenuItem>
+            <MenuItem value={'Dundee'}>Dundee</MenuItem>
             <MenuItem value={'Glasgow'}>Glasgow</MenuItem>
             <MenuItem value={'Edinburgh'}>Edinburgh</MenuItem>
             <MenuItem value={'Fort William'}>Fort William</MenuItem>
+            <MenuItem value={'Inverness'}>Inverness</MenuItem>
+            <MenuItem value={'Perth'}>Perth</MenuItem>
+            <MenuItem value={'Stirling'}>Stirling</MenuItem>
           </Select>
         </FormControl>
       </Container>

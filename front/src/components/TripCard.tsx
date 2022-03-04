@@ -7,8 +7,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Badge from '@mui/material/Badge'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import DoneIcon from '@mui/icons-material/Done'
-import HikingIcon from '@mui/icons-material/Hiking'
+import FilterDramaIcon from '@mui/icons-material/FilterDrama'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 
 import Typography from '@mui/material/Typography'
@@ -23,6 +22,7 @@ import { allContains } from '../biz/utils'
 
 export interface Trip {
   title: string
+  weatherUrl: string
   desc: string
   image: string
   grade: number
@@ -140,6 +140,18 @@ const TripCard = ({ trip }: { trip: Trip }) => {
               </Link>
             </Tooltip>
           </Grid>
+          {trip.weatherUrl && (
+            <Grid item xs={6} textAlign="right">
+              <Link
+                href={trip.weatherUrl}
+                color="inherit"
+                underline="none"
+                target="_blank"
+              >
+                <FilterDramaIcon />
+              </Link>
+            </Grid>
+          )}
         </Grid>
       </CardActions>
     </Card>

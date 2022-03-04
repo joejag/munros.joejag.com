@@ -11,7 +11,8 @@ import TripCard, { Trip } from './components/TripCard'
 import MunroAreaSummary from './components/MunroAreaSummary'
 
 import Banner from './components/Banner'
-import { safeName } from './biz/utils'
+import { safeName, allContains } from './biz/utils'
+import { WalkHighlandsContext } from './components/Context'
 
 export const AllMunros = () => {
   return (
@@ -57,13 +58,6 @@ export const MunroArea = ({ area }: any) => {
     (m: Trip) => safeName(m.location.steveFallon.area) === area
   )
 
-  munros.sort((a, b) => {
-    if (a.grade === b.grade) {
-      return a.time.naismith > b.time.naismith ? 1 : -1
-    }
-    return a.grade > b.grade ? 1 : -1
-  })
-
   return (
     <>
       <Banner area={area} />
@@ -72,33 +66,78 @@ export const MunroArea = ({ area }: any) => {
         component="main"
         sx={{ paddingBottom: '2em', paddingTop: '1em' }}
       >
-        <Grid container spacing={4}>
-          {munros.map((trip) => {
-            return (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
-                <Paper elevation={1}>
-                  <TripCard trip={trip}></TripCard>
-                </Paper>
-              </Grid>
-            )
-          })}
-        </Grid>
+        <TripsList munros={munros} />
       </Container>
     </>
   )
 }
 
-export const MunroGroup = ({ group }: any) => {
-  const munros: Trip[] = Object.values(MUNROS).filter(
-    (m: Trip) => safeName(m.location.steveFallon.group) === group
-  )
+const TripsList = ({ munros }: { munros: Trip[] }) => {
+  const { completed } = React.useContext(WalkHighlandsContext)
 
-  munros.sort((a, b) => {
+  munros.sort((a: Trip, b: Trip) => {
     if (a.grade === b.grade) {
       return a.time.naismith > b.time.naismith ? 1 : -1
     }
     return a.grade > b.grade ? 1 : -1
   })
+
+  const tripsTodo = munros.filter((t) => !hasCompleted(completed, t))
+  const tripsCompleted = munros.filter((t) => hasCompleted(completed, t))
+
+  return (
+    <>
+      {tripsTodo.length > 0 && (
+        <>
+          <Typography variant="h4">Todo</Typography>
+
+          <Grid container spacing={4}>
+            {tripsTodo.map((trip) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
+                  <Paper elevation={1}>
+                    <TripCard trip={trip}></TripCard>
+                  </Paper>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </>
+      )}
+
+      {tripsCompleted.length > 0 && (
+        <>
+          <Typography variant="h4" sx={{ marginTop: '1em' }}>
+            Done
+          </Typography>
+
+          <Grid container spacing={4}>
+            {tripsCompleted.map((trip) => {
+              return (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
+                  <Paper elevation={1}>
+                    <TripCard trip={trip}></TripCard>
+                  </Paper>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </>
+      )}
+    </>
+  )
+}
+
+const hasCompleted = (completed: any, trip: Trip) =>
+  allContains(
+    completed?.munros || ([] as string[]),
+    trip.munros.map((m) => m.uri)
+  )
+
+export const MunroGroup = ({ group }: any) => {
+  const munros: Trip[] = Object.values(MUNROS).filter(
+    (m: Trip) => safeName(m.location.steveFallon.group) === group
+  )
 
   return (
     <>
@@ -108,17 +147,7 @@ export const MunroGroup = ({ group }: any) => {
         component="main"
         sx={{ paddingBottom: '2em', paddingTop: '1em' }}
       >
-        <Grid container spacing={4}>
-          {munros.map((trip) => {
-            return (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
-                <Paper elevation={1}>
-                  <TripCard trip={trip}></TripCard>
-                </Paper>
-              </Grid>
-            )
-          })}
-        </Grid>
+        <TripsList munros={munros} />
       </Container>
     </>
   )

@@ -140,20 +140,6 @@ const TripCard = ({ trip }: { trip: Trip }) => {
               </Link>
             </Tooltip>
           </Grid>
-          <Grid item xs={6} textAlign="end">
-            <Item>
-              {hasCompleted && (
-                <Tooltip title={`You have completed this Munro`}>
-                  <DoneIcon color="success" />
-                </Tooltip>
-              )}
-              {!hasCompleted && (
-                <Tooltip title={`You have not yet completed this Munro`}>
-                  <HikingIcon color="info" />
-                </Tooltip>
-              )}
-            </Item>
-          </Grid>
         </Grid>
       </CardActions>
     </Card>

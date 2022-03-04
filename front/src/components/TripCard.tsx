@@ -142,14 +142,16 @@ const TripCard = ({ trip }: { trip: Trip }) => {
           </Grid>
           {trip.weatherUrl && (
             <Grid item xs={6} textAlign="right">
-              <Link
-                href={trip.weatherUrl}
-                color="inherit"
-                underline="none"
-                target="_blank"
-              >
-                <FilterDramaIcon />
-              </Link>
+              <Tooltip title={`See the weather forecast for this trip`}>
+                <Link
+                  href={trip.weatherUrl}
+                  color="inherit"
+                  underline="none"
+                  target="_blank"
+                >
+                  <FilterDramaIcon />
+                </Link>
+              </Tooltip>
             </Grid>
           )}
         </Grid>

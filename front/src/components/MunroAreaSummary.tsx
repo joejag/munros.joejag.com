@@ -168,7 +168,9 @@ const MunroGroupSummary = ({ area, group }: any) => {
               underline="none"
               target="_blank"
             >
-              <VideocamIcon>{webcam.description}</VideocamIcon>
+              <VideocamIcon sx={{ verticalAlign: 'text-bottom' }}>
+                {webcam.description}
+              </VideocamIcon>
             </Link>
           </Tooltip>
         )}

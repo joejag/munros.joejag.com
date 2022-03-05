@@ -1,4 +1,80 @@
-export const MUNRO_GROUPING: { area: string; groups: string[] }[] = [
+export const WEBCAMS: {
+  [group: string]: { url: string; description: string }
+} = {
+  'Crianlarich group': {
+    url: 'https://www.benmorewebcam.co.uk/',
+    description:
+      "Comes from the Ochil's Mountaineering Hut, next to the Ben More Lodge.",
+  },
+  'Glen Lochay': {
+    url: 'https://www.see.cam/gb/sct/tyndrum/inverardran-north-ben-challum',
+    description: 'Tyndrum North to Ben Challum',
+  },
+  Lawers: {
+    url: 'http://webcam.firbush.org/webcam.jpg',
+    description:
+      "Comes from Edinburgh University's 'Firbush' outdoor facility, at east of Loch Tay.",
+  },
+  'Black Mount': {
+    url: 'https://www.glencoemountain.co.uk/wp-content/themes/glencoe/images/access2200.jpeg',
+    description:
+      "Glencoe 2200: View up Meall a'Bhuiridh. Comes from Glencoe Mountain",
+  },
+  Glencoe: {
+    url: 'https://www.glencoemountain.co.uk/wp-content/themes/glencoe/images/base1200.jpeg',
+    description:
+      'Etive Mor webcam: Looking to Etive Mor from the car-park. From Glencoe Mountain.',
+  },
+  'Ben Nevis & Aonachs': {
+    url: 'https://www.nevisrange.co.uk/webcams/',
+    description:
+      'Nevis Range: Various webcams on the Aonach Mor ski range, from the Nevis Range',
+  },
+  'Around Loch Muick': {
+    url: 'https://www.deesideglidingclub.co.uk/web-cams/',
+    description:
+      'Morven webcam: From near Aboyne on the Dee, webcam hosted by Deeside Gliding Club.',
+  },
+  Glenshee: {
+    url: 'https://www.ski-glenshee.co.uk/Webcam',
+    description:
+      'Glenshee: The Glenshee ski area webcam, looking up the Cairnwell and Carn Aosda, from Glenshee Ski and Snowboard.',
+  },
+  'West of Lairig Ghru': {
+    url: 'https://www.visitcairngorms.com/plan-your-visit/maps-webcams/',
+    description:
+      'Lairig Ghru webcam: Lairig Ghru from the north-west. Comes from Visit Cairngorms',
+  },
+  'East of Lairig Ghru': {
+    url: 'https://www.cairngormmountain.co.uk/wp-content/uploads/webcams/morlich-full.jpg',
+    description:
+      'Loch Morlich webcam: Looking from Cairngorm Mountain down to Loch Morlich.',
+  },
+  'Monadh Liath': {
+    url: 'https://ngc.myzen.co.uk/webcam/image.jpg',
+    description:
+      'Newtonmore webcam: From Newtonmore Golf Club, looking towards Creag Dubh.',
+  },
+  'West of Loch Lochy': {
+    url: 'http://www.trinum.com/ibox/ski-scotland/images/the-lecht/the-lecht1.jpg',
+    description:
+      'The Lecht: Looking west up Carn Mhic an Toisich. From Lecht 2900',
+  },
+  'Inverlael and Strath Vaich': {
+    url: 'http://www.easter-badbea.co.uk/webcam.html',
+    description:
+      'Dundonnell webcam: Below Sail Mhor, overlooking Little Loch Broom. Via Easter Badbea Guest House.',
+  },
+  Mull: {
+    url: 'http://mullwildlifebreaks.co.uk/craignure-ferry-terminal-webcam/',
+    description: 'Live webcam Mull Wildlife Breaks at Craignure',
+  },
+}
+
+export const MUNRO_GROUPING: {
+  area: string
+  groups: string[]
+}[] = [
   {
     area: 'Loch Lomond to Loch Tay',
     groups: [

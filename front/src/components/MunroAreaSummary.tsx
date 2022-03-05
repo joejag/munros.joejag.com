@@ -15,6 +15,7 @@ import Item from './Item'
 
 import Badge from '@mui/material/Badge'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
+import VideocamIcon from '@mui/icons-material/Videocam'
 import Tooltip from '@mui/material/Tooltip'
 
 import List from '@mui/material/List'
@@ -27,6 +28,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import { WalkHighlandsContext } from './Context'
 import { DISTANCES } from '../biz/distances'
 import { allContains, safeName } from '../biz/utils'
+import { WEBCAMS } from '../munros'
 
 const MunroAreaSummary = ({ area, groups }: any) => {
   const areaTrips: Trip[] = Object.values(MUNROS).filter(
@@ -144,6 +146,8 @@ const MunroGroupSummary = ({ area, group }: any) => {
     )
   ).length
 
+  const webcam = WEBCAMS[group]
+
   return (
     <ListItem disablePadding>
       <Tooltip title={`Munros you've completed in this area`}>
@@ -156,6 +160,18 @@ const MunroGroupSummary = ({ area, group }: any) => {
         href={`/munros/${safeName(area)}/${safeName(group)}`}
       >
         <ListItemText primary={group} />
+        {webcam && (
+          <Tooltip title={webcam.description}>
+            <Link
+              href={webcam.url}
+              color="inherit"
+              underline="none"
+              target="_blank"
+            >
+              <VideocamIcon>{webcam.description}</VideocamIcon>
+            </Link>
+          </Tooltip>
+        )}
       </ListItemButton>
     </ListItem>
   )

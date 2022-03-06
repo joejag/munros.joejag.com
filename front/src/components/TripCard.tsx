@@ -16,9 +16,7 @@ import Tooltip from '@mui/material/Tooltip'
 import Link from '@mui/material/Link'
 
 import Item from './Item'
-import { WalkHighlandsContext } from './Context'
 import { DISTANCES } from '../biz/distances'
-import { allContains } from '../biz/utils'
 
 export interface Trip {
   title: string
@@ -50,13 +48,6 @@ const Grade = ({ grade }: any) => {
 }
 
 const TripCard = ({ trip }: { trip: Trip }) => {
-  const { completed } = React.useContext(WalkHighlandsContext)
-
-  const hasCompleted = allContains(
-    completed?.munros || ([] as string[]),
-    trip.munros.map((m) => m.uri)
-  )
-
   const origin: string = localStorage.getItem('drivingOrigin') || 'Glasgow'
   const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
 

@@ -149,18 +149,10 @@ const MunroGroupSummary = ({ area, group }: any) => {
   const webcam = WEBCAMS[group]
 
   return (
-    <ListItem disablePadding>
-      <Tooltip title={`Munros you've completed in this area`}>
-        <ListItemIcon sx={{ fontSize: 20, minWidth: 0 }}>
-          {tripsCompleted}/{trips.length}
-        </ListItemIcon>
-      </Tooltip>
-      <ListItemButton
-        component="a"
-        href={`/munros/${safeName(area)}/${safeName(group)}`}
-      >
-        <ListItemText primary={group} />
-        {webcam && (
+    <ListItem
+      disablePadding
+      secondaryAction={
+        webcam && (
           <Tooltip title={webcam.description}>
             <Link
               href={webcam.url}
@@ -173,7 +165,19 @@ const MunroGroupSummary = ({ area, group }: any) => {
               </VideocamIcon>
             </Link>
           </Tooltip>
-        )}
+        )
+      }
+    >
+      <Tooltip title={`Trips you've completed in this area`}>
+        <ListItemIcon sx={{ fontSize: 20, minWidth: 0 }}>
+          {tripsCompleted}/{trips.length}
+        </ListItemIcon>
+      </Tooltip>
+      <ListItemButton
+        component="a"
+        href={`/munros/${safeName(area)}/${safeName(group)}`}
+      >
+        <ListItemText primary={group} />
       </ListItemButton>
     </ListItem>
   )

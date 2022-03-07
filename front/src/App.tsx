@@ -9,6 +9,7 @@ import Link from '@mui/material/Link'
 
 import TripCard, { Trip } from './components/TripCard'
 import MunroAreaSummary from './components/MunroAreaSummary'
+import MyMap from './components/MyMap'
 
 import Banner from './components/Banner'
 import { safeName, allContains } from './biz/utils'
@@ -89,6 +90,7 @@ const TripsList = ({ munros }: { munros: Trip[] }) => {
     <>
       {tripsTodo.length > 0 && (
         <>
+          <MyMap trips={munros} />
           <Typography variant="h4">Todo</Typography>
 
           <Grid container spacing={4}>

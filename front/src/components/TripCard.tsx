@@ -25,7 +25,8 @@ export interface Trip {
   image: string
   grade: number
   url: string
-  munros: any[]
+  rating: number
+  munros: { name: string; uri: string; cords?: { long: number; lat: number } }[]
   distance: number
   ascent: number
   time: any

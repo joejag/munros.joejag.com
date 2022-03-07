@@ -1,9 +1,7 @@
 # Munro tracker
 
-https://munros.joejag.com
+https://walks.joejag.com
 
-## Todo
+## Links
 
-- cache images
-- login and fetch completed munros
-- show rating
+- Map markers: https://github.com/pointhi/leaflet-color-markers

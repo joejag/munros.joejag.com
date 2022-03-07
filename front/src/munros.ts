@@ -1,3 +1,5 @@
+import { Trip } from './components/TripCard'
+
 export const WEBCAMS: {
   [group: string]: { url: string; description: string }
 } = {
@@ -170,7 +172,7 @@ export const MUNRO_GROUPING: {
   },
 ]
 
-export const MUNROS = [
+export const MUNROS: Trip[] = [
   {
     url: 'https://www.walkhighlands.co.uk/angus/mayar-driesh.shtml',
     weatherUrl: 'https://www.mountain-forecast.com/peaks/Driesh/forecasts/947',
@@ -293,6 +295,7 @@ export const MUNROS = [
       {
         name: 'Beinn Bhuidhe',
         uri: '/munros/beinn-bhuidhe',
+        cords: { long: -4.906709, lat: 56.326686 },
       },
     ],
     location: {
@@ -3319,10 +3322,12 @@ export const MUNROS = [
       {
         name: 'Beinn Narnain',
         uri: '/munros/beinn-narnain',
+        cords: { long: -4.789003, lat: 56.220956 },
       },
       {
         name: 'Beinn Ìme',
         uri: '/munros/beinn-ime',
+        cords: { long: -4.817125, lat: 56.236794 },
       },
     ],
     location: {
@@ -3355,6 +3360,7 @@ export const MUNROS = [
       {
         name: 'Ben Lomond',
         uri: '/munros/ben-lomond',
+        cords: { long: -4.63301, lat: 56.190302 },
       },
     ],
     location: {
@@ -3423,6 +3429,7 @@ export const MUNROS = [
       {
         name: 'Ben Vane',
         uri: '/munros/ben-vane',
+        cords: { long: -4.781655, lat: 56.249786 },
       },
     ],
     location: {
@@ -3455,6 +3462,7 @@ export const MUNROS = [
       {
         name: 'Ben Vorlich',
         uri: '/munros/ben-vorlich-loch-lomond',
+        cords: { long: -4.755046, lat: 56.274021 },
       },
     ],
     location: {

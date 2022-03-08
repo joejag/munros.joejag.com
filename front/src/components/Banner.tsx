@@ -10,32 +10,7 @@ import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import Tooltip from '@mui/material/Tooltip'
 
 import { WalkHighlandsContext } from './Context'
-import { MUNRO_GROUPING } from '../munros'
-import { safeName } from '../biz/utils'
-
-const urlAreaToHumanArea = (area?: string) => {
-  if (area) {
-    const p = MUNRO_GROUPING.find((mg) => safeName(mg.area) === area)
-    if (p) {
-      return p.area
-    }
-  }
-  return area
-}
-
-const urlGroupToHumanArea = (group?: string) => {
-  let result = group
-  MUNRO_GROUPING.forEach(({ groups }) => {
-    groups.forEach((g) => {
-      if (safeName(g) === group) {
-        result = g
-        return
-      }
-    })
-  })
-
-  return result
-}
+import { safeName, urlAreaToHumanArea, urlGroupToHumanArea } from '../biz/utils'
 
 const Banner = ({ area, group }: { area?: string; group?: string }) => {
   const { completed } = React.useContext(WalkHighlandsContext)

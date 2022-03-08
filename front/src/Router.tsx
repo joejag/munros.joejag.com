@@ -10,6 +10,7 @@ import { WalkHighlandsContext, INITIAL_STATE } from './components/Context'
 import WalkHighlandsConnect from './components/WalkHighlandsConnect'
 import DrivingPreferences from './components/DrivingPreferences'
 import { fetchData } from './biz/fetchData'
+import { urlAreaToHumanArea, urlGroupToHumanArea } from './biz/utils'
 
 function ScrollToTopOnMount() {
   React.useEffect(() => {
@@ -46,9 +47,7 @@ export default function Routes() {
     <Router>
       <WalkHighlandsContext.Provider value={value}>
         <Switch>
-          <Route exact path="/">
-            <AllMunros />
-          </Route>
+          <Route exact path="/" children={<All />}></Route>
           <Route path="/munros/:area/:group" children={<MunroGroupRoute />} />
           <Route path="/munros/:area" children={<MunroAreaRoute />} />
           <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
@@ -59,8 +58,24 @@ export default function Routes() {
   )
 }
 
+const All = () => {
+  React.useEffect(() => {
+    document.title = 'Munros: All Possible Trips'
+  }, [])
+  return (
+    <>
+      <AllMunros />
+    </>
+  )
+}
+
 function MunroAreaRoute() {
   let { area }: any = useParams()
+
+  React.useEffect(() => {
+    document.title = 'Munro Area: ' + urlAreaToHumanArea(area)
+  }, [area])
+
   return (
     <>
       <ScrollToTopOnMount />
@@ -71,6 +86,11 @@ function MunroAreaRoute() {
 
 function MunroGroupRoute() {
   let { group }: any = useParams()
+
+  React.useEffect(() => {
+    document.title = 'Munro Group: ' + urlGroupToHumanArea(group)
+  }, [group])
+
   return (
     <>
       <ScrollToTopOnMount />

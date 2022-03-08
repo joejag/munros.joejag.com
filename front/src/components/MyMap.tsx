@@ -144,7 +144,7 @@ export const AreasMap = ({ trips }: { trips: Trip[] }) => {
   })
   return (
     <MapContainer
-      center={[56.848003, -3.196539]}
+      center={[56.828447, -4.297792]}
       zoom={7}
       scrollWheelZoom={false}
       style={{ width: '100%', height: '400px', marginBottom: '2em' }}

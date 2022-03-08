@@ -3,7 +3,7 @@ start:
 	
 deploy:
 	(cd front && npm run build)
-	aws s3 sync front/build s3://walk.joejag.com
+	aws s3 sync --size-only front/build s3://walk.joejag.com
 	aws cloudfront create-invalidation --distribution-id E38443GSUN2P8A --paths "/*"
 
 back-deploy:

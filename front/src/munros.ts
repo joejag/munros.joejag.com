@@ -259,10 +259,12 @@ export const MUNROS: Trip[] = [
       {
         name: "Beinn a'Chreachain",
         uri: '/munros/beinn-a-chreachain',
+        cords: { long: -4.647589, lat: 56.560387 },
       },
       {
         name: 'Beinn Achaladair',
         uri: '/munros/beinn-achaladair',
+        cords: { long: -4.694515, lat: 56.551909 },
       },
     ],
     location: {
@@ -328,10 +330,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Dòrain',
         uri: '/munros/beinn-dorain',
+        cords: { long: -4.722157, lat: 56.50287 },
       },
       {
         name: 'Beinn an Dòthaidh',
         uri: '/munros/beinn-an-dothaidh',
+        cords: { long: -4.713981, lat: 56.53013 },
       },
     ],
     location: {
@@ -363,10 +367,12 @@ export const MUNROS: Trip[] = [
       {
         name: "Beinn a' Chochuill",
         uri: '/munros/beinn-a-chochuill',
+        cords: { long: -5.068552, lat: 56.44979 },
       },
       {
         name: 'Beinn Eunaich',
         uri: '/munros/beinn-eunaich',
+        cords: { long: -5.026639, lat: 56.450352 },
       },
     ],
     location: {
@@ -398,6 +404,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Fhionnlaidh',
         uri: '/munros/beinn-fhionnlaidh',
+        cords: { long: -5.104749, lat: 56.600978 },
       },
     ],
     location: {
@@ -430,6 +437,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Mhanach',
         uri: '/munros/beinn-mhanach',
+        cords: { long: -4.646042, lat: 56.534041 },
       },
     ],
     location: {
@@ -462,6 +470,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Sgulaird',
         uri: '/munros/beinn-sgulaird',
+        cords: { long: -5.170365, lat: 56.566232 },
       },
     ],
     location: {
@@ -494,6 +503,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben Challum',
         uri: '/munros/ben-challum',
+        cords: { long: -4.619184, lat: 56.454573 },
       },
     ],
     location: {
@@ -526,10 +536,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben Cruachan',
         uri: '/munros/ben-cruachan',
+        cords: { long: -5.131802, lat: 56.426841 },
       },
       {
         name: 'Stob Daimh',
         uri: '/munros/stob-diamh',
+        cords: { long: -5.091319, lat: 56.431336 },
       },
     ],
     location: {
@@ -562,10 +574,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben Lui',
         uri: '/munros/ben-lui',
+        cords: { long: -4.810509, lat: 56.397004 },
       },
       {
         name: "Beinn a' Chlèibh",
         uri: '/munros/beinn-a-chleibh',
+        cords: { long: -4.83563, lat: 56.39023 },
       },
     ],
     location: {
@@ -598,10 +612,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Dubhchraig',
         uri: '/munros/beinn-dubhchraig',
+        cords: { long: -4.743193, lat: 56.391295 },
       },
       {
         name: 'Ben Oss',
         uri: '/munros/ben-oss',
+        cords: { long: -4.775488, lat: 56.389272 },
       },
     ],
     location: {
@@ -634,10 +650,12 @@ export const MUNROS: Trip[] = [
       {
         name: "Stob a' Choire Odhair",
         uri: '/munros/stob-a-choire-odhair',
+        cords: { long: -4.838302, lat: 56.573308 },
       },
       {
         name: 'Stob Ghabhar',
         uri: '/munros/stob-ghabhar',
+        cords: { long: -4.882099, lat: 56.568103 },
       },
     ],
     location: {
@@ -670,10 +688,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Geal Chàrn',
         uri: '/munros/geal-charn-drumochter',
+        cords: { long: -4.304519, lat: 56.874433 },
       },
       {
         name: "A' Mharconaich",
         uri: '/munros/a-mharconaich',
+        cords: { long: -4.290668, lat: 56.857002 },
       },
     ],
     location: {
@@ -773,18 +793,22 @@ export const MUNROS: Trip[] = [
       {
         name: 'Cairn Dearg',
         uri: '/munros/carn-dearg-loch-pattack',
+        cords: { long: -4.454693, lat: 56.855242 },
       },
       {
         name: 'Geal Chàrn',
         uri: '/munros/geal-charn-alder',
+        cords: { long: -4.509694, lat: 56.837836 },
       },
       {
         name: 'Aonach Beag',
         uri: '/munros/aonach-beag-alder',
+        cords: { long: -4.529175, lat: 56.833498 },
       },
       {
         name: 'Beinn Èibhinn',
         uri: '/munros/beinn-eibhinn',
+        cords: { long: -4.542077, lat: 56.825255 },
       },
     ],
     location: {
@@ -988,10 +1012,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Sgàirneach Mhòr',
         uri: '/munros/sgairneach-mhor',
+        cords: { long: -4.297792, lat: 56.828447 },
       },
       {
         name: 'Beinn Udlamain',
         uri: '/munros/beinn-udlamain',
+        cords: { long: -4.329976, lat: 56.835444 },
       },
     ],
     location: {
@@ -1024,10 +1050,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben Alder',
         uri: '/munros/ben-alder',
+        cords: { long: -4.465089, lat: 56.813796 },
       },
       {
         name: 'Beinn Bheòil',
         uri: '/munros/beinn-bheoil',
+        cords: { long: -4.430662, lat: 56.813276 },
       },
     ],
     location: {
@@ -1276,10 +1304,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Càrn na Caim',
         uri: '/munros/carn-na-caim',
+        cords: { long: -4.174478, lat: 56.911739 },
       },
       {
         name: 'A Bhuidheanach-bheag',
         uri: '/munros/a-bhuidheanach-bheag',
+        cords: { long: -4.199001, lat: 56.870342 },
       },
     ],
     location: {
@@ -1423,6 +1453,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Meall Chuaich',
         uri: '/munros/meall-chuaich',
+        cords: { long: -4.112568, lat: 56.96385 },
       },
     ],
     location: {
@@ -1641,10 +1672,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Meall Dearg',
         uri: '/munros/meall-dearg-aonach-eagach',
+        cords: { long: -5.003234, lat: 56.680731 },
       },
       {
         name: 'Sgòrr nam Fiannaidh',
         uri: '/munros/sgorr-nam-fiannaidh-aonach-eagach',
+        cords: { long: -5.037143, lat: 56.679387 },
       },
     ],
     location: {
@@ -1677,10 +1710,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Aonach Beag',
         uri: '/munros/aonach-beag-nevis-range',
+        cords: { long: -4.954138, lat: 56.799998 },
       },
       {
         name: 'Aonach Mòr',
         uri: '/munros/aonach-mor',
+        cords: { long: -4.961712, lat: 56.812941 },
       },
     ],
     location: {
@@ -1712,14 +1747,17 @@ export const MUNROS: Trip[] = [
       {
         name: "Beinn a' Chlachair",
         uri: '/munros/beinn-a-chlachair',
+        cords: { long: -4.509684, lat: 56.869525 },
       },
       {
         name: 'Geal Chàrn',
         uri: '/munros/geal-charn',
+        cords: { long: -4.457236, lat: 56.897763 },
       },
       {
         name: 'Creag Pitridh',
         uri: '/munros/creag-pitridh',
+        cords: { long: -4.484955, lat: 56.899713 },
       },
     ],
     location: {
@@ -1751,6 +1789,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn na Lap',
         uri: '/munros/beinn-na-lap',
+        cords: { long: -4.659977, lat: 56.78939 },
       },
     ],
     location: {
@@ -1782,6 +1821,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn nan Aighenan',
         uri: '/munros/beinn-nan-aighenan',
+        cords: { long: -5.011249, lat: 56.520221 },
       },
     ],
     location: {
@@ -1813,10 +1853,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Sgòrr Dhearg',
         uri: '/munros/sgorr-dhearg-beinn-a-bheithir',
+        cords: { long: -5.17151, lat: 56.653921 },
       },
       {
         name: 'Sgòrr Dhònuill',
         uri: '/munros/sgorr-dhonuill-beinn-a-bheithir',
+        cords: { long: -5.197757, lat: 56.650499 },
       },
     ],
     location: {
@@ -1885,10 +1927,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben Starav',
         uri: '/munros/ben-starav',
+        cords: { long: -5.049748, lat: 56.538922 },
       },
       {
         name: 'Glas Bheinn Mhòr',
         uri: '/munros/glas-bheinn-mhor',
+        cords: { long: -5.005267, lat: 56.542416 },
       },
     ],
     location: {
@@ -1921,10 +1965,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Bidean nam Bian',
         uri: '/munros/bidean-nam-bian',
+        cords: { long: -5.029335, lat: 56.642759 },
       },
       {
         name: 'Stob Coire Sgreamhach',
         uri: '/munros/stob-coire-sgreamhach',
+        cords: { long: -5.010284, lat: 56.638314 },
       },
     ],
     location: {
@@ -1957,10 +2003,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Binnein Mòr',
         uri: '/munros/binnein-mor',
+        cords: { long: -4.925796, lat: 56.754376 },
       },
       {
         name: 'Na Gruagaichean',
         uri: '/munros/na-gruagaichean',
+        cords: { long: -4.939851, lat: 56.743699 },
       },
     ],
     location: {
@@ -1993,10 +2041,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Stob Coire Raineach',
         uri: '/munros/stob-coire-raineach-buachaille-etive-beag',
+        cords: { long: -4.951601, lat: 56.649895 },
       },
       {
         name: 'Stob Dubh',
         uri: '/munros/stob-dubh-buachaille-etive-beag',
+        cords: { long: -4.970747, lat: 56.638159 },
       },
     ],
     location: {
@@ -2029,10 +2079,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Stob Dearg',
         uri: '/munros/stob-dearg-buachaille-etive-mor',
+        cords: { long: -4.900377, lat: 56.646228 },
       },
       {
         name: 'Stob na Bròige',
         uri: '/munros/stob-na-broige-buachaille-etive-mor',
+        cords: { long: -4.951161, lat: 56.62987 },
       },
     ],
     location: {
@@ -2065,10 +2117,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Càrn Mòr Dearg',
         uri: '/munros/carn-mor-dearg',
+        cords: { long: -4.986616, lat: 56.805246 },
       },
       {
         name: 'Ben Nevis',
         uri: '/munros/ben-nevis',
+        cords: { long: -5.003675, lat: 56.796891 },
       },
     ],
     location: {
@@ -2101,10 +2155,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Stob Coire Sgriodain',
         uri: '/munros/stob-coire-sgriodain',
+        cords: { long: -4.694918, lat: 56.831745 },
       },
       {
         name: 'Chno Dearg',
         uri: '/munros/chno-dearg',
+        cords: { long: -4.66083, lat: 56.830077 },
       },
     ],
     location: {
@@ -2176,10 +2232,12 @@ export const MUNROS: Trip[] = [
       {
         name: "Meall a'Bhùiridh",
         uri: '/munros/meall-a-bhuiridh',
+        cords: { long: -4.852112, lat: 56.612236 },
       },
       {
         name: 'Creise',
         uri: '/munros/creise',
+        cords: { long: -4.871987, lat: 56.614448 },
       },
     ],
     location: {
@@ -2212,10 +2270,12 @@ export const MUNROS: Trip[] = [
       {
         name: "Stob a'Choire Mheadhoin",
         uri: '/munros/stob-a-choire-mheadhoin',
+        cords: { long: -4.760183, lat: 56.823685 },
       },
       {
         name: 'Stob Coire Easain',
         uri: '/munros/stob-coire-easain',
+        cords: { long: -4.77371, lat: 56.818199 },
       },
     ],
     location: {
@@ -2279,14 +2339,17 @@ export const MUNROS: Trip[] = [
       {
         name: 'Stob Choire Claurigh',
         uri: '/munros/stob-choire-claurigh',
+        cords: { long: -4.849624, lat: 56.823786 },
       },
       {
         name: 'Stob Coire an Laoigh',
         uri: '/munros/stob-coire-an-laoigh',
+        cords: { long: -4.884907, lat: 56.810877 },
       },
       {
         name: 'Sgùrr Chòinnich Mòr',
         uri: '/munros/sgurr-choinnich-mor',
+        cords: { long: -4.90396, lat: 56.80043 },
       },
     ],
     location: {
@@ -2454,18 +2517,22 @@ export const MUNROS: Trip[] = [
       {
         name: 'An Gearanach',
         uri: '/munros/an-gearanach',
+        cords: { long: -4.96623, lat: 56.759172 },
       },
       {
         name: "Stob Coire a' Chàirn",
         uri: '/munros/stob-coire-a-chairn',
+        cords: { long: -4.968985, lat: 56.750756 },
       },
       {
         name: 'Am Bodach',
         uri: '/munros/am-bodach',
+        cords: { long: -4.98337, lat: 56.74173 },
       },
       {
         name: "Sgùrr a'Mhaim",
         uri: '/munros/sgurr-a-mhaim',
+        cords: { long: -5.00369, lat: 56.75592 },
       },
     ],
     location: {
@@ -2498,10 +2565,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Sgòr Gaibhre',
         uri: '/munros/sgor-gaibhre',
+        cords: { long: -4.546498, lat: 56.772553 },
       },
       {
         name: 'Càrn Dearg (Corrour)',
         uri: '/munros/carn-dearg-corrour',
+        cords: { long: -4.589888, lat: 56.759931 },
       },
     ],
     location: {
@@ -2533,6 +2602,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Sgòr na h-Ulaidh',
         uri: '/munros/sgor-na-h-ulaidh',
+        cords: { long: -5.08006, lat: 56.619796 },
       },
     ],
     location: {
@@ -2628,10 +2698,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Binnein Beag',
         uri: '/munros/binnein-beag',
+        cords: { long: -4.911161, lat: 56.766961 },
       },
       {
         name: 'Sgùrr Èilde Mòr',
         uri: '/munros/sgurr-eilde-mor',
+        cords: { long: -4.895436, lat: 56.750015 },
       },
     ],
     location: {
@@ -2776,6 +2848,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Stob Ban (Grey Corries)',
         uri: '/munros/stob-ban-grey-corries',
+        cords: { long: -4.840877, lat: 56.810656 },
       },
     ],
     location: {
@@ -2808,10 +2881,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Stob Ban',
         uri: '/munros/stob-ban-mamores',
+        cords: { long: -5.030328, lat: 56.743706 },
       },
       {
         name: 'Mullach nan Coirean',
         uri: '/munros/mullach-nan-coirean',
+        cords: { long: -5.072446, lat: 56.749866 },
       },
     ],
     location: {
@@ -2843,10 +2918,12 @@ export const MUNROS: Trip[] = [
       {
         name: "Stob Coir' an Albannaich",
         uri: '/munros/stob-coir-an-albannaich',
+        cords: { long: -4.979809, lat: 56.554903 },
       },
       {
         name: 'Meall nan Eun',
         uri: '/munros/meall-nan-eun',
+        cords: { long: -4.942926, lat: 56.561176 },
       },
     ],
     location: {
@@ -3254,10 +3331,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'An Caisteal',
         uri: '/munros/an-caisteal',
+        cords: { long: -4.62437, lat: 56.338618 },
       },
       {
         name: "Beinn  a' Chròin",
         uri: '/munros/beinn-a-chroin',
+        cords: { long: -4.609644, lat: 56.331991 },
       },
     ],
     location: {
@@ -3290,6 +3369,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Chabhair',
         uri: '/munros/beinn-chabhair',
+        cords: { long: -4.641476, lat: 56.325779 },
       },
     ],
     location: {
@@ -3393,10 +3473,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben More',
         uri: '/munros/ben-more',
+        cords: { long: -4.540087, lat: 56.385952 },
       },
       {
         name: 'Stob Binnein',
         uri: '/munros/stob-binnein',
+        cords: { long: -4.535753, lat: 56.370717 },
       },
     ],
     location: {
@@ -3495,10 +3577,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Tulaichean',
         uri: '/munros/beinn-tulaichean',
+        cords: { long: -4.56333, lat: 56.342216 },
       },
       {
         name: 'Cruach Àrdrain',
         uri: '/munros/cruach-ardrain',
+        cords: { long: -4.576151, lat: 56.356429 },
       },
     ],
     location: {
@@ -3870,10 +3954,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Creag Mhor',
         uri: '/munros/creag-mhor-glen-lochay',
+        cords: { long: -4.614038, lat: 56.489519 },
       },
       {
         name: 'Beinn Heasgarnich',
         uri: '/munros/beinn-heasgarnich',
+        cords: { long: -4.579218, lat: 56.510272 },
       },
     ],
     location: {
@@ -3906,6 +3992,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben Chonzie',
         uri: '/munros/ben-chonzie',
+        cords: { long: -3.992057, lat: 56.453851 },
       },
     ],
     location: {
@@ -3938,10 +4025,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Beinn Ghlas',
         uri: '/munros/beinn-ghlas',
+        cords: { long: -4.236992, lat: 56.535996 },
       },
       {
         name: 'Ben Lawers',
         uri: '/munros/ben-lawers',
+        cords: { long: -4.22086, lat: 56.544922 },
       },
     ],
     location: {
@@ -3974,10 +4063,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Ben Vorlich',
         uri: '/munros/ben-vorlich-loch-earn',
+        cords: { long: -4.219448, lat: 56.34268 },
       },
       {
         name: "Stùc a'Chròin",
         uri: '/munros/stuc-a-chroin',
+        cords: { long: -4.237533, lat: 56.329315 },
       },
     ],
     location: {
@@ -4042,18 +4133,22 @@ export const MUNROS: Trip[] = [
       {
         name: 'Càrn Gorm',
         uri: '/munros/carn-gorm',
+        cords: { long: -4.226021, lat: 56.622537 },
       },
       {
         name: 'Meall Garbh',
         uri: '/munros/meall-garbh-carn-mairg',
+        cords: { long: -4.207472, lat: 56.637381 },
       },
       {
         name: 'Càrn Mairg',
         uri: '/munros/carn-mairg',
+        cords: { long: -4.145608, lat: 56.634635 },
       },
       {
         name: 'Creag Mhòr',
         uri: '/munros/creag-mhor-meall-na-aighean',
+        cords: { long: -4.128741, lat: 56.620627 },
       },
     ],
     location: {
@@ -4123,6 +4218,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Meall Buidhe',
         uri: '/munros/meall-buidhe-glen-lyon',
+        cords: { long: -4.448608, lat: 56.617231 },
       },
     ],
     location: {
@@ -4154,10 +4250,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Meall Corranaich',
         uri: '/munros/meall-corranaich',
+        cords: { long: -4.253469, lat: 56.540946 },
       },
       {
         name: "Meall a' Choire Lèith",
         uri: '/munros/meall-a-choire-leith',
+        cords: { long: -4.259617, lat: 56.566312 },
       },
     ],
     location: {
@@ -4190,14 +4288,17 @@ export const MUNROS: Trip[] = [
       {
         name: 'Meall Greigh',
         uri: '/munros/meall-greigh',
+        cords: { long: -4.159559, lat: 56.567426 },
       },
       {
         name: 'Meall Garbh',
         uri: '/munros/meall-garbh-ben-lawers',
+        cords: { long: -4.207714, lat: 56.566131 },
       },
       {
         name: 'An Stùc',
         uri: '/munros/an-stuc',
+        cords: { long: -4.216247, lat: 56.560075 },
       },
     ],
     location: {
@@ -4230,6 +4331,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Meall Ghaordaidh',
         uri: '/munros/meall-ghaordaidh',
+        cords: { long: -4.416654, lat: 56.525809 },
       },
     ],
     location: {
@@ -4262,6 +4364,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Meall nan Tarmachan',
         uri: '/munros/meall-nan-tarmachan',
+        cords: { long: -4.301344, lat: 56.521673 },
       },
     ],
     location: {
@@ -4294,10 +4397,12 @@ export const MUNROS: Trip[] = [
       {
         name: 'Sgiath Chùil',
         uri: '/munros/sgiath-chuil',
+        cords: { long: -4.495638, lat: 56.453157 },
       },
       {
         name: 'Meall Glas',
         uri: '/munros/meall-glas',
+        cords: { long: -4.546837, lat: 56.455711 },
       },
     ],
     location: {
@@ -4330,6 +4435,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Schiehallion',
         uri: '/munros/schiehallion',
+        cords: { long: -4.100229, lat: 56.666933 },
       },
     ],
     location: {
@@ -4362,6 +4468,7 @@ export const MUNROS: Trip[] = [
       {
         name: 'Stuchd an Lochain',
         uri: '/munros/stuchd-an-lochain',
+        cords: { long: -4.470602, lat: 56.570907 },
       },
     ],
     location: {

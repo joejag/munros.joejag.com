@@ -50,6 +50,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
 
   const munrosWithCords: {
     name: string
+    uri: string
     lat: number
     long: number
     done: boolean
@@ -60,6 +61,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
       if (m.cords !== undefined) {
         munrosWithCords.push({
           name: m.name,
+          uri: m.uri,
           lat: m.cords.lat,
           long: m.cords.long,
           done: completed?.munros.includes(m.uri) || false,
@@ -86,7 +88,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
           {munrosWithCords.map((m) => (
             <Marker
               position={[m.lat, m.long]}
-              key={m.name}
+              key={m.uri}
               icon={m.done ? greenIcon : violetIcon}
             >
               <Popup>{m.name}</Popup>

@@ -53,6 +53,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
 
   const munrosWithCords: {
     name: string
+    tripName: string
     uri: string
     lat: number
     long: number
@@ -69,6 +70,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
           uri: m.uri,
           lat: m.cords.lat,
           long: m.cords.long,
+          tripName: t.title,
           done: completed?.munros.includes(m.uri) || false,
         })
       }
@@ -116,7 +118,9 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
               key={m.uri}
               icon={m.done ? greenIcon : violetIcon}
             >
-              <Popup>{m.name}</Popup>
+              <Popup>
+                <strong>{m.name}</strong> <br /> on <em>{m.tripName}</em>
+              </Popup>
             </Marker>
           ))}
         </MapContainer>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, Popup, Polygon } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import L, { Marker as AMarker, icon } from 'leaflet'
@@ -10,6 +10,7 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
 import { WalkHighlandsContext } from './Context'
 import { Trip } from './TripCard'
+import { allContains } from '../biz/utils'
 
 // Assign the imported image assets before you do anything with Leaflet.
 AMarker.prototype.options.icon = icon({
@@ -41,6 +42,12 @@ var violetIcon = new L.Icon({
   shadowSize: [41, 41],
 })
 
+const hasCompleted = (completed: any, trip: Trip) =>
+  allContains(
+    completed?.munros || ([] as string[]),
+    trip.munros.map((m) => m.uri)
+  )
+
 const MyMap = ({ trips }: { trips: Trip[] }) => {
   const { completed } = React.useContext(WalkHighlandsContext)
 
@@ -51,6 +58,8 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
     long: number
     done: boolean
   }[] = []
+
+  const tripsCords: any = []
 
   trips.forEach((t: Trip) => {
     t.munros.forEach((m) => {
@@ -64,6 +73,16 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
         })
       }
     })
+
+    const c = convexHull(t.munros.map((a) => a.cords))
+    const c2 = c.map((element) => [element.lat, element.long])
+    if (c2.length > 1) {
+      tripsCords.push({
+        cords: c2,
+        color: hasCompleted(completed, t) ? 'green' : 'purple',
+        name: t.url,
+      })
+    }
   })
 
   const mapCenter = averageGeolocation(munrosWithCords)
@@ -74,12 +93,22 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
         <MapContainer
           center={[mapCenter.lat, mapCenter.long]}
           zoom={10}
+          scrollWheelZoom={false}
           style={{ width: '100%', height: '400px', marginBottom: '2em' }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+
+          {tripsCords.map((tc: any) => (
+            <Polygon
+              positions={tc.cords}
+              smoothFactor={1}
+              key={tc.name}
+              color={tc.color}
+            />
+          ))}
 
           {munrosWithCords.map((m) => (
             <Marker
@@ -128,6 +157,36 @@ function averageGeolocation(coords: { lat: number; long: number }[]) {
     lat: (centralLatitude * 180) / Math.PI,
     long: (centralLongitude * 180) / Math.PI,
   }
+}
+
+function convexHull(points: any) {
+  points.sort(function (a: any, b: any) {
+    return a.lat !== b.lat ? a.lat - b.lat : a.long - b.long
+  })
+
+  var n = points.length
+  var hull = []
+
+  for (var i = 0; i < 2 * n; i++) {
+    var j = i < n ? i : 2 * n - 1 - i
+    while (
+      hull.length >= 2 &&
+      removeMiddle(hull[hull.length - 2], hull[hull.length - 1], points[j])
+    )
+      hull.pop()
+    hull.push(points[j])
+  }
+
+  hull.pop()
+  return hull
+}
+
+function removeMiddle(a: any, b: any, c: any) {
+  var cross =
+    (a.lat - b.lat) * (c.long - b.long) - (a.long - b.long) * (c.lat - b.lat)
+  var dot =
+    (a.lat - b.lat) * (c.lat - b.lat) + (a.long - b.long) * (c.long - b.long)
+  return cross < 0 || (cross === 0 && dot <= 0)
 }
 
 export default MyMap

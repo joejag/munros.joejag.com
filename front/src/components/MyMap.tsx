@@ -10,7 +10,8 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
 import { WalkHighlandsContext } from './Context'
 import { Trip } from './TripCard'
-import { allContains } from '../biz/utils'
+import { allContains, safeName } from '../biz/utils'
+import { MUNROS, MUNRO_GROUPING } from '../munros'
 
 // Assign the imported image assets before you do anything with Leaflet.
 AMarker.prototype.options.icon = icon({
@@ -126,6 +127,43 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
         </MapContainer>
       )}
     </>
+  )
+}
+
+export const AreasMap = ({ trips }: { trips: Trip[] }) => {
+  const polys = MUNRO_GROUPING.map(({ area, groups }) => {
+    const trips: Trip[] = Object.values(MUNROS).filter(
+      (m: Trip) => m.location.steveFallon.area === area
+    )
+    const munroCords = trips.map((t) => t.munros.map((m) => m.cords)).flat()
+    const c = convexHull(munroCords)
+    return {
+      title: area,
+      cords: c.map((element) => [element.lat, element.long]),
+    }
+  })
+  return (
+    <MapContainer
+      center={[56.848003, -3.196539]}
+      zoom={7}
+      scrollWheelZoom={false}
+      style={{ width: '100%', height: '400px', marginBottom: '2em' }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+
+      {polys.map((tc: any) => (
+        <Polygon positions={tc.cords} smoothFactor={1} key={tc.title}>
+          <Popup>
+            <strong>{tc.title}</strong>
+            <br />
+            <a href={`/munros/${safeName(tc.title)}`}>See Munros</a>
+          </Popup>
+        </Polygon>
+      ))}
+    </MapContainer>
   )
 }
 

@@ -9,7 +9,7 @@ import Link from '@mui/material/Link'
 
 import TripCard, { Trip } from './components/TripCard'
 import MunroAreaSummary from './components/MunroAreaSummary'
-import MyMap from './components/MyMap'
+import MyMap, { AreasMap } from './components/MyMap'
 
 import Banner from './components/Banner'
 import { safeName, allContains } from './biz/utils'
@@ -40,6 +40,7 @@ export const AllMunros = () => {
           Walk Highlands munro map so you can see what Munros you've already
           summited.
         </Typography>
+        <AreasMap trips={MUNROS} />
         <Grid container spacing={4}>
           {MUNRO_GROUPING.map(({ area, groups }) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={area}>
@@ -88,9 +89,9 @@ const TripsList = ({ munros }: { munros: Trip[] }) => {
 
   return (
     <>
+      <MyMap trips={munros} />
       {tripsTodo.length > 0 && (
         <>
-          <MyMap trips={munros} />
           <Typography variant="h4">Todo</Typography>
 
           <Grid container spacing={4}>

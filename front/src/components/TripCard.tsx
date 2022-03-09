@@ -18,6 +18,9 @@ import Link from '@mui/material/Link'
 import Item from './Item'
 import { DISTANCES } from '../biz/distances'
 
+import { useLocation } from 'react-router-dom'
+import { safeName } from '../biz/utils'
+
 export interface Trip {
   title: string
   weatherUrl: string
@@ -49,11 +52,28 @@ const Grade = ({ grade }: any) => {
 }
 
 const TripCard = ({ trip }: { trip: Trip }) => {
+  const myRef = React.useRef<HTMLDivElement>(null)
+  const [focus, setFocus] = React.useState(false)
+  const location = useLocation()
+
+  if (focus === false && location.hash === `#trip=${safeName(trip.title)}`) {
+    setFocus(true)
+  }
+  if (focus === true && location.hash !== `#trip=${safeName(trip.title)}`) {
+    setFocus(false)
+  }
+
+  React.useLayoutEffect(() => {
+    if (focus) {
+      myRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
+
   const origin: string = localStorage.getItem('drivingOrigin') || 'Glasgow'
   const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
 
   return (
-    <Card>
+    <Card ref={myRef} raised={focus}>
       <CardActions sx={{ paddingTop: '1em' }}>
         <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={1}>

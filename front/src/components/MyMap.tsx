@@ -121,6 +121,9 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
             >
               <Popup>
                 <strong>{m.name}</strong> <br /> on <em>{m.tripName}</em>
+                <br />
+                <br />
+                <a href={`#trip=${safeName(m.tripName)}`}>Goto Trip</a>
               </Popup>
             </Marker>
           ))}

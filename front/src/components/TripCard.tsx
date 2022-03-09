@@ -100,7 +100,18 @@ const TripCard = ({ trip }: { trip: Trip }) => {
                 <AccessTimeIcon />
               </Badge>
             </Tooltip>
-            <Tooltip title="Number of Munros on this trip">
+            <Tooltip
+              title={
+                <div>
+                  Munros on this trip
+                  <ul style={{ padding: '0', paddingLeft: '1em' }}>
+                    {trip.munros.map((m) => (
+                      <li key={m.uri}>{m.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              }
+            >
               <Badge
                 badgeContent={trip.munros.length}
                 color="primary"

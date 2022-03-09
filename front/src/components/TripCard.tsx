@@ -51,7 +51,7 @@ const Grade = ({ grade }: any) => {
   )
 }
 
-const TripCard = ({ trip }: { trip: Trip }) => {
+const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
   const myRef = React.useRef<HTMLDivElement>(null)
   const [focus, setFocus] = React.useState(false)
   const location = useLocation()
@@ -68,12 +68,23 @@ const TripCard = ({ trip }: { trip: Trip }) => {
       myRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   })
+  const borderColor = completed ? 'forestgreen' : 'darkorchid'
 
   const origin: string = localStorage.getItem('drivingOrigin') || 'Glasgow'
   const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
 
   return (
-    <Card ref={myRef} raised={focus}>
+    <Card
+      ref={myRef}
+      elevation={focus ? 12 : 1}
+      sx={
+        focus
+          ? {
+              border: `3px solid ${borderColor}`,
+            }
+          : {}
+      }
+    >
       <CardActions sx={{ paddingTop: '1em' }}>
         <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={1}>

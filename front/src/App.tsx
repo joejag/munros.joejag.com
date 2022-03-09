@@ -99,7 +99,7 @@ const TripsList = ({ munros }: { munros: Trip[] }) => {
               return (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
                   <Paper elevation={1}>
-                    <TripCard trip={trip}></TripCard>
+                    <TripCard trip={trip} completed={false}></TripCard>
                   </Paper>
                 </Grid>
               )
@@ -119,7 +119,7 @@ const TripsList = ({ munros }: { munros: Trip[] }) => {
               return (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={trip.title}>
                   <Paper elevation={1}>
-                    <TripCard trip={trip}></TripCard>
+                    <TripCard trip={trip} completed={true}></TripCard>
                   </Paper>
                 </Grid>
               )

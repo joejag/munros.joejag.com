@@ -9,6 +9,7 @@ import { AllMunros, MunroArea, MunroGroup } from './App'
 import { WalkHighlandsContext, INITIAL_STATE } from './components/Context'
 import WalkHighlandsConnect from './components/WalkHighlandsConnect'
 import DrivingPreferences from './components/DrivingPreferences'
+import PlanATrip from './components/PlanATrip'
 import { fetchData } from './biz/fetchData'
 import { urlAreaToHumanArea, urlGroupToHumanArea } from './biz/utils'
 
@@ -52,6 +53,7 @@ export default function Routes() {
           <Route path="/munros/:area" children={<MunroAreaRoute />} />
           <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
           <Route path="/driving" children={<DrivingPreferences />} />
+          <Route path="/plan" children={<PlanATrip />} />
         </Switch>
       </WalkHighlandsContext.Provider>
     </Router>

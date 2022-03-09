@@ -48,7 +48,7 @@ def handler(event, context):
     }
 
 
-event = {}
-event["queryStringParameters"] = {}
-event["queryStringParameters"]['u'] = "182131"
-print(handler(event, None))
+# event = {}
+# event["queryStringParameters"] = {}
+# event["queryStringParameters"]['u'] = "182131"
+# print(handler(event, None))

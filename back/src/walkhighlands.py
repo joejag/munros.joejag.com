@@ -1,5 +1,6 @@
 import json
 import requests
+from urllib.parse import urlparse, parse_qs
 from bs4 import BeautifulSoup
 
 NAME_TO_URI = {"A' Bhuidheanach Bheag": '/munros/a-bhuidheanach-bheag', "A' Chailleach (Fannichs)": '/munros/a-chailleach', "A' Chailleach (Monadhliath)": '/munros/a-chailleach-monadhliath', "A' Chralaig": '/munros/a-chralaig', "A' Ghlas-bheinn": '/munros/a-ghlas-bheinn', "A' Mhaighdean": '/munros/a-mhaighdean', "A' Mharconaich": '/munros/a-mharconaich', 'Am Basteir': '/munros/am-basteir', 'Am Bodach': '/munros/am-bodach', 'Am Faochagach': '/munros/am-faochagach', 'An Caisteal': '/munros/an-caisteal', 'An Coileachan': '/munros/an-coileachan', 'An Gearanach': '/munros/an-gearanach', 'An Riabhachan': '/munros/an-riabhachan', 'An Sgarsoch': '/munros/an-sgarsoch', 'An Socach (Affric)': '/munros/an-socach-affric', 'An Socach (Braemar)': '/munros/an-socach-braemar', 'An Socach (Mullardoch)': '/munros/an-socach-mullardoch', 'An Stùc': '/munros/an-stuc', 'Aonach Air Chrith': '/munros/aonach-air-chrith', 'Aonach Beag (Alder)': '/munros/aonach-beag-alder', 'Aonach Beag (Nevis Range)': '/munros/aonach-beag-nevis-range', 'Aonach Meadhoin': '/munros/aonach-meadhoin', 'Aonach Mòr': '/munros/aonach-mor', "Beinn a' Bhùird": '/munros/beinn-a-bhuird', "Beinn a' Chaorainn (Cairngorms)": '/munros/beinn-a-chaorainn-cairngorms', "Beinn a' Chaorainn (Glen Spean)": '/munros/beinn-a-chaorainn-glen-spean', "Beinn a' Chlachair": '/munros/beinn-a-chlachair', "Beinn a' Chlèibh": '/munros/beinn-a-chleibh', "Beinn a' Chochuill": '/munros/beinn-a-chochuill', "Beinn a' Chreachain": '/munros/beinn-a-chreachain', "Beinn a' Chròin": '/munros/beinn-a-chroin', 'Beinn Achaladair': '/munros/beinn-achaladair', 'Beinn an Dòthaidh': '/munros/beinn-an-dothaidh', 'Beinn Bheoil': '/munros/beinn-bheoil', 'Beinn Bhreac': '/munros/beinn-bhreac', 'Beinn Bhrotain': '/munros/beinn-bhrotain', 'Beinn Bhuidhe': '/munros/beinn-bhuidhe', 'Beinn Chabhair': '/munros/beinn-chabhair', 'Beinn Dearg (Blair Atholl)': '/munros/beinn-dearg-blair-atholl', 'Beinn Dearg (Ullapool)': '/munros/beinn-dearg-ullapool', 'Beinn Dòrain': '/munros/beinn-dorain', 'Beinn Dubhchraig': '/munros/beinn-dubhchraig', 'Beinn Èibhinn': '/munros/beinn-eibhinn', 'Beinn Eunaich': '/munros/beinn-eunaich', 'Beinn Fhada': '/munros/beinn-fhada', 'Beinn Fhionnlaidh': '/munros/beinn-fhionnlaidh', 'Beinn Fhionnlaidh (Càrn Eige)': '/munros/beinn-fhionnlaidh-carn-eige', 'Beinn Ghlas': '/munros/beinn-ghlas', 'Beinn Heasgarnich': '/munros/beinn-heasgarnich', 'Beinn Ìme': '/munros/beinn-ime', 'Beinn Iutharn Mhòr': '/munros/beinn-iutharn-mhor', 'Beinn Liath Mhòr': '/munros/beinn-liath-mhor', 'Beinn Liath Mhòr Fannaich': '/munros/beinn-liath-mhor-fannaich', 'Beinn Mhanach': '/munros/beinn-mhanach', 'Beinn Mheadhoin': '/munros/beinn-mheadhoin', 'Beinn na Lap': '/munros/beinn-na-lap', 'Beinn nan Aighenan': '/munros/beinn-nan-aighenan', 'Beinn Narnain': '/munros/beinn-narnain', 'Beinn Sgritheall': '/munros/beinn-sgritheall', 'Beinn Sgulaird': '/munros/beinn-sgulaird', 'Beinn Tarsuinn': '/munros/beinn-tarsuinn', 'Beinn Teallach': '/munros/beinn-teallach', 'Beinn Tulaichean': '/munros/beinn-tulaichean', 'Beinn Udlamain': '/munros/beinn-udlamain', 'Ben Alder': '/munros/ben-alder', 'Ben Avon': '/munros/ben-avon', 'Ben Challum': '/munros/ben-challum', 'Ben Chonzie': '/munros/ben-chonzie', 'Ben Cruachan': '/munros/ben-cruachan', 'Ben Hope': '/munros/ben-hope', 'Ben Klibreck': '/munros/ben-klibreck', 'Ben Lawers': '/munros/ben-lawers', 'Ben Lomond': '/munros/ben-lomond', 'Ben Lui': '/munros/ben-lui', 'Ben Macdui': '/munros/ben-macdui', 'Ben More': '/munros/ben-more', 'Ben More (Mull)': '/munros/ben-more-mull', 'Ben More Assynt': '/munros/ben-more-assynt', 'Ben Nevis': '/munros/ben-nevis', 'Ben Oss': '/munros/ben-oss', 'Ben Starav': '/munros/ben-starav', 'Ben Vane': '/munros/ben-vane', 'Ben Vorlich (Loch Earn)': '/munros/ben-vorlich-loch-earn', 'Ben Vorlich (Loch Lomond)': '/munros/ben-vorlich-loch-lomond', 'Ben Wyvis': '/munros/ben-wyvis', 'Bidean nam Bian': '/munros/bidean-nam-bian', "Bidein a' Choire Sheasgaich": '/munros/bidein-a-choire-sheasgaich', "Bidein a' Ghlas Thuill (An Teallach)": '/munros/bidein-a-ghlas-thuill-an-teallach', 'Binnein Beag': '/munros/binnein-beag', 'Binnein Mòr': '/munros/binnein-mor', 'Blà Bheinn': '/munros/bla-bheinn', 'Braeriach': '/munros/braeriach', 'Bràigh Coire Chruinn-bhalgain': '/munros/braigh-coire-chruinn-bhalgain', 'Broad Cairn': '/munros/broad-cairn', 'Bruach na Frìthe': '/munros/bruach-na-frithe', 'Bynack More': '/munros/bynack-more', 'Cairn Bannoch': '/munros/cairn-bannoch', 'Cairn Gorm': '/munros/cairn-gorm', 'Cairn of Claise': '/munros/cairn-of-claise', 'Cairn Toul': '/munros/cairn-toul', "Càrn a' Chlamain": '/munros/carn-a-chlamain', "Càrn a' Choire Bhòidheach": '/munros/carn-a-choire-bhoidheach', "Càrn a' Ghèoidh": '/munros/carn-a-gheoidh', "Càrn a' Mhàim": '/munros/carn-a-mhaim', 'Càrn an Fhìdhleir (Càrn Ealar)': '/munros/carn-an-fhidhleir-carn-ealar', 'Càrn an Rìgh': '/munros/carn-an-righ', 'Càrn an t-Sagairt Mòr': '/munros/carn-an-t-sagairt-mor', 'Càrn an Tuirc': '/munros/carn-an-tuirc', 'Càrn Aosda': '/munros/carn-aosda', 'Càrn Bhac': '/munros/carn-bhac', 'Càrn Dearg (Corrour)': '/munros/carn-dearg-corrour', 'Càrn Dearg (Loch Pattack)': '/munros/carn-dearg-loch-pattack', 'Càrn Dearg (Monadhliath)': '/munros/carn-dearg-monadhliath', 'Càrn Eige': '/munros/carn-eige', 'Càrn Ghluasaid': '/munros/carn-ghluasaid', 'Càrn Gorm': '/munros/carn-gorm', "Càrn Liath (Beinn a' Ghlò)": '/munros/carn-liath-beinn-a-ghlo', 'Càrn Liath (Creag Meagaidh)': '/munros/carn-liath-creag-meagaidh', 'Càrn Mairg': '/munros/carn-mairg', 'Càrn Mòr Dearg': '/munros/carn-mor-dearg', 'Càrn na Caim': '/munros/carn-na-caim', 'Càrn nan Gabhar': '/munros/carn-nan-gabhar', 'Càrn nan Gobhar (Loch Mullardoch)': '/munros/carn-nan-gobhar-loch-mullardoch', 'Càrn nan Gobhar (Strathfarrar)': '/munros/carn-nan-gobhar-strathfarrar', 'Càrn Sgulain': '/munros/carn-sgulain', 'Chno Dearg': '/munros/chno-dearg', 'Ciste Dhubh': '/munros/ciste-dhubh', "Cona' Mheall": '/munros/cona-mheall', 'Conival': '/munros/conival', "Creag a'Mhàim": '/munros/creag-a-mhaim', 'Creag Leacach': '/munros/creag-leacach', 'Creag Meagaidh': '/munros/creag-meagaidh', 'Creag Mhòr (Glen Lochay)': '/munros/creag-mhor-glen-lochay', 'Creag Mhòr (Meall na Aighean)': '/munros/creag-mhor-meall-na-aighean', 'Creag nan Dàmh': '/munros/creag-nan-damh', 'Creag Pitridh': '/munros/creag-pitridh', 'Creise': '/munros/creise', 'Cruach Àrdrain': '/munros/cruach-ardrain', 'Derry Cairngorm': '/munros/derry-cairngorm', 'Driesh': '/munros/driesh', 'Druim Shionnach': '/munros/druim-shionnach', 'Eididh nan Clach Geala': '/munros/eididh-nan-clach-geala', 'Fionn Bheinn': '/munros/fionn-bheinn', 'Gairich': '/munros/gairich', 'Garbh Chioch Mhòr': '/munros/garbh-chioch-mhor', 'Geal chàrn (Laggan)': '/munros/geal-charn', 'Geal Chàrn (Monadhliath)': '/munros/geal-charn-monadhliath', 'Geal-chàrn (Alder)': '/munros/geal-charn-alder',
@@ -7,11 +8,17 @@ NAME_TO_URI = {"A' Bhuidheanach Bheag": '/munros/a-bhuidheanach-bheag', "A' Chai
 
 
 def handler(event, context):
-    user_id = event["queryStringParameters"]["u"]
-    sample = f"https://www.walkhighlands.co.uk/Forum/memberlist.php?mode=viewmap&u={user_id}"
-    # sample = f"http://localhost:8080/joe.html?mode=viewmap&u={user_id}"
-    result = requests.get(sample)
+    user_name = event["queryStringParameters"]["u"]
+    author_page = f"https://www.walkhighlands.co.uk/blogs/{user_name}"
+    # author_page = f"http://localhost:8080/landing.html"
+    result = requests.get(author_page)
+    soup = BeautifulSoup(result.content, "html.parser")
+    href = soup.find_all("a", href=True, text='Search posts')[0]
+    user_id = parse_qs(urlparse(href['href']).query)['author_id'][0]
 
+    sample = f"https://www.walkhighlands.co.uk/Forum/memberlist.php?mode=viewmap&u={user_id}"
+    # sample = f"http://localhost:8080/joe.html?u={user_id}"
+    result = requests.get(sample)
     soup = BeautifulSoup(result.content, "html.parser")
     munros_done = []
     for a in soup.find_all("span"):
@@ -24,6 +31,7 @@ def handler(event, context):
             name = text[len("Munro Map: "):len(text)]
 
     response = {
+        "user_id": user_id,
         "name": name,
         "munros": munros_done
     }
@@ -40,7 +48,7 @@ def handler(event, context):
     }
 
 
-# event = {}
-# event["queryStringParameters"] = {}
-# event["queryStringParameters"]['u'] = "182131"
-# print(handler(event, None))
+event = {}
+event["queryStringParameters"] = {}
+event["queryStringParameters"]['u'] = "182131"
+print(handler(event, None))

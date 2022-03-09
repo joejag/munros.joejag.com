@@ -23,7 +23,7 @@ const WalkHighlandsConnect = () => {
   const loggedIn =
     completed?.id !== '' &&
     completed?.name !== '' &&
-    localStorage.getItem('walkHighlandsId')
+    localStorage.getItem('walkHighlandsName')
 
   const fetchWalkHighlandsUser = (userId: string) => {
     fetchData(setCompleted, userId)
@@ -45,23 +45,8 @@ const WalkHighlandsConnect = () => {
         </Typography>
 
         <Typography color="inherit" sx={{ paddingTop: '1em' }}>
-          Find the id by going to your 'Munro Map' on{' '}
-          <Link href="https://www.walkhighlands.co.uk/munros/">
-            Walk Highlands
-          </Link>{' '}
-          and taking the number off the end of the URL.
+          For example <em>joejag</em> is this site's authors id:
         </Typography>
-        <Typography
-          color="inherit"
-          sx={{ paddingTop: '1em', marginBottom: '1em' }}
-        >
-          For example <em>182131</em> is the id for this URL:
-        </Typography>
-
-        <img
-          src="/images/wh_url.png"
-          alt="Example of the URL for the Walk Highlands Munro Map page"
-        />
 
         <Grid container sx={{ paddingTop: '2em' }}>
           <TextField
@@ -108,13 +93,13 @@ const WalkHighlandsDetails = () => {
 
   const refreshWalkHighlandsUser = () => {
     localStorage.removeItem('cached')
-    const userId = localStorage.getItem('walkHighlandsId') || ''
+    const userId = localStorage.getItem('walkHighlandsName') || ''
     setRefreshing(true)
     fetchWalkHighlandsUser(userId)
   }
 
   const changeWalkHighlandsUser = () => {
-    localStorage.removeItem('walkHighlandsId')
+    localStorage.removeItem('walkHighlandsName')
     setCompleted(INITIAL_STATE)
   }
 

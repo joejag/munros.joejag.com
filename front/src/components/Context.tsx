@@ -4,7 +4,7 @@ import { UserState } from '../Router'
 
 export const INITIAL_STATE = {
   completed: {
-    id: localStorage.getItem('walkHighlandsId') || '',
+    id: localStorage.getItem('walkHighlandsName') || '',
     name: '',
     munros: [],
   },

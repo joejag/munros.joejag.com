@@ -17,7 +17,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
   const loggedIn =
     completed?.id !== '' &&
     completed?.name !== '' &&
-    localStorage.getItem('walkHighlandsId')
+    localStorage.getItem('walkHighlandsName')
 
   const areaReadable = urlAreaToHumanArea(area)
   const groupReadable = urlGroupToHumanArea(group)

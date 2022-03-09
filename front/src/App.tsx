@@ -92,7 +92,9 @@ const TripsList = ({ munros }: { munros: Trip[] }) => {
       <MyMap trips={munros} />
       {tripsTodo.length > 0 && (
         <>
-          <Typography variant="h4">Todo</Typography>
+          <Typography variant="h4" sx={{ marginBottom: '0.5em' }}>
+            Todo
+          </Typography>
 
           <Grid container spacing={4}>
             {tripsTodo.map((trip) => {
@@ -110,7 +112,10 @@ const TripsList = ({ munros }: { munros: Trip[] }) => {
 
       {tripsCompleted.length > 0 && (
         <>
-          <Typography variant="h4" sx={{ marginTop: '1em' }}>
+          <Typography
+            variant="h4"
+            sx={{ marginTop: '1em', marginBottom: '0.5em' }}
+          >
             Done
           </Typography>
 

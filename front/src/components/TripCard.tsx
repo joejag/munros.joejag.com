@@ -19,7 +19,7 @@ import Item from './Item'
 import { DISTANCES } from '../biz/distances'
 
 import { useLocation } from 'react-router-dom'
-import { safeName } from '../biz/utils'
+import { safeName, minutesToReadable } from '../biz/utils'
 
 export interface Trip {
   title: string
@@ -108,6 +108,7 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
 
   const origin: string = localStorage.getItem('drivingOrigin') || 'Glasgow'
   const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
+  const humanDriveTime = minutesToReadable(driveTime)
 
   return (
     <Card
@@ -150,8 +151,15 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
             <Tooltip
               title={
                 <div>
-                  Munros on this trip
-                  <ul style={{ padding: '0', paddingLeft: '1em' }}>
+                  Munros on this trip:
+                  <ul
+                    style={{
+                      padding: '0',
+                      paddingLeft: '1em',
+                      margin: '0',
+                      marginTop: '1em',
+                    }}
+                  >
                     {trip.munros.map((m) => (
                       <li key={m.uri}>{m.name}</li>
                     ))}
@@ -200,13 +208,10 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
               title={`Time to drive from ${origin}. Click to change the start point`}
             >
               <Link href="/driving" color="inherit" underline="none">
-                <Badge
-                  badgeContent={`${driveTime}m`}
-                  color="secondary"
-                  max={999}
-                >
-                  <DriveEtaIcon />
-                </Badge>
+                <Typography>
+                  <DriveEtaIcon sx={{ verticalAlign: 'bottom' }} />{' '}
+                  {humanDriveTime}
+                </Typography>
               </Link>
             </Tooltip>
           </Grid>

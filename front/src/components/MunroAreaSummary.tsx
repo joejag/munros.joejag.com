@@ -27,7 +27,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 
 import { WalkHighlandsContext } from './Context'
 import { DISTANCES } from '../biz/distances'
-import { allContains, safeName } from '../biz/utils'
+import { allContains, safeName, minutesToReadable } from '../biz/utils'
 import { WEBCAMS } from '../munros'
 
 const MunroAreaSummary = ({ area, groups }: any) => {
@@ -46,6 +46,7 @@ const MunroAreaSummary = ({ area, groups }: any) => {
   const driveTimes = areaTrips.map((t) => DISTANCES[origin][t.url].seconds / 60)
   const sum = driveTimes.reduce((a, b) => a + b, 0)
   const avgDriveTime = Math.round(sum / driveTimes.length || 0)
+  const humanDriveTime = minutesToReadable(avgDriveTime)
 
   return (
     <Card>
@@ -115,13 +116,10 @@ const MunroAreaSummary = ({ area, groups }: any) => {
               <Tooltip
                 title={`Average time to drive from ${origin} to any of these trips. Click to change the start point`}
               >
-                <Badge
-                  badgeContent={`${avgDriveTime}m`}
-                  color="secondary"
-                  max={999}
-                >
-                  <DriveEtaIcon />
-                </Badge>
+                <Typography>
+                  <DriveEtaIcon sx={{ verticalAlign: 'bottom' }} />{' '}
+                  {humanDriveTime}
+                </Typography>
               </Tooltip>
             </Link>
           </Grid>

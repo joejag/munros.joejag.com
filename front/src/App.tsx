@@ -38,7 +38,7 @@ export const AllMunros = () => {
         <Typography sx={{ marginTop: '1em', marginBottom: '1.6em' }}>
           It is highly recommend to <Link href="/walkhighlands">link</Link> your
           Walk Highlands munro map so you can see what Munros you've already
-          summited.
+          bagged.
         </Typography>
         <AreasMap trips={MUNROS} />
         <Grid container spacing={4}>

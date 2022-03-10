@@ -6,6 +6,8 @@ import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
+import Link from '@mui/material/Link'
+
 import CircularProgress from '@mui/material/CircularProgress'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
@@ -75,6 +77,11 @@ const WalkHighlandsConnect = () => {
             )}
           </Button>
         </Grid>
+        <Typography sx={{ marginTop: '1em' }}>
+          <Link href="/" color="inherit">
+            Back to Trips
+          </Link>
+        </Typography>
       </Container>
     </>
   )
@@ -162,6 +169,12 @@ const WalkHighlandsDetails = () => {
             Change user
           </Button>
         </Grid>
+
+        <Typography sx={{ marginTop: '1em' }}>
+          <Link href="/" color="inherit">
+            Back to Trips
+          </Link>
+        </Typography>
       </Container>
     </>
   )

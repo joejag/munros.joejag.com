@@ -38,15 +38,51 @@ export interface Trip {
 
 const Grade = ({ grade }: any) => {
   const styling: { [grade: number]: any } = {
-    3: { color: '#2196f3', letter: 'E' },
-    4: { color: '#cddc39', letter: 'M' },
-    5: { color: '#f44336', letter: 'H' },
+    3: {
+      color: '#2196f3',
+      letter: 'E',
+      description:
+        'Moderate hillwalks. Terrain will be steep, map reading skills essential. This grade includes the most straightforward and popular Munros.',
+    },
+    4: {
+      color: '#cddc39',
+      letter: 'M',
+      description:
+        'Harder hillwalks. Can include longer walks and pathless sections calling for more careful navigation. There may be scree and minor scrambling. This grade is quite broad and includes the bulk of the Munros.',
+    },
+    5: {
+      color: '#f44336',
+      letter: 'H',
+      description:
+        'Tough by hillwalking standards; these routes can be very arduous or include trickier scrambling. This grade includes the hardest or most strenuous Munros.',
+    },
   }
   const details = styling[grade]
 
   return (
-    <Tooltip title={`WalkHiglands grade for this trip is ${grade}/5`}>
-      <Item sx={{ backgroundColor: details.color }}>{details.letter}</Item>
+    <Tooltip
+      title={
+        <div>
+          WalkHiglands grade for this trip is {grade}
+          <br />
+          <br />
+          <em>{details.description}</em>
+        </div>
+      }
+    >
+      <Typography
+        textAlign="center"
+        sx={{
+          backgroundColor: details.color,
+          paddingTop: '0.5em',
+          paddingBottom: '0.5em',
+          paddingLeft: '0.1em',
+          paddingRight: '0.1em',
+          margin: 0,
+        }}
+      >
+        Grade {grade}
+      </Typography>
     </Tooltip>
   )
 }
@@ -85,15 +121,15 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
           : {}
       }
     >
-      <CardActions sx={{ paddingTop: '1em' }}>
+      <CardActions>
         <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={1}>
+          <Grid item xs={4} textAlign="left">
             <Grade grade={trip.grade} />
           </Grid>
-          <Grid item xs={6} textAlign="center">
+          <Grid item xs={4} textAlign="left" sx={{ paddingTop: '0.5em' }}>
             <Typography>
               <Tooltip title="Kilometers on this trip">
-                <span>{trip.distance}km</span>
+                <span>{trip.distance}k</span>
               </Tooltip>
               &nbsp;&amp;&nbsp;
               <Tooltip title="Ascent on this trip">
@@ -101,7 +137,7 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
               </Tooltip>
             </Typography>
           </Grid>
-          <Grid item xs={5} textAlign="right">
+          <Grid item xs={4} textAlign="right" sx={{ paddingTop: '0.5em' }}>
             <Tooltip title="Estimate to complete this trip using Naismith's rule. Allow one hour for every 5km forward, plus an additional hour for every 600m of ascent">
               <Badge
                 badgeContent={trip.time.naismith}

@@ -55,21 +55,21 @@ const MunroAreaSummary = ({ area, groups }: any) => {
             {easyMunros > 0 && (
               <Tooltip title="Number of Munros rated as Grade 3/5 by Walk Highlands in this area">
                 <Badge badgeContent={easyMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#2196f3' }}>E</Item>
+                  <Item sx={{ backgroundColor: '#2196f3' }}>G3</Item>
                 </Badge>
               </Tooltip>
             )}
             {mediumMunros > 0 && (
               <Tooltip title="Number of Munros rated as Grade 4/5 by Walk Highlands in this area">
                 <Badge badgeContent={mediumMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#cddc39' }}>M</Item>
+                  <Item sx={{ backgroundColor: '#cddc39' }}>G4</Item>
                 </Badge>
               </Tooltip>
             )}
             {hardMunros > 0 && (
               <Tooltip title="Number of Munros rated as Grade 5/5 by Walk Highlands in this area">
                 <Badge badgeContent={hardMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#f44336' }}>H</Item>
+                  <Item sx={{ backgroundColor: '#f44336' }}>G5</Item>
                 </Badge>
               </Tooltip>
             )}

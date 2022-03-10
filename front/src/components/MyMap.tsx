@@ -162,6 +162,8 @@ export const AreasMap = ({ trips }: { trips: Trip[] }) => {
           <Popup>
             <strong>{tc.title}</strong>
             <br />
+            <br />
+
             <a href={`/munros/${safeName(tc.title)}`}>See Trips</a>
           </Popup>
         </Polygon>

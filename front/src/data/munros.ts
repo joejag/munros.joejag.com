@@ -1,4 +1,4 @@
-import { Area, Trip } from './types'
+import { Area, Trip } from '../biz/types'
 
 export const WEBCAMS: {
   [group: string]: { url: string; description: string }

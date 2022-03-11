@@ -15,12 +15,12 @@ import Link from '@mui/material/Link'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
-import { DISTANCES } from '../biz/distances'
 import { Trip } from '../biz/types'
 import { minutesToReadable, safeName } from '../biz/utils'
+import { DISTANCES } from '../data/distances'
 
-const Grade = ({ grade }: any) => {
-  const styling: { [grade: number]: any } = {
+const Grade = ({ grade }: { grade: number }) => {
+  const styling: { [grade: number]: { color: string; description: string } } = {
     3: {
       color: '#2A81CB',
       description:

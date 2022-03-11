@@ -1,7 +1,7 @@
-import { MUNRO_GROUPING } from './munros'
+import { MUNRO_GROUPING } from '../data/munros'
 import { Area, Trip } from './types'
 
-export const allContains = (arr: any, target: any) =>
+export const allContains = (arr: string[], target: string[]) =>
   target.every((v: any) => arr.includes(v))
 
 export const safeName = (a: string) =>

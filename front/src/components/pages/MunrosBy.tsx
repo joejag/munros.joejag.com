@@ -2,13 +2,13 @@ import * as React from 'react'
 
 import Container from '@mui/material/Container'
 
-import { MUNROS } from '../../biz/munros'
-import { Trip } from '../../biz/types'
+import { Area, Trip } from '../../biz/types'
 import { safeName } from '../../biz/utils'
+import { MUNROS } from '../../data/munros'
 import Banner from '../Banner'
 import { TripsList } from '../TripsList'
 
-export const MunrosByArea = ({ area }: any) => {
+export const MunrosByArea = ({ area }: { area: string }) => {
   const munros: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => safeName(m.location.steveFallon.area) === area
   )
@@ -27,7 +27,7 @@ export const MunrosByArea = ({ area }: any) => {
   )
 }
 
-export const MunrosByGroup = ({ group }: any) => {
+export const MunrosByGroup = ({ group }: { group: string }) => {
   const munros: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => safeName(m.location.steveFallon.group) === group
   )

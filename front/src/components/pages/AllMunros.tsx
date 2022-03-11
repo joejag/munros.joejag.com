@@ -6,7 +6,8 @@ import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
-import { MUNRO_GROUPING, MUNROS } from '../../biz/munros'
+import { Area } from '../../biz/types'
+import { MUNRO_GROUPING, MUNROS } from '../../data/munros'
 import Banner from '../Banner'
 import { AllMunrosMap } from '../Maps'
 import MunroAreaCard from '../MunroAreaCard'
@@ -38,10 +39,10 @@ export const AllMunros = () => {
         </Typography>
         <AllMunrosMap trips={MUNROS} />
         <Grid container spacing={4}>
-          {MUNRO_GROUPING.map(({ area, groups }) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={area}>
+          {MUNRO_GROUPING.map((area: Area) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={area.area}>
               <Paper elevation={1}>
-                <MunroAreaCard area={area} groups={groups} />
+                <MunroAreaCard target={area} />
               </Paper>
             </Grid>
           ))}

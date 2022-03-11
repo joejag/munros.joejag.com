@@ -18,14 +18,14 @@ import ListItemText from '@mui/material/ListItemText'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
-import { DISTANCES } from '../biz/distances'
-import { MUNROS, WEBCAMS } from '../biz/munros'
-import { Trip } from '../biz/types'
+import { Area, Trip } from '../biz/types'
 import { allContains, minutesToReadable, safeName } from '../biz/utils'
+import { DISTANCES } from '../data/distances'
+import { MUNROS, WEBCAMS } from '../data/munros'
 import { WalkHighlandsContext } from './Context'
 
-const Grade = ({ grade, count }: any) => {
-  const styling: { [grade: number]: any } = {
+const Grade = ({ grade, count }: { grade: number; count: number }) => {
+  const styling: { [grade: number]: { color: string; description: string } } = {
     3: {
       color: '#2A81CB',
       description:
@@ -75,7 +75,8 @@ const Grade = ({ grade, count }: any) => {
   )
 }
 
-const MunroAreaCard = ({ area, groups }: any) => {
+const MunroAreaCard = ({ target }: { target: Area }) => {
+  const { area, groups } = target
   const areaTrips: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => m.location.steveFallon.area === area
   )

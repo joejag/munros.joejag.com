@@ -1,10 +1,7 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
 
-import { fetchData } from './biz/fetchData'
-import { WalkHiglandsData } from './biz/types'
 import { urlAreaToHumanArea, urlGroupToHumanArea } from './biz/utils'
-import { INITIAL_STATE, WalkHighlandsContext } from './components/Context'
 import AllMunros from './components/pages/AllMunros'
 import DrivingPreferences from './components/pages/DrivingPreferences'
 import { MunrosByArea, MunrosByGroup } from './components/pages/MunrosBy'
@@ -20,29 +17,16 @@ function ScrollToTopOnMount() {
 }
 
 export default function Routes() {
-  const [completed, setCompleted] = React.useState<WalkHiglandsData>(
-    INITIAL_STATE.completed
-  )
-  const value = React.useMemo(() => ({ completed, setCompleted }), [completed])
-
-  React.useEffect(() => {
-    if (completed.id !== undefined && completed.id !== '') {
-      fetchData(setCompleted, completed.id)
-    }
-  }, [completed.id])
-
   return (
     <Router>
-      <WalkHighlandsContext.Provider value={value}>
-        <Switch>
-          <Route exact path="/" children={<All />}></Route>
-          <Route path="/munros/:area/:group" children={<MunroGroupRoute />} />
-          <Route path="/munros/:area" children={<MunroAreaRoute />} />
-          <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
-          <Route path="/driving" children={<DrivingPreferences />} />
-          <Route path="/plan" children={<PlanATrip />} />
-        </Switch>
-      </WalkHighlandsContext.Provider>
+      <Switch>
+        <Route exact path="/" children={<All />}></Route>
+        <Route path="/munros/:area/:group" children={<MunroGroupRoute />} />
+        <Route path="/munros/:area" children={<MunroAreaRoute />} />
+        <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
+        <Route path="/driving" children={<DrivingPreferences />} />
+        <Route path="/plan" children={<PlanATrip />} />
+      </Switch>
     </Router>
   )
 }

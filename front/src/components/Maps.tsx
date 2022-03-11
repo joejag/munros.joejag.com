@@ -7,9 +7,9 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 import * as React from 'react'
 import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet'
 
-import { MUNRO_GROUPING, MUNROS } from '../biz/munros'
 import { Trip } from '../biz/types'
 import { hasCompletedAll, safeName } from '../biz/utils'
+import { MUNRO_GROUPING, MUNROS } from '../data/munros'
 import { WalkHighlandsContext } from './Context'
 
 // Assign the imported image assets before you do anything with Leaflet.

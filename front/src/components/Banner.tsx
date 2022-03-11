@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'

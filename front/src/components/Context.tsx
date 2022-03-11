@@ -1,6 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 
-import { UserState } from '../Router'
+import { UserState } from '../biz/types'
 
 export const INITIAL_STATE = {
   completed: {

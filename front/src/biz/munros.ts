@@ -1,4 +1,4 @@
-import { Trip } from './components/TripCard'
+import { Area, Trip } from './types'
 
 export const WEBCAMS: {
   [group: string]: { url: string; description: string }
@@ -63,10 +63,7 @@ export const WEBCAMS: {
   },
 }
 
-export const MUNRO_GROUPING: {
-  area: string
-  groups: string[]
-}[] = [
+export const MUNRO_GROUPING: Area[] = [
   {
     area: 'Loch Lomond to Loch Tay',
     groups: [

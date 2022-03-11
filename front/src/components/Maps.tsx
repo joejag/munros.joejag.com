@@ -4,13 +4,13 @@ import L, { icon, Marker as AMarker } from 'leaflet'
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
-import React from 'react'
+import * as React from 'react'
 import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet'
 
-import { allContains, safeName } from '../biz/utils'
-import { MUNRO_GROUPING, MUNROS } from '../munros'
+import { MUNRO_GROUPING, MUNROS } from '../biz/munros'
+import { Trip } from '../biz/types'
+import { hasCompletedAll, safeName } from '../biz/utils'
 import { WalkHighlandsContext } from './Context'
-import { Trip } from './TripCard'
 
 // Assign the imported image assets before you do anything with Leaflet.
 AMarker.prototype.options.icon = icon({
@@ -67,13 +67,7 @@ const styling: { [grade: number]: any } = {
   },
 }
 
-const hasCompleted = (completed: any, trip: Trip) =>
-  allContains(
-    completed?.munros || ([] as string[]),
-    trip.munros.map((m) => m.uri)
-  )
-
-const MyMap = ({ trips }: { trips: Trip[] }) => {
+export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
   const { completed } = React.useContext(WalkHighlandsContext)
 
   const munrosWithCords: {
@@ -108,7 +102,9 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
     if (c2.length > 1) {
       tripsCords.push({
         cords: c2,
-        color: hasCompleted(completed, t) ? '#7B7B7B' : styling[t.grade].color,
+        color: hasCompletedAll(completed, t)
+          ? '#7B7B7B'
+          : styling[t.grade].color,
         name: t.url,
       })
     }
@@ -160,7 +156,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
   )
 }
 
-export const AreasMap = ({ trips }: { trips: Trip[] }) => {
+export const AllMunrosMap = ({ trips }: { trips: Trip[] }) => {
   const polys = MUNRO_GROUPING.map(({ area, groups }) => {
     const trips: Trip[] = Object.values(MUNROS).filter(
       (m: Trip) => m.location.steveFallon.area === area
@@ -262,5 +258,3 @@ function removeMiddle(a: any, b: any, c: any) {
     (a.lat - b.lat) * (c.lat - b.lat) + (a.long - b.long) * (c.long - b.long)
   return cross < 0 || (cross === 0 && dot <= 0)
 }
-
-export default MyMap

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
@@ -19,13 +19,63 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
 import { DISTANCES } from '../biz/distances'
+import { MUNROS, WEBCAMS } from '../biz/munros'
+import { Trip } from '../biz/types'
 import { allContains, minutesToReadable, safeName } from '../biz/utils'
-import { MUNROS, WEBCAMS } from '../munros'
 import { WalkHighlandsContext } from './Context'
-import Item from './Item'
-import { Trip } from './TripCard'
 
-const MunroAreaSummary = ({ area, groups }: any) => {
+const Grade = ({ grade, count }: any) => {
+  const styling: { [grade: number]: any } = {
+    3: {
+      color: '#2A81CB',
+      description:
+        'Moderate hillwalks. Terrain will be steep, map reading skills essential. This grade includes the most straightforward and popular Munros.',
+    },
+    4: {
+      color: '#2AAD27',
+      description:
+        'Harder hillwalks. Can include longer walks and pathless sections calling for more careful navigation. There may be scree and minor scrambling. This grade is quite broad and includes the bulk of the Munros.',
+    },
+    5: {
+      color: '#CB2B3E',
+      description:
+        'Tough by hillwalking standards; these routes can be very arduous or include trickier scrambling. This grade includes the hardest or most strenuous Munros.',
+    },
+  }
+  const details = styling[grade]
+
+  return (
+    <Tooltip
+      title={
+        <div>
+          Number of WalkHiglands trips at grade {grade}
+          <br />
+          <br />
+          <em>{details.description}</em>
+        </div>
+      }
+    >
+      <Badge badgeContent={count} color="primary">
+        <Typography
+          textAlign="center"
+          color="white"
+          sx={{
+            backgroundColor: details.color,
+            paddingTop: '0.3em',
+            paddingBottom: '0.3em',
+            paddingLeft: '0.3em',
+            paddingRight: '0.3em',
+            margin: 0,
+          }}
+        >
+          G{grade}
+        </Typography>
+      </Badge>
+    </Tooltip>
+  )
+}
+
+const MunroAreaCard = ({ area, groups }: any) => {
   const areaTrips: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => m.location.steveFallon.area === area
   )
@@ -47,37 +97,17 @@ const MunroAreaSummary = ({ area, groups }: any) => {
     <Card>
       <CardActions sx={{ paddingTop: '1em' }}>
         <Grid container>
-          <Grid item xs={6}>
-            {easyMunros > 0 && (
-              <Tooltip title="Number of Munros rated as Grade 3/5 by Walk Highlands in this area">
-                <Badge badgeContent={easyMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#2196f3' }}>G3</Item>
-                </Badge>
-              </Tooltip>
-            )}
-            {mediumMunros > 0 && (
-              <Tooltip title="Number of Munros rated as Grade 4/5 by Walk Highlands in this area">
-                <Badge badgeContent={mediumMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#cddc39' }}>G4</Item>
-                </Badge>
-              </Tooltip>
-            )}
-            {hardMunros > 0 && (
-              <Tooltip title="Number of Munros rated as Grade 5/5 by Walk Highlands in this area">
-                <Badge badgeContent={hardMunros} color="primary">
-                  <Item sx={{ backgroundColor: '#f44336' }}>G5</Item>
-                </Badge>
-              </Tooltip>
-            )}
+          <Grid item xs={10}>
+            {easyMunros > 0 && <Grade grade={3} count={easyMunros} />}
+            {mediumMunros > 0 && <Grade grade={4} count={mediumMunros} />}
+            {hardMunros > 0 && <Grade grade={5} count={hardMunros} />}
           </Grid>
-          <Grid item xs={6} textAlign="right">
-            <Item>
-              <Tooltip title="Munros in this area">
-                <Badge badgeContent={munroCount} color="secondary">
-                  <FilterHdrIcon fontSize="large" />
-                </Badge>
-              </Tooltip>
-            </Item>
+          <Grid item xs={2} textAlign="center">
+            <Tooltip title="Munros in this area">
+              <Badge badgeContent={munroCount} color="secondary">
+                <FilterHdrIcon fontSize="large" />
+              </Badge>
+            </Tooltip>
           </Grid>
         </Grid>
       </CardActions>
@@ -176,4 +206,4 @@ const MunroGroupSummary = ({ area, group }: any) => {
   )
 }
 
-export default MunroAreaSummary
+export default MunroAreaCard

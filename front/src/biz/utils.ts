@@ -1,4 +1,5 @@
-import { MUNRO_GROUPING } from '../munros'
+import { MUNRO_GROUPING } from './munros'
+import { Area, Trip } from './types'
 
 export const allContains = (arr: any, target: any) =>
   target.every((v: any) => arr.includes(v))
@@ -8,7 +9,7 @@ export const safeName = (a: string) =>
 
 export const urlAreaToHumanArea = (area?: string) => {
   if (area) {
-    const p = MUNRO_GROUPING.find((mg: any) => safeName(mg.area) === area)
+    const p = MUNRO_GROUPING.find((mg: Area) => safeName(mg.area) === area)
     if (p) {
       return p.area
     }
@@ -34,3 +35,9 @@ export const minutesToReadable = (mins: number) => {
   const minutes = mins % 60
   return (hours > 0 ? `${hours}h ` : '') + `${minutes}m`
 }
+
+export const hasCompletedAll = (completed: any, trip: Trip) =>
+  allContains(
+    completed?.munros || ([] as string[]),
+    trip.munros.map((m) => m.uri)
+  )

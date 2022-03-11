@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -7,9 +7,9 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { fetchFriendData } from '../biz/fetchData'
-import Banner from './Banner'
-import { WalkHighlandsContext } from './Context'
+import { fetchFriendData } from '../../biz/fetchData'
+import Banner from '../Banner'
+import { WalkHighlandsContext } from '../Context'
 
 interface FriendTrips {
   name: string

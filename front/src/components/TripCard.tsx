@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
@@ -16,40 +16,23 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
 import { DISTANCES } from '../biz/distances'
+import { Trip } from '../biz/types'
 import { minutesToReadable, safeName } from '../biz/utils'
-
-export interface Trip {
-  title: string
-  weatherUrl: string
-  desc: string
-  image: string
-  grade: number
-  url: string
-  rating: number
-  munros: { name: string; uri: string; cords: { long: number; lat: number } }[]
-  distance: number
-  ascent: number
-  time: any
-  location: any
-}
 
 const Grade = ({ grade }: any) => {
   const styling: { [grade: number]: any } = {
     3: {
       color: '#2A81CB',
-      letter: 'E',
       description:
         'Moderate hillwalks. Terrain will be steep, map reading skills essential. This grade includes the most straightforward and popular Munros.',
     },
     4: {
       color: '#2AAD27',
-      letter: 'M',
       description:
         'Harder hillwalks. Can include longer walks and pathless sections calling for more careful navigation. There may be scree and minor scrambling. This grade is quite broad and includes the bulk of the Munros.',
     },
     5: {
       color: '#CB2B3E',
-      letter: 'H',
       description:
         'Tough by hillwalking standards; these routes can be very arduous or include trickier scrambling. This grade includes the hardest or most strenuous Munros.',
     },

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import RefreshIcon from '@mui/icons-material/Refresh'
@@ -11,9 +11,9 @@ import Link from '@mui/material/Link'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { fetchData } from '../biz/fetchData'
-import Banner from './Banner'
-import { INITIAL_STATE, WalkHighlandsContext } from './Context'
+import { fetchData } from '../../biz/fetchData'
+import Banner from '../Banner'
+import { INITIAL_STATE, WalkHighlandsContext } from '../Context'
 
 const WalkHighlandsConnect = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContext)

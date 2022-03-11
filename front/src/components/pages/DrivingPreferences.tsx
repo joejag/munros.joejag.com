@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import Typography from '@mui/material/Typography'
 
-import Banner from './Banner'
+import Banner from '../Banner'
 
 const DrivingPreferences = () => {
   const stored = localStorage.getItem('drivingOrigin') || 'Glasgow'

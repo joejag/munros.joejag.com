@@ -1,13 +1,15 @@
-import React from 'react'
+import * as React from 'react'
 import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
 
-import { AllMunros, MunroArea, MunroGroup } from './App'
 import { fetchData } from './biz/fetchData'
+import { WalkHiglandsData } from './biz/types'
 import { urlAreaToHumanArea, urlGroupToHumanArea } from './biz/utils'
 import { INITIAL_STATE, WalkHighlandsContext } from './components/Context'
-import DrivingPreferences from './components/DrivingPreferences'
-import PlanATrip from './components/PlanATrip'
-import WalkHighlandsConnect from './components/WalkHighlandsConnect'
+import AllMunros from './components/pages/AllMunros'
+import DrivingPreferences from './components/pages/DrivingPreferences'
+import { MunrosByArea, MunrosByGroup } from './components/pages/MunrosBy'
+import PlanATrip from './components/pages/PlanATrip'
+import WalkHighlandsConnect from './components/pages/WalkHighlandsConnect'
 
 function ScrollToTopOnMount() {
   React.useEffect(() => {
@@ -17,19 +19,8 @@ function ScrollToTopOnMount() {
   return null
 }
 
-export interface WalkHiglandsMunros {
-  id: string
-  name: string
-  munros: string[]
-}
-
-export interface UserState {
-  completed?: WalkHiglandsMunros
-  setCompleted: any
-}
-
 export default function Routes() {
-  const [completed, setCompleted] = React.useState<WalkHiglandsMunros>(
+  const [completed, setCompleted] = React.useState<WalkHiglandsData>(
     INITIAL_STATE.completed
   )
   const value = React.useMemo(() => ({ completed, setCompleted }), [completed])
@@ -77,7 +68,7 @@ function MunroAreaRoute() {
   return (
     <>
       <ScrollToTopOnMount />
-      <MunroArea area={area} />
+      <MunrosByArea area={area} />
     </>
   )
 }
@@ -92,7 +83,7 @@ function MunroGroupRoute() {
   return (
     <>
       <ScrollToTopOnMount />
-      <MunroGroup group={group} />
+      <MunrosByGroup group={group} />
     </>
   )
 }

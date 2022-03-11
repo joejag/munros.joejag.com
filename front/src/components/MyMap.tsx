@@ -1,8 +1,15 @@
 import React from 'react'
-import { MapContainer, Marker, TileLayer, Popup, Polygon } from 'react-leaflet'
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  Popup,
+  Polygon,
+  useMap,
+} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-import L, { Marker as AMarker, icon } from 'leaflet'
+import L, { Marker as AMarker, icon, latLngBounds, LatLng } from 'leaflet'
 
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
@@ -116,13 +123,14 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
   })
 
   const mapCenter = averageGeolocation(munrosWithCords)
+  const zoomLevel = trips[0].location.steveFallon.area == 'Far North' ? 8 : 10
 
   return (
     <>
       {munrosWithCords.length > 0 && (
         <MapContainer
           center={[mapCenter.lat, mapCenter.long]}
-          zoom={10}
+          zoom={zoomLevel}
           scrollWheelZoom={false}
           style={{ width: '100%', height: '400px', marginBottom: '2em' }}
         >

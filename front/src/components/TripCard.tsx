@@ -1,24 +1,22 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import DriveEtaIcon from '@mui/icons-material/DriveEta'
+import FilterDramaIcon from '@mui/icons-material/FilterDrama'
+import FilterHdrIcon from '@mui/icons-material/FilterHdr'
+import Badge from '@mui/material/Badge'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import Badge from '@mui/material/Badge'
-import FilterHdrIcon from '@mui/icons-material/FilterHdr'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import FilterDramaIcon from '@mui/icons-material/FilterDrama'
-import DriveEtaIcon from '@mui/icons-material/DriveEta'
-
-import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Tooltip from '@mui/material/Tooltip'
 import Link from '@mui/material/Link'
+import Tooltip from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
 
 import { DISTANCES } from '../biz/distances'
-
-import { useLocation } from 'react-router-dom'
-import { safeName, minutesToReadable } from '../biz/utils'
+import { minutesToReadable, safeName } from '../biz/utils'
 
 export interface Trip {
   title: string

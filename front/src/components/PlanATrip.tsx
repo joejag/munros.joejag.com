@@ -1,16 +1,15 @@
 import React from 'react'
 
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 
 import { fetchFriendData } from '../biz/fetchData'
-import { WalkHighlandsContext } from './Context'
-
 import Banner from './Banner'
+import { WalkHighlandsContext } from './Context'
 
 interface FriendTrips {
   name: string

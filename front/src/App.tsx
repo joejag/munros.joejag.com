@@ -1,19 +1,18 @@
 import React from 'react'
-import { MUNROS, MUNRO_GROUPING } from './munros'
 
-import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
 
-import TripCard, { Trip } from './components/TripCard'
+import { allContains, safeName } from './biz/utils'
+import Banner from './components/Banner'
+import { WalkHighlandsContext } from './components/Context'
 import MunroAreaSummary from './components/MunroAreaSummary'
 import MyMap, { AreasMap } from './components/MyMap'
-
-import Banner from './components/Banner'
-import { safeName, allContains } from './biz/utils'
-import { WalkHighlandsContext } from './components/Context'
+import TripCard, { Trip } from './components/TripCard'
+import { MUNRO_GROUPING, MUNROS } from './munros'
 
 export const AllMunros = () => {
   return (

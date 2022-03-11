@@ -1,20 +1,19 @@
 import React from 'react'
 
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-import Alert from '@mui/material/Alert'
 import Link from '@mui/material/Link'
-
-import CircularProgress from '@mui/material/CircularProgress'
-import RefreshIcon from '@mui/icons-material/Refresh'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 
 import { fetchData } from '../biz/fetchData'
-import { WalkHighlandsContext, INITIAL_STATE } from './Context'
 import Banner from './Banner'
+import { INITIAL_STATE, WalkHighlandsContext } from './Context'
 
 const WalkHighlandsConnect = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContext)

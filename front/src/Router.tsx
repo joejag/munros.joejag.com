@@ -1,17 +1,13 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
+
 import { AllMunros, MunroArea, MunroGroup } from './App'
-import { WalkHighlandsContext, INITIAL_STATE } from './components/Context'
-import WalkHighlandsConnect from './components/WalkHighlandsConnect'
-import DrivingPreferences from './components/DrivingPreferences'
-import PlanATrip from './components/PlanATrip'
 import { fetchData } from './biz/fetchData'
 import { urlAreaToHumanArea, urlGroupToHumanArea } from './biz/utils'
+import { INITIAL_STATE, WalkHighlandsContext } from './components/Context'
+import DrivingPreferences from './components/DrivingPreferences'
+import PlanATrip from './components/PlanATrip'
+import WalkHighlandsConnect from './components/WalkHighlandsConnect'
 
 function ScrollToTopOnMount() {
   React.useEffect(() => {

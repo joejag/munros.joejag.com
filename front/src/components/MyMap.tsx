@@ -1,24 +1,16 @@
-import React from 'react'
-import {
-  MapContainer,
-  Marker,
-  TileLayer,
-  Popup,
-  Polygon,
-  useMap,
-} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-import L, { Marker as AMarker, icon, latLngBounds, LatLng } from 'leaflet'
-
+import L, { icon, Marker as AMarker } from 'leaflet'
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
+import React from 'react'
+import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet'
 
+import { allContains, safeName } from '../biz/utils'
+import { MUNRO_GROUPING, MUNROS } from '../munros'
 import { WalkHighlandsContext } from './Context'
 import { Trip } from './TripCard'
-import { allContains, safeName } from '../biz/utils'
-import { MUNROS, MUNRO_GROUPING } from '../munros'
 
 // Assign the imported image assets before you do anything with Leaflet.
 AMarker.prototype.options.icon = icon({

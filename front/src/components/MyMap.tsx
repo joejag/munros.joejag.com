@@ -25,23 +25,48 @@ AMarker.prototype.options.icon = icon({
   shadowSize: [41, 41],
 })
 
-var greenIcon = new L.Icon({
-  iconUrl: '/images/maps/marker-icon-2x-green.png',
+const iconDefaults: any = {
   shadowUrl: '/images/maps/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
+}
+
+var blueIcon = new L.Icon({
+  iconUrl: '/images/maps/marker-icon-2x-blue.png',
+  ...iconDefaults,
 })
 
-var violetIcon = new L.Icon({
-  iconUrl: '/images/maps/marker-icon-2x-violet.png',
-  shadowUrl: '/images/maps/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
+var greenIcon = new L.Icon({
+  iconUrl: '/images/maps/marker-icon-2x-green.png',
+  ...iconDefaults,
 })
+
+var redIcon = new L.Icon({
+  iconUrl: '/images/maps/marker-icon-2x-red.png',
+  ...iconDefaults,
+})
+
+var greyIcon = new L.Icon({
+  iconUrl: '/images/maps/marker-icon-2x-grey.png',
+  ...iconDefaults,
+})
+
+const styling: { [grade: number]: any } = {
+  3: {
+    color: '#2A81CB',
+    icon: blueIcon,
+  },
+  4: {
+    color: '#2AAD27',
+    icon: greenIcon,
+  },
+  5: {
+    color: '#CB2B3E',
+    icon: redIcon,
+  },
+}
 
 const hasCompleted = (completed: any, trip: Trip) =>
   allContains(
@@ -55,6 +80,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
   const munrosWithCords: {
     name: string
     tripName: string
+    grade: number
     uri: string
     lat: number
     long: number
@@ -72,6 +98,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
           lat: m.cords.lat,
           long: m.cords.long,
           tripName: t.title,
+          grade: t.grade,
           done: completed?.munros.includes(m.uri) || false,
         })
       }
@@ -82,7 +109,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
     if (c2.length > 1) {
       tripsCords.push({
         cords: c2,
-        color: hasCompleted(completed, t) ? 'green' : 'purple',
+        color: hasCompleted(completed, t) ? '#7B7B7B' : styling[t.grade].color,
         name: t.url,
       })
     }
@@ -117,7 +144,7 @@ const MyMap = ({ trips }: { trips: Trip[] }) => {
             <Marker
               position={[m.lat, m.long]}
               key={m.uri}
-              icon={m.done ? greenIcon : violetIcon}
+              icon={m.done ? greyIcon : styling[m.grade].icon}
             >
               <Popup>
                 <strong>{m.name}</strong> <br /> on <em>{m.tripName}</em>

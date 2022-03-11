@@ -38,19 +38,19 @@ export interface Trip {
 const Grade = ({ grade }: any) => {
   const styling: { [grade: number]: any } = {
     3: {
-      color: '#2196f3',
+      color: '#2A81CB',
       letter: 'E',
       description:
         'Moderate hillwalks. Terrain will be steep, map reading skills essential. This grade includes the most straightforward and popular Munros.',
     },
     4: {
-      color: '#cddc39',
+      color: '#2AAD27',
       letter: 'M',
       description:
         'Harder hillwalks. Can include longer walks and pathless sections calling for more careful navigation. There may be scree and minor scrambling. This grade is quite broad and includes the bulk of the Munros.',
     },
     5: {
-      color: '#f44336',
+      color: '#CB2B3E',
       letter: 'H',
       description:
         'Tough by hillwalking standards; these routes can be very arduous or include trickier scrambling. This grade includes the hardest or most strenuous Munros.',
@@ -71,6 +71,7 @@ const Grade = ({ grade }: any) => {
     >
       <Typography
         textAlign="center"
+        color="white"
         sx={{
           backgroundColor: details.color,
           paddingTop: '0.5em',

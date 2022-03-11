@@ -15,7 +15,6 @@ import Grid from '@mui/material/Grid'
 import Tooltip from '@mui/material/Tooltip'
 import Link from '@mui/material/Link'
 
-import Item from './Item'
 import { DISTANCES } from '../biz/distances'
 
 import { useLocation } from 'react-router-dom'

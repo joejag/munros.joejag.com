@@ -7,6 +7,7 @@ import Select from '@mui/material/Select'
 import Container from '@mui/material/Container'
 import Alert from '@mui/material/Alert'
 import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 
 import Banner from './Banner'
 
@@ -57,6 +58,11 @@ const DrivingPreferences = () => {
             <MenuItem value={'Stirling'}>Stirling</MenuItem>
           </Select>
         </FormControl>
+        <Typography sx={{ marginTop: '1em' }}>
+          <Link href="/" color="inherit">
+            Back to Trips
+          </Link>
+        </Typography>
       </Container>
     </>
   )

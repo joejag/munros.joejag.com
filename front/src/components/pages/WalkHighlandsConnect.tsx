@@ -26,8 +26,11 @@ const WalkHighlandsConnect = () => {
     localStorage.getItem('walkHighlandsName')
 
   const fetchWalkHighlandsUser = (userId: string) => {
-    fetchData(setCompleted, userId)
     setLoading(true)
+    fetchData((res: any) => {
+      setCompleted(res)
+      setLoading(false)
+    }, userId)
   }
 
   if (loggedIn) {

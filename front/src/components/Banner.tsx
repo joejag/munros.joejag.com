@@ -15,7 +15,7 @@ import { WalkHighlandsContext } from './Context'
 const Banner = ({ area, group }: { area?: string; group?: string }) => {
   const { completed } = React.useContext(WalkHighlandsContext)
   const loggedIn =
-    completed?.id !== '' &&
+    completed.id !== '' &&
     completed?.name !== '' &&
     localStorage.getItem('walkHighlandsName')
 

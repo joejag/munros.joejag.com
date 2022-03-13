@@ -5,7 +5,7 @@ export interface WalkHiglandsData {
 }
 
 export interface UserState {
-  completed?: WalkHiglandsData
+  completed: WalkHiglandsData
   setCompleted: any
 }
 

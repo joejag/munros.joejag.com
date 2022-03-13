@@ -60,6 +60,7 @@ const Grade = ({ grade }: { grade: number }) => {
           paddingBottom: '0.5em',
           paddingLeft: '0.1em',
           paddingRight: '0.1em',
+          fontSize: '0.9em',
           margin: 0,
         }}
       >

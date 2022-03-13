@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
 import FilterDramaIcon from '@mui/icons-material/FilterDrama'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
@@ -91,6 +92,11 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
   const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
   const humanDriveTime = minutesToReadable(driveTime)
 
+  const showNaismith =
+    !['Cuillin of Skye', 'Skye, Strathaird'].includes(
+      trip.location.steveFallon.group
+    ) && trip.grade !== 5
+
   return (
     <Card
       ref={myRef}
@@ -120,15 +126,33 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
             </Typography>
           </Grid>
           <Grid item xs={4} textAlign="right" sx={{ paddingTop: '0.5em' }}>
-            <Tooltip title="Estimate to complete this trip using Naismith's rule. Allow one hour for every 5km forward, plus an additional hour for every 600m of ascent">
-              <Badge
-                badgeContent={trip.time.naismith}
-                color="secondary"
-                sx={{ marginRight: '1em' }}
-              >
-                <AccessTimeIcon />
-              </Badge>
-            </Tooltip>
+            {showNaismith && (
+              <Tooltip title="Estimate to complete this trip using Naismith's rule. Allow one hour for every 5km forward, plus an additional hour for every 600m of ascent">
+                <Badge
+                  badgeContent={trip.time.naismith}
+                  color="secondary"
+                  sx={{ marginRight: '1em' }}
+                >
+                  <AccessTimeIcon />
+                </Badge>
+              </Tooltip>
+            )}
+            {!showNaismith && (
+              <Tooltip title="Naismith's rule does not apply here, this is the WalkHighlands estimate instead">
+                <Badge
+                  badgeContent={trip.time.walkHighlands.split('-')[0]}
+                  color="secondary"
+                  sx={{ marginRight: '1em' }}
+                >
+                  <AccessTimeFilledIcon
+                    sx={{
+                      margin: '0',
+                      padding: '0',
+                    }}
+                  />
+                </Badge>
+              </Tooltip>
+            )}
             <Tooltip
               title={
                 <div>

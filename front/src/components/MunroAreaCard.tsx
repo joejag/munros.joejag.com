@@ -21,7 +21,7 @@ import Typography from '@mui/material/Typography'
 import { Area, Trip } from '../biz/types'
 import { allContains, minutesToReadable, safeName } from '../biz/utils'
 import { DISTANCES } from '../data/distances'
-import { MUNROS, WEBCAMS } from '../data/munros'
+import { BEST_IMAGE_FOR_AREA, MUNROS, WEBCAMS } from '../data/munros'
 import { WalkHighlandsContext } from './Context'
 
 const Grade = ({ grade, count }: { grade: number; count: number }) => {
@@ -94,6 +94,12 @@ const MunroAreaCard = ({ target }: { target: Area }) => {
   const avgDriveTime = Math.round(sum / driveTimes.length || 0)
   const humanDriveTime = minutesToReadable(avgDriveTime)
 
+  const coverImagePotential = areaTrips.filter(
+    (at) => at.url === BEST_IMAGE_FOR_AREA[target.area]
+  )
+  const coverImage =
+    coverImagePotential.length > 0 ? coverImagePotential[0].image : ''
+
   return (
     <Card>
       <CardActions sx={{ paddingTop: '1em' }}>
@@ -116,7 +122,7 @@ const MunroAreaCard = ({ target }: { target: Area }) => {
         <CardMedia
           component="img"
           height="140"
-          image={`/images/${areaTrips[areaTrips.length - 1].image}`}
+          image={`/images/${coverImage}`}
         />
       </Link>
       <CardContent>

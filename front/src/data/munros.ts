@@ -63,6 +63,41 @@ export const WEBCAMS: {
   },
 }
 
+export const BEST_IMAGE_FOR_AREA: {
+  [area: string]: string
+} = {
+  'Loch Lomond to Loch Tay':
+    'https://www.walkhighlands.co.uk/lochlomond/ben-vorlich-lomond.shtml',
+  'Loch Tay to Rannoch Moor':
+    'https://www.walkhighlands.co.uk/perthshire/schiehallion.shtml',
+  'Strath Orchy to Glencoe':
+    'https://www.walkhighlands.co.uk/fortwilliam/buachailleetivemor.shtml',
+  'Loch Linnhe to Loch Ericht':
+    'https://www.walkhighlands.co.uk/fortwilliam/binneinmor.shtml',
+  'Drumochter Hills':
+    'https://www.walkhighlands.co.uk/cairngorms/carn-na-caim.shtml',
+  'Glen Garry to Braemar':
+    'https://www.walkhighlands.co.uk/perthshire/beinn-a-ghlo.shtml',
+  'Glenshee to Mount Keen':
+    'https://www.walkhighlands.co.uk/cairngorms/white-mounth.shtml',
+  'Cairngorms and Glen Feshie':
+    'https://www.walkhighlands.co.uk/cairngorms/macdui-cairngorm.shtml',
+  'Monadh Liath and Creag Meagaidh':
+    'https://www.walkhighlands.co.uk/cairngorms/monadhliath.shtml',
+  'Loch Eil to Glen Shiel':
+    'https://www.walkhighlands.co.uk/fortwilliam/ladhar-bheinn.shtml',
+  'Kintail and Glen Shiel':
+    'https://www.walkhighlands.co.uk/kintail/Thesaddle.shtml',
+  'Affric, Cannich and Strathfarrar':
+    'https://www.walkhighlands.co.uk/lochness/Ceathreamhnan.shtml',
+  'Glen Carron and Torridon':
+    'https://www.walkhighlands.co.uk/torridon/Beinneighe.shtml',
+  'Loch Maree to the Fannichs':
+    'https://www.walkhighlands.co.uk/ullapool/sgurrnanclachgeala.shtml',
+  'Far North': 'https://www.walkhighlands.co.uk/ullapool/benmoreassynt.shtml',
+  'The Islands': 'https://www.walkhighlands.co.uk/skye/sgurrnabanachdich.shtml',
+}
+
 export const MUNRO_GROUPING: Area[] = [
   {
     area: 'Loch Lomond to Loch Tay',

@@ -71,6 +71,10 @@ const PlanTrip = () => {
         </Button>
       </Grid>
 
+      <Typography sx={{ marginBottom: '1em' }}>
+        These are trips that both of you have not completed yet.
+      </Typography>
+
       {MUNRO_GROUPING.map((area: Area) => (
         <PlanTripArea area={area.area} key={area.area} />
       ))}

@@ -24,7 +24,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
       <Grid container>
         <Grid
           item
-          xs={9}
+          xs={8}
           textAlign="start"
           style={{ display: 'flex', alignItems: 'center' }}
         >
@@ -60,7 +60,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
             </Typography>
           )}
         </Grid>
-        <Grid item xs={3} textAlign="end">
+        <Grid item xs={4} textAlign="end">
           {!loggedIn && (
             <>
               <Typography variant="body1">
@@ -94,6 +94,11 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
                   />{' '}
                 </Typography>
               </Tooltip>
+              <Typography variant="body1" sx={{ marginTop: '0.5em' }}>
+                <Link href="/plan" color="inherit">
+                  Plan a trip with a friend
+                </Link>
+              </Typography>
             </>
           )}
         </Grid>

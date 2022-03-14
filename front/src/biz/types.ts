@@ -2,9 +2,7 @@ export interface WalkHiglandsMunroData {
   name: string
   lastRefresh: string
   munrosCompleted: string[]
-
-  buddies: { [name: string]: string[] }
-  buddiesLastRefresh: string
+  buddy: { name: string; lastRefresh: string; munrosCompleted: string[] }
 }
 
 export interface MultiUserState {

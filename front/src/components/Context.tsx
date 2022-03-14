@@ -6,8 +6,11 @@ export const BLANK_STATE = {
   name: null,
   lastRefresh: null,
   munrosCompleted: [],
-  buddies: {},
-  buddiesLastRefresh: null,
+  buddy: {
+    name: null,
+    munrosCompleted: [],
+    buddyLastRefresh: null,
+  },
 }
 
 const dbReadMulti = () => {
@@ -33,11 +36,8 @@ export const dbSaveMulti = (result: any) => {
 export const dbClearMulti = () => {
   const state = dbReadMulti()
   const newState = {
+    ...BLANK_STATE,
     name: state.name,
-    lastRefresh: null,
-    munrosCompleted: [],
-    buddies: {},
-    buddiesLastRefresh: '',
   }
   localStorage.setItem('db', JSON.stringify(newState))
 }

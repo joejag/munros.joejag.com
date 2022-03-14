@@ -10,7 +10,7 @@ import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet'
 import { Trip } from '../biz/types'
 import { hasCompletedAll, safeName } from '../biz/utils'
 import { MUNRO_GROUPING, MUNROS } from '../data/munros'
-import { WalkHighlandsContext } from './Context'
+import { WalkHighlandsContextV2 } from './Context'
 
 // Assign the imported image assets before you do anything with Leaflet.
 AMarker.prototype.options.icon = icon({
@@ -68,7 +68,7 @@ const styling: { [grade: number]: any } = {
 }
 
 export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
-  const { completed } = React.useContext(WalkHighlandsContext)
+  const { completed } = React.useContext(WalkHighlandsContextV2)
 
   const munrosWithCords: {
     name: string
@@ -92,7 +92,7 @@ export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
           long: m.cords.long,
           tripName: t.title,
           grade: t.grade,
-          done: completed?.munros.includes(m.uri) || false,
+          done: completed.munrosCompleted.includes(m.uri) || false,
         })
       }
     })
@@ -102,7 +102,7 @@ export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
     if (c2.length > 1) {
       tripsCords.push({
         cords: c2,
-        color: hasCompletedAll(completed, t)
+        color: hasCompletedAll(completed.munrosCompleted, t)
           ? '#7B7B7B'
           : styling[t.grade].color,
         name: t.url,
@@ -111,7 +111,7 @@ export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
   })
 
   const mapCenter = averageGeolocation(munrosWithCords)
-  const zoomLevel = trips[0].location.steveFallon.area == 'Far North' ? 8 : 10
+  const zoomLevel = trips[0].location.steveFallon.area === 'Far North' ? 8 : 10
 
   return (
     <>

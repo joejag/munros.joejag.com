@@ -10,14 +10,11 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
 import { safeName, urlAreaToHumanArea, urlGroupToHumanArea } from '../biz/utils'
-import { WalkHighlandsContext } from './Context'
+import { WalkHighlandsContextV2 } from './Context'
 
 const Banner = ({ area, group }: { area?: string; group?: string }) => {
-  const { completed } = React.useContext(WalkHighlandsContext)
-  const loggedIn =
-    completed.id !== '' &&
-    completed?.name !== '' &&
-    localStorage.getItem('walkHighlandsName')
+  const { completed } = React.useContext(WalkHighlandsContextV2)
+  const loggedIn = completed.name !== null
 
   const areaReadable = urlAreaToHumanArea(area)
   const groupReadable = urlGroupToHumanArea(group)
@@ -91,7 +88,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
                 title={`Number of Munros you've completed. You can refresh if this number is wrong`}
               >
                 <Typography variant="body1">
-                  {completed?.munros?.length}
+                  {completed.munrosCompleted.length}
                   <FilterHdrIcon
                     sx={{ marginLeft: '0.1em', verticalAlign: 'bottom' }}
                   />{' '}

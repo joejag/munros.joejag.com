@@ -6,12 +6,12 @@ import Typography from '@mui/material/Typography'
 
 import { Trip } from '../biz/types'
 import { hasCompletedAll } from '../biz/utils'
-import { WalkHighlandsContext } from './Context'
+import { WalkHighlandsContextV2 } from './Context'
 import { MunrosInAreaMap } from './Maps'
 import TripCard from './TripCard'
 
 export const TripsList = ({ munros }: { munros: Trip[] }) => {
-  const { completed } = React.useContext(WalkHighlandsContext)
+  const { completed } = React.useContext(WalkHighlandsContextV2)
 
   munros.sort((a: Trip, b: Trip) => {
     if (a.grade === b.grade) {
@@ -20,8 +20,12 @@ export const TripsList = ({ munros }: { munros: Trip[] }) => {
     return a.grade > b.grade ? 1 : -1
   })
 
-  const tripsTodo = munros.filter((t) => !hasCompletedAll(completed, t))
-  const tripsCompleted = munros.filter((t) => hasCompletedAll(completed, t))
+  const tripsTodo = munros.filter(
+    (t) => !hasCompletedAll(completed.munrosCompleted, t)
+  )
+  const tripsCompleted = munros.filter((t) =>
+    hasCompletedAll(completed.munrosCompleted, t)
+  )
 
   return (
     <>

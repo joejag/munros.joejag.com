@@ -22,7 +22,7 @@ import { Area, Trip } from '../biz/types'
 import { allContains, minutesToReadable, safeName } from '../biz/utils'
 import { DISTANCES } from '../data/distances'
 import { BEST_IMAGE_FOR_AREA, MUNROS, WEBCAMS } from '../data/munros'
-import { WalkHighlandsContext } from './Context'
+import { WalkHighlandsContextV2 } from './Context'
 
 const Grade = ({ grade, count }: { grade: number; count: number }) => {
   const styling: { [grade: number]: { color: string; description: string } } = {
@@ -162,13 +162,13 @@ const MunroAreaCard = ({ target }: { target: Area }) => {
 }
 
 const MunroGroupSummary = ({ area, group }: any) => {
-  const { completed } = React.useContext(WalkHighlandsContext)
+  const { completed } = React.useContext(WalkHighlandsContextV2)
 
   const trips: Trip[] = Object.values(MUNROS).filter(
     (m: Trip) => m.location.steveFallon.group === group
   )
 
-  const userMunros = completed?.munros || ([] as string[])
+  const userMunros = completed.munrosCompleted || ([] as string[])
   const tripsCompleted = trips.filter((t) =>
     allContains(
       userMunros,

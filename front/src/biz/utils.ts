@@ -38,6 +38,6 @@ export const minutesToReadable = (mins: number) => {
 
 export const hasCompletedAll = (completed: any, trip: Trip) =>
   allContains(
-    completed?.munros || ([] as string[]),
+    completed || ([] as string[]),
     trip.munros.map((m) => m.uri)
   )

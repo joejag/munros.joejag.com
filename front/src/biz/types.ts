@@ -1,11 +1,14 @@
-export interface WalkHiglandsData {
-  id: string
+export interface WalkHiglandsMunroData {
   name: string
-  munros: string[]
+  lastRefresh: string
+  munrosCompleted: string[]
+
+  buddies: { [name: string]: string[] }
+  buddiesLastRefresh: string
 }
 
-export interface UserState {
-  completed: WalkHiglandsData
+export interface MultiUserState {
+  completed: WalkHiglandsMunroData
   setCompleted: any
 }
 

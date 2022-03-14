@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import Container from '@mui/material/Container'
 
-import { Area, Trip } from '../../biz/types'
+import { Trip } from '../../biz/types'
 import { safeName } from '../../biz/utils'
 import { MUNROS } from '../../data/munros'
 import Banner from '../Banner'

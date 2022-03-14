@@ -1,27 +1,23 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
 
-import { fetchData } from './biz/fetchData'
-import { WalkHiglandsData } from './biz/types'
-import { INITIAL_STATE, WalkHighlandsContext } from './components/Context'
+import { WalkHiglandsMunroData } from './biz/types'
+import { MULTI_INITIAL_STATE, WalkHighlandsContextV2 } from './components/Context'
 import Routes from './Router'
 
 const TopLevel = ({ children }: { children: React.ReactNode }) => {
-  const [completed, setCompleted] = React.useState<WalkHiglandsData>(
-    INITIAL_STATE.completed
+  const [completedv2, setCompletedv2] = React.useState<WalkHiglandsMunroData>(
+    MULTI_INITIAL_STATE.completed
   )
-  const value = React.useMemo(() => ({ completed, setCompleted }), [completed])
-
-  React.useEffect(() => {
-    if (completed.id !== undefined && completed.id !== '') {
-      fetchData(setCompleted, completed.id)
-    }
-  }, [completed.id])
+  const valuev2 = React.useMemo(
+    () => ({ completed: completedv2, setCompleted: setCompletedv2 }),
+    [completedv2]
+  )
 
   return (
-    <WalkHighlandsContext.Provider value={value}>
+    <WalkHighlandsContextV2.Provider value={valuev2}>
       {children}
-    </WalkHighlandsContext.Provider>
+    </WalkHighlandsContextV2.Provider>
   )
 }
 

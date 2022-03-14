@@ -13,22 +13,27 @@ import Typography from '@mui/material/Typography'
 
 import { fetchData } from '../../biz/fetchData'
 import Banner from '../Banner'
-import { INITIAL_STATE, WalkHighlandsContext } from '../Context'
+import {
+    BLANK_STATE, dbClearMulti, dbSaveMulti, dbUpdateMulti, WalkHighlandsContextV2
+} from '../Context'
 
 const WalkHighlandsConnect = () => {
-  const { completed, setCompleted } = React.useContext(WalkHighlandsContext)
+  const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
   const [id, setId] = React.useState('')
   const [loading, setLoading] = React.useState(false)
 
-  const loggedIn =
-    completed?.id !== '' &&
-    completed?.name !== '' &&
-    localStorage.getItem('walkHighlandsName')
+  const loggedIn = completed.name !== null
 
   const fetchWalkHighlandsUser = (userId: string) => {
     setLoading(true)
     fetchData((res: any) => {
-      setCompleted(res)
+      const saveMe = {
+        ...completed,
+        munrosCompleted: res.munros,
+        name: res.name,
+      }
+      dbUpdateMulti(saveMe)
+      setCompleted(saveMe)
       setLoading(false)
     }, userId)
   }
@@ -90,29 +95,31 @@ const WalkHighlandsConnect = () => {
 }
 
 const WalkHighlandsDetails = () => {
-  const { completed, setCompleted } = React.useContext(WalkHighlandsContext)
+  const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
   const [refreshing, setRefreshing] = React.useState(false)
-
-  const lastRefresh = localStorage.getItem('lastRefresh')
-
-  const fetchWalkHighlandsUser = (userId: string) => {
-    fetchData(setCompleted, userId)
-  }
+  const [refreshed, setRefreshed] = React.useState(false)
 
   const refreshWalkHighlandsUser = () => {
-    localStorage.removeItem('cached')
-    const userId = localStorage.getItem('walkHighlandsName') || ''
+    dbClearMulti()
     setRefreshing(true)
-    fetchWalkHighlandsUser(userId)
+    fetchData((result: any) => {
+      const saveMe = {
+        ...completed,
+        munrosCompleted: result.munros,
+        name: result.name,
+      }
+      dbUpdateMulti(saveMe)
+      setCompleted(saveMe)
+
+      setRefreshing(false)
+      setRefreshed(true)
+    }, completed.name)
   }
 
   const changeWalkHighlandsUser = () => {
-    localStorage.removeItem('walkHighlandsName')
-    setCompleted(INITIAL_STATE)
+    dbSaveMulti(BLANK_STATE)
+    setCompleted(BLANK_STATE)
   }
-
-  const currentlyRefreshing =
-    refreshing && localStorage.getItem('cached') === null
 
   return (
     <>
@@ -122,7 +129,7 @@ const WalkHighlandsDetails = () => {
         component="main"
         sx={{ paddingBottom: '2em', paddingTop: '1em' }}
       >
-        {refreshing && !currentlyRefreshing && (
+        {refreshed && (
           <Alert severity="info" sx={{ marginBottom: '1em' }}>
             Refreshed data
           </Alert>
@@ -138,7 +145,7 @@ const WalkHighlandsDetails = () => {
         </Typography>
 
         <Typography color="inherit" sx={{ marginBottom: '1em' }}>
-          Last refreshed at {lastRefresh}
+          Last refreshed at {completed.lastRefresh}
         </Typography>
 
         <Grid container>
@@ -150,7 +157,7 @@ const WalkHighlandsDetails = () => {
           >
             <RefreshIcon sx={{ paddingRight: '0.3em' }} />
             Refresh data
-            {currentlyRefreshing && (
+            {refreshing && (
               <CircularProgress
                 sx={{ marginLeft: '0.5em' }}
                 color="inherit"

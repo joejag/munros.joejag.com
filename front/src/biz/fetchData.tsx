@@ -3,7 +3,7 @@ const PRODUCTION_URL =
 const LOCAL_URL_JOE = 'http://127.0.0.1:8080/joe.json?u='
 const LOCAL_URL_GEZ = 'http://127.0.0.1:8080/gez.json?u='
 
-export const fetchData = (setCompleted: any, userId: string) => {
+export const fetchData = (setCompleted: any, userId: string, onError?: any) => {
   let url = PRODUCTION_URL
   if (window.location.href.indexOf('localhost') > -1) {
     url = LOCAL_URL_JOE
@@ -20,6 +20,9 @@ export const fetchData = (setCompleted: any, userId: string) => {
       },
       (error) => {
         console.log(error)
+        if (onError) {
+          onError()
+        }
       }
     )
 }

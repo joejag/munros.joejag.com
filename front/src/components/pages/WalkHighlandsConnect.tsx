@@ -21,21 +21,30 @@ const WalkHighlandsConnect = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
   const [id, setId] = React.useState('')
   const [loading, setLoading] = React.useState(false)
+  const [failed, setFailed] = React.useState<string | null>(null)
 
   const loggedIn = completed.name !== null
 
   const fetchWalkHighlandsUser = (userId: string) => {
     setLoading(true)
-    fetchData((res: any) => {
-      const saveMe = {
-        ...completed,
-        munrosCompleted: res.munros,
-        name: res.name,
+    fetchData(
+      (res: any) => {
+        const saveMe = {
+          ...completed,
+          munrosCompleted: res.munros,
+          name: res.name,
+        }
+        dbUpdateMulti(saveMe)
+        setLoading(false)
+        setFailed(null)
+        setCompleted(saveMe)
+      },
+      userId,
+      () => {
+        setFailed(`Could not fetch data for '${id}' on WalkHighlands`)
+        setLoading(false)
       }
-      dbUpdateMulti(saveMe)
-      setCompleted(saveMe)
-      setLoading(false)
-    }, userId)
+    )
   }
 
   if (loggedIn) {
@@ -46,6 +55,11 @@ const WalkHighlandsConnect = () => {
     <>
       <Banner />
       <Container maxWidth="xl" component="main" sx={{ marginTop: '1em' }}>
+        {failed && (
+          <Alert severity="error" sx={{ marginBottom: '1em' }}>
+            {failed}
+          </Alert>
+        )}
         <Typography variant="h4">Link your Walk Highlands data</Typography>
         <Typography color="inherit" sx={{ marginTop: '1em' }}>
           Your Walk Highlands Munro Map is publicly available and can be linked
@@ -64,6 +78,9 @@ const WalkHighlandsConnect = () => {
             value={id}
             onChange={(e: any) => {
               setId(e.target.value)
+            }}
+            onKeyUp={(event: any) => {
+              if (event.key === 'Enter') fetchWalkHighlandsUser(id)
             }}
           />
         </Grid>
@@ -98,22 +115,29 @@ const WalkHighlandsDetails = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
   const [refreshing, setRefreshing] = React.useState(false)
   const [refreshed, setRefreshed] = React.useState(false)
+  const [failed, setFailed] = React.useState(false)
 
   const refreshWalkHighlandsUser = () => {
     dbClearMulti()
     setRefreshing(true)
-    fetchData((result: any) => {
-      const saveMe = {
-        ...completed,
-        munrosCompleted: result.munros,
-        name: result.name,
+    fetchData(
+      (result: any) => {
+        const saveMe = {
+          ...completed,
+          munrosCompleted: result.munros,
+          name: result.name,
+        }
+        dbUpdateMulti(saveMe)
+        setRefreshing(false)
+        setRefreshed(true)
+        setFailed(false)
+        setCompleted(saveMe)
+      },
+      completed.name,
+      () => {
+        setFailed(true)
       }
-      dbUpdateMulti(saveMe)
-      setCompleted(saveMe)
-
-      setRefreshing(false)
-      setRefreshed(true)
-    }, completed.name)
+    )
   }
 
   const changeWalkHighlandsUser = () => {
@@ -134,7 +158,12 @@ const WalkHighlandsDetails = () => {
             Refreshed data
           </Alert>
         )}
-        <Typography variant="h4">Linked to {completed?.name}</Typography>
+        {failed && (
+          <Alert severity="error" sx={{ marginBottom: '1em' }}>
+            Could not refresh data for {completed.name}
+          </Alert>
+        )}
+        <Typography variant="h4">Linked to {completed.name}</Typography>
 
         <Typography
           color="inherit"

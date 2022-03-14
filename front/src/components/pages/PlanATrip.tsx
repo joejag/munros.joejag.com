@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
+import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import Container from '@mui/material/Container'
@@ -77,7 +78,7 @@ const PlanTrip = () => {
         }, completed.name)
       }
     }
-  }, [completed])
+  }, [completed, setCompleted])
 
   const clearBuddy = () => {
     const blank = {
@@ -180,26 +181,40 @@ const FindFriend = () => {
 
   const [friendId, setFriendId] = React.useState('')
   const [loading, setLoading] = React.useState(false)
+  const [failed, setFailed] = React.useState<string | null>(null)
 
   const fetchFriend = () => {
     setLoading(true)
-    fetchData((res: any) => {
-      const saveMe = {
-        ...completed,
-        buddy: {
-          munrosCompleted: res.munros,
-          name: res.name,
-          lastRefresh: new Date(),
-        },
+    fetchData(
+      (res: any) => {
+        const saveMe = {
+          ...completed,
+          buddy: {
+            munrosCompleted: res.munros,
+            name: res.name,
+            lastRefresh: new Date(),
+          },
+        }
+        dbSaveMulti(saveMe)
+        setLoading(false)
+        setFailed(null)
+        setCompleted(saveMe)
+      },
+      friendId,
+      () => {
+        setFailed(`Could not fetch data for '${friendId}' on WalkHighlands`)
+        setLoading(false)
       }
-      dbSaveMulti(saveMe)
-      setLoading(false)
-      setCompleted(saveMe)
-    }, friendId)
+    )
   }
 
   return (
     <>
+      {failed && (
+        <Alert severity="error" sx={{ marginBottom: '1em' }}>
+          {failed}
+        </Alert>
+      )}
       <Typography variant="h2">Plan a trip with a friend</Typography>
       <Typography sx={{ marginTop: '1em' }}>
         You can use this to see a trip which you both need to bag
@@ -212,6 +227,9 @@ const FindFriend = () => {
           value={friendId}
           onChange={(e: any) => {
             setFriendId(e.target.value)
+          }}
+          onKeyUp={(event: any) => {
+            if (event.key === 'Enter') fetchFriend()
           }}
         />
       </Grid>

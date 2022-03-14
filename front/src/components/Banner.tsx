@@ -3,6 +3,7 @@ import * as React from 'react'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import PersonIcon from '@mui/icons-material/Person'
+import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Toolbar from '@mui/material/Toolbar'
@@ -97,6 +98,9 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
               <Typography variant="body1" sx={{ marginTop: '0.5em' }}>
                 <Link href="/plan" color="inherit">
                   Plan a trip with a friend
+                  <PersonAddIcon
+                    sx={{ marginLeft: '0.1em', verticalAlign: 'bottom' }}
+                  />
                 </Link>
               </Typography>
             </>

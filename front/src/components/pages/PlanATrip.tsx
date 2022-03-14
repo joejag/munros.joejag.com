@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
@@ -31,8 +32,24 @@ const PlanATrip = () => {
         component="main"
         sx={{ paddingBottom: '2em', paddingTop: '1em' }}
       >
-        {completed.buddy.name === null && <FindFriend />}
-        {completed.buddy.name !== null && <PlanTrip />}
+        {completed.name === null && (
+          <>
+            <Typography variant="h2">Plan a trip with a friend</Typography>
+            <Typography sx={{ marginTop: '1.5em' }}>
+              You need to{' '}
+              <Link href="/walkhighlands" color="inherit">
+                link your account
+              </Link>{' '}
+              before adding a friend
+            </Typography>
+          </>
+        )}
+        {completed.name !== null && completed.buddy.name === null && (
+          <FindFriend />
+        )}
+        {completed.name !== null && completed.buddy.name !== null && (
+          <PlanTrip />
+        )}
       </Container>
     </>
   )

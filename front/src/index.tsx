@@ -1,21 +1,38 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
 
+import { fetchData } from './biz/fetchData'
 import { WalkHiglandsMunroData } from './biz/types'
-import { MULTI_INITIAL_STATE, WalkHighlandsContextV2 } from './components/Context'
+import { hoursSince } from './biz/utils'
+import { dbUpdateMulti, MULTI_INITIAL_STATE, WalkHighlandsContextV2 } from './components/Context'
 import Routes from './Router'
 
 const TopLevel = ({ children }: { children: React.ReactNode }) => {
-  const [completedv2, setCompletedv2] = React.useState<WalkHiglandsMunroData>(
+  const [completed, setCompleted] = React.useState<WalkHiglandsMunroData>(
     MULTI_INITIAL_STATE.completed
   )
-  const valuev2 = React.useMemo(
-    () => ({ completed: completedv2, setCompleted: setCompletedv2 }),
-    [completedv2]
-  )
+  const value = React.useMemo(() => ({ completed, setCompleted }), [completed])
+
+  React.useEffect(() => {
+    if (completed.lastRefresh != null) {
+      const lastRefresh = new Date(completed.lastRefresh)
+      const dataAge = hoursSince(lastRefresh)
+      if (dataAge >= 12) {
+        fetchData((result: any) => {
+          const saveMe = {
+            ...completed,
+            munrosCompleted: result.munros,
+            name: result.name,
+          }
+          dbUpdateMulti(saveMe)
+          setCompleted(saveMe)
+        }, completed.name)
+      }
+    }
+  }, [completed])
 
   return (
-    <WalkHighlandsContextV2.Provider value={valuev2}>
+    <WalkHighlandsContextV2.Provider value={value}>
       {children}
     </WalkHighlandsContextV2.Provider>
   )

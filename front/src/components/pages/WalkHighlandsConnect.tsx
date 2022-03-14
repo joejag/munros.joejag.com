@@ -145,7 +145,8 @@ const WalkHighlandsDetails = () => {
         </Typography>
 
         <Typography color="inherit" sx={{ marginBottom: '1em' }}>
-          Last refreshed at {completed.lastRefresh}
+          Last refreshed at{' '}
+          {new Date(completed.lastRefresh).toLocaleString('en-GB')}
         </Typography>
 
         <Grid container>

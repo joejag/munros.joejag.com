@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography'
 
 import { fetchData } from '../../biz/fetchData'
 import { Area, Trip } from '../../biz/types'
-import { hasCompletedAll } from '../../biz/utils'
+import { hasCompletedAll, hoursSince } from '../../biz/utils'
 import { MUNRO_GROUPING, MUNROS } from '../../data/munros'
 import Banner from '../Banner'
 import { dbSaveMulti, WalkHighlandsContextV2 } from '../Context'
@@ -58,6 +58,27 @@ const PlanATrip = () => {
 const PlanTrip = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
 
+  React.useEffect(() => {
+    if (completed.buddy.lastRefresh != null) {
+      const lastRefresh = new Date(completed.buddy.lastRefresh)
+      const dataAge = hoursSince(lastRefresh)
+      if (dataAge >= 12) {
+        fetchData((result: any) => {
+          const saveMe = {
+            ...completed,
+            buddy: {
+              munrosCompleted: result.munros,
+              name: result.name,
+              buddyLastRefresh: new Date(),
+            },
+          }
+          dbSaveMulti(saveMe)
+          setCompleted(saveMe)
+        }, completed.name)
+      }
+    }
+  }, [completed])
+
   const clearBuddy = () => {
     const blank = {
       ...completed,
@@ -79,7 +100,7 @@ const PlanTrip = () => {
 
       <Grid container sx={{ marginTop: '1.5em', marginBottom: '1.5em' }}>
         <Button
-          variant="contained"
+          variant="outlined"
           onClick={(e: any) => {
             clearBuddy()
           }}
@@ -95,6 +116,12 @@ const PlanTrip = () => {
       {MUNRO_GROUPING.map((area: Area) => (
         <PlanTripArea area={area.area} key={area.area} />
       ))}
+
+      <Typography sx={{ marginTop: '1em' }}>
+        <Link href="/" color="inherit">
+          Back to Trips
+        </Link>
+      </Typography>
     </>
   )
 }
@@ -157,14 +184,12 @@ const FindFriend = () => {
   const fetchFriend = () => {
     setLoading(true)
     fetchData((res: any) => {
-      const now =
-        new Date().toDateString() + ' at ' + new Date().toLocaleTimeString()
       const saveMe = {
         ...completed,
         buddy: {
           munrosCompleted: res.munros,
           name: res.name,
-          lastRefresh: now,
+          lastRefresh: new Date(),
         },
       }
       dbSaveMulti(saveMe)
@@ -207,6 +232,11 @@ const FindFriend = () => {
           )}
         </Button>
       </Grid>
+      <Typography sx={{ marginTop: '1em' }}>
+        <Link href="/" color="inherit">
+          Back to Trips
+        </Link>
+      </Typography>
     </>
   )
 }

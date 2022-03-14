@@ -41,3 +41,8 @@ export const hasCompletedAll = (completed: any, trip: Trip) =>
     completed || ([] as string[]),
     trip.munros.map((m) => m.uri)
   )
+
+export const hoursSince = (date: Date) => {
+  const diff = Math.abs(date.getTime() - new Date().getTime())
+  return Math.ceil(diff / (1000 * 3600))
+}

@@ -51,8 +51,8 @@ const Grade = ({ grade }: { grade: number }) => {
           backgroundColor: details.color,
           paddingTop: '0.5em',
           paddingBottom: '0.5em',
-          paddingLeft: '0.1em',
-          paddingRight: '0.1em',
+          paddingLeft: '1em',
+          paddingRight: '1em',
           margin: 0,
         }}
       >
@@ -71,7 +71,7 @@ export const AllMunros = () => {
         component="main"
         sx={{ paddingBottom: '2em', paddingTop: '1em' }}
       >
-        <Typography>
+        <Typography align="center">
           This site combines Steve Fallon's{' '}
           <Link href="https://www.stevenfallon.co.uk/munrosr.html">
             Munros by region
@@ -83,19 +83,39 @@ export const AllMunros = () => {
           routes. To help you plan it has estimated driving times, weather and
           webcam links.
         </Typography>
-        <Typography sx={{ marginTop: '1em', marginBottom: '1em' }}>
+        <Typography
+          align="center"
+          sx={{
+            marginTop: '1em',
+            paddingBottom: '1em',
+            borderBottom: 1,
+            borderColor: 'divider',
+          }}
+        >
           It is highly recommend to <Link href="/walkhighlands">link</Link> your
           Walk Highlands munro map so you can see what Munros you've already
           bagged.
         </Typography>
-        <Typography sx={{ marginTop: '1em', marginBottom: '1em' }}>
-          The grading system used here is from WalkHighlands.
+        <Typography
+          sx={{
+            marginTop: '1em',
+            marginBottom: '1em',
+          }}
+        >
+          The grading system used here is from WalkHighlands (which has easier
+          non-Munro walks as Grade 1 and 2).
         </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={2}>
+        <Grid container spacing={2} sx={{ marginBottom: '2em' }}>
+          <Grid
+            item
+            lg={1}
+            xs={3}
+            sx={{ display: 'flex', alignItems: 'center' }}
+            alignContent={'end'}
+          >
             <Grade grade={3} />
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={9} lg={11}>
             <Typography>
               Moderate hillwalks. Terrain will be steep, map reading skills
               essential. This grade includes the most straightforward and
@@ -105,10 +125,15 @@ export const AllMunros = () => {
               <em>examples: Ben Lomond, Schiehallion, Ben Chronzie</em>
             </Typography>
           </Grid>
-          <Grid item xs={2}>
+          <Grid
+            item
+            xs={3}
+            lg={1}
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
             <Grade grade={4} />
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={9} lg={11}>
             <Typography>
               Harder hillwalks. Can include longer walks and pathless sections
               calling for more careful navigation. There may be scree and minor
@@ -119,10 +144,15 @@ export const AllMunros = () => {
               <em>examples: Cairn Gorm, Beinn Narnain, Buachaille Etive Mòr</em>
             </Typography>
           </Grid>
-          <Grid item xs={2}>
+          <Grid
+            item
+            xs={3}
+            lg={1}
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
             <Grade grade={5} />
           </Grid>
-          <Grid item xs={10} sx={{ marginBottom: '2em' }}>
+          <Grid item xs={9} lg={11}>
             <Typography>
               Tough by hillwalking standards; these routes can be very arduous
               or include trickier scrambling. This grade includes the hardest or

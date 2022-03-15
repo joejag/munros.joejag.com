@@ -8,4 +8,4 @@ deploy:
 	aws cloudfront create-invalidation --distribution-id E38443GSUN2P8A --paths "/*"
 
 back-deploy:
-	(cd back && terraform apply -auto-approve)
+	(cd back/infra && terraform apply -auto-approve)

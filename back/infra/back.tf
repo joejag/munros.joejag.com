@@ -111,3 +111,37 @@ resource "aws_lambda_permission" "api_gw" {
 
   source_arn = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
 }
+
+# DYNAMODB
+
+resource "aws_dynamodb_table" "munro_cache" {
+  name         = "munro_cache"
+  hash_key     = "id"
+  billing_mode = "PAY_PER_REQUEST"
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
+
+
+resource "aws_iam_role_policy" "lambda_uses_dynamo_policy" {
+  role = aws_iam_role.lambda_exec.name
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [{
+      "Effect" : "Allow",
+      "Action" : [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem"
+      ],
+      "Resource" : aws_dynamodb_table.munro_cache.arn
+      }
+    ]
+  })
+}

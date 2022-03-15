@@ -17,7 +17,7 @@ const TopLevel = ({ children }: { children: React.ReactNode }) => {
     if (completed.lastRefresh != null) {
       const lastRefresh = new Date(completed.lastRefresh)
       const dataAge = hoursSince(lastRefresh)
-      if (dataAge >= 12) {
+      if (dataAge >= 1) {
         fetchData((result: any) => {
           const saveMe = {
             ...completed,

@@ -326,7 +326,7 @@ const FindFriend = () => {
           variant="outlined"
           value={friendId}
           onChange={(e: any) => {
-            setFriendId(e.target.value)
+            setFriendId(e.target.value.toLowerCase())
           }}
           onKeyUp={(event: any) => {
             if (event.key === 'Enter') fetchFriend()

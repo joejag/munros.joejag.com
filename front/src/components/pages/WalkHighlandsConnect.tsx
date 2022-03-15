@@ -77,7 +77,7 @@ const WalkHighlandsConnect = () => {
             variant="outlined"
             value={id}
             onChange={(e: any) => {
-              setId(e.target.value)
+              setId(e.target.value.toLowerCase())
             }}
             onKeyUp={(event: any) => {
               if (event.key === 'Enter') fetchWalkHighlandsUser(id)

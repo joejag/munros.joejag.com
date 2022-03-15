@@ -4,7 +4,7 @@ const PRODUCTION_URL =
 export const fetchData = (setCompleted: any, userId: string, onError?: any) => {
   let url = PRODUCTION_URL
 
-  fetch(url + userId)
+  fetch(url + userId.toLowerCase())
     .then((res) => res.json())
     .then(
       (result: any) => {

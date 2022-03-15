@@ -85,7 +85,7 @@ const PlanTrip = () => {
     if (completed.buddy.lastRefresh != null) {
       const lastRefresh = new Date(completed.buddy.lastRefresh)
       const dataAge = hoursSince(lastRefresh)
-      if (dataAge >= 1) {
+      if (dataAge > 1) {
         fetchData((result: any) => {
           const saveMe = {
             ...completed,
@@ -143,10 +143,6 @@ const PlanTrip = () => {
 
   return (
     <>
-      <Typography variant="h2">
-        Plan a trip with {completed.buddy.name}
-      </Typography>
-
       {failed && (
         <Alert severity="error" sx={{ marginBottom: '1em' }}>
           {failed}
@@ -154,18 +150,24 @@ const PlanTrip = () => {
       )}
 
       {loading && (
-        <Typography sx={{ marginBottom: '1em' }}>
-          Loading {friendId}{' '}
-          <CircularProgress
-            sx={{ marginLeft: '0.5em' }}
-            color="inherit"
-            size="1rem"
-          />
-        </Typography>
+        <>
+          <Typography variant="h2">Plan a trip with a friend</Typography>
+          <Typography sx={{ marginBottom: '1em' }}>
+            Loading {friendId}{' '}
+            <CircularProgress
+              sx={{ marginLeft: '0.5em' }}
+              color="inherit"
+              size="1rem"
+            />
+          </Typography>
+        </>
       )}
 
       {!loading && (
         <>
+          <Typography variant="h2">
+            Plan a trip with {completed.buddy.name}
+          </Typography>
           <Grid container sx={{ marginTop: '1.5em', marginBottom: '1.5em' }}>
             <Button
               variant="outlined"

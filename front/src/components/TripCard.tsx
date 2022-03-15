@@ -184,7 +184,7 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
           </Grid>
         </Grid>
       </CardActions>
-      <Link href={trip.url} rel="noreferrer">
+      <Link href={trip.url} rel="noreferrer" target="_blank">
         <CardMedia
           component="img"
           height="140"
@@ -198,6 +198,7 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
             rel="noreferrer"
             color="inherit"
             underline="none"
+            target="_blank"
           >
             {trip.title}
           </Link>
@@ -223,7 +224,12 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
           {trip.weatherUrl && (
             <Grid item xs={6} textAlign="right">
               <Tooltip title={`See the weather forecast for this trip`}>
-                <Link href={trip.weatherUrl} color="inherit" underline="none">
+                <Link
+                  href={trip.weatherUrl}
+                  color="inherit"
+                  underline="none"
+                  target="_blank"
+                >
                   <FilterDramaIcon />
                 </Link>
               </Tooltip>

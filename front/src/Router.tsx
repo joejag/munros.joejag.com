@@ -20,26 +20,58 @@ export default function Routes() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" children={<All />}></Route>
+        <Route
+          exact
+          path="/"
+          children={
+            <PageWithTitle title="Munros: All Possible Trips">
+              <AllMunros />
+            </PageWithTitle>
+          }
+        ></Route>
         <Route path="/munros/:area/:group" children={<MunroGroupRoute />} />
         <Route path="/munros/:area" children={<MunroAreaRoute />} />
-        <Route path="/walkhighlands" children={<WalkHighlandsConnect />} />
-        <Route path="/driving" children={<DrivingPreferences />} />
-        <Route path="/plan" children={<PlanATrip />} />
+        <Route
+          path="/walkhighlands"
+          children={
+            <PageWithTitle title="Munros: Link Your WH Account">
+              <WalkHighlandsConnect />
+            </PageWithTitle>
+          }
+        />
+        <Route
+          path="/driving"
+          children={
+            <PageWithTitle title="Munros: Change Driving Origin">
+              <DrivingPreferences />
+            </PageWithTitle>
+          }
+        />
+        <Route
+          path="/plan"
+          children={
+            <PageWithTitle title="Munros: Plan a Trip">
+              <PlanATrip />
+            </PageWithTitle>
+          }
+        />
       </Switch>
     </Router>
   )
 }
 
-const All = () => {
+const PageWithTitle = ({
+  children,
+  title,
+}: {
+  children: React.ReactNode
+  title: string
+}) => {
   React.useEffect(() => {
-    document.title = 'Munros: All Possible Trips'
-  }, [])
-  return (
-    <>
-      <AllMunros />
-    </>
-  )
+    document.title = title
+  }, [title])
+
+  return <>{children}</>
 }
 
 function MunroAreaRoute() {

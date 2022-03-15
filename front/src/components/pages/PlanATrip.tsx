@@ -22,6 +22,24 @@ import Banner from '../Banner'
 import { dbSaveMulti, WalkHighlandsContextV2 } from '../Context'
 import TripCard from '../TripCard'
 
+const getFriends = (): string[] => {
+  return JSON.parse(localStorage.getItem('friends') || '[]')
+}
+
+const addFriend = (friend: string) => {
+  const friends: string[] = getFriends()
+  if (!friends.includes(friend)) {
+    friends.push(friend)
+    localStorage.setItem('friends', JSON.stringify(friends))
+  }
+}
+
+const removeFriend = (friend: string) => {
+  const friends: string[] = getFriends()
+  const arr = friends.filter((item) => item !== friend)
+  localStorage.setItem('friends', JSON.stringify(arr))
+}
+
 const PlanATrip = () => {
   const { completed } = React.useContext(WalkHighlandsContextV2)
 
@@ -59,6 +77,10 @@ const PlanATrip = () => {
 const PlanTrip = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
 
+  const [friendId, setFriendId] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
+  const [failed, setFailed] = React.useState<string | null>(null)
+
   React.useEffect(() => {
     if (completed.buddy.lastRefresh != null) {
       const lastRefresh = new Date(completed.buddy.lastRefresh)
@@ -93,36 +115,95 @@ const PlanTrip = () => {
     setCompleted(blank)
   }
 
+  const fetchFriend = (friend: string) => {
+    setLoading(true)
+    fetchData(
+      (res: any) => {
+        const saveMe = {
+          ...completed,
+          buddy: {
+            munrosCompleted: res.munros,
+            name: res.name,
+            lastRefresh: new Date(),
+          },
+        }
+        dbSaveMulti(saveMe)
+        setLoading(false)
+        setFailed(null)
+        addFriend(friend)
+        setCompleted(saveMe)
+      },
+      friend,
+      () => {
+        setFailed(`Could not fetch data for '${friend}' on WalkHighlands`)
+        setLoading(false)
+      }
+    )
+  }
+
   return (
     <>
       <Typography variant="h2">
         Plan a trip with {completed.buddy.name}
       </Typography>
 
-      <Grid container sx={{ marginTop: '1.5em', marginBottom: '1.5em' }}>
-        <Button
-          variant="outlined"
-          onClick={(e: any) => {
-            clearBuddy()
-          }}
-        >
-          Change buddy
-        </Button>
-      </Grid>
+      {failed && (
+        <Alert severity="error" sx={{ marginBottom: '1em' }}>
+          {failed}
+        </Alert>
+      )}
 
-      <Typography sx={{ marginBottom: '1em' }}>
-        These are trips that both of you have not completed yet.
-      </Typography>
+      {loading && (
+        <Typography sx={{ marginBottom: '1em' }}>
+          Loading {friendId}{' '}
+          <CircularProgress
+            sx={{ marginLeft: '0.5em' }}
+            color="inherit"
+            size="1rem"
+          />
+        </Typography>
+      )}
 
-      {MUNRO_GROUPING.map((area: Area) => (
-        <PlanTripArea area={area.area} key={area.area} />
-      ))}
+      {!loading && (
+        <>
+          <Grid container sx={{ marginTop: '1.5em', marginBottom: '1.5em' }}>
+            <Button
+              variant="outlined"
+              onClick={(e: any) => {
+                clearBuddy()
+              }}
+            >
+              New buddy
+            </Button>
 
-      <Typography sx={{ marginTop: '1em' }}>
-        <Link href="/" color="inherit">
-          Back to Trips
-        </Link>
-      </Typography>
+            {getFriends().map((friend) => (
+              <Button
+                key={friend}
+                onClick={(e: any) => {
+                  setFriendId(friend)
+                  fetchFriend(friend)
+                }}
+              >
+                {friend}
+              </Button>
+            ))}
+          </Grid>
+
+          <Typography sx={{ marginBottom: '1em' }}>
+            These are trips that both of you have not completed yet.
+          </Typography>
+
+          {MUNRO_GROUPING.map((area: Area) => (
+            <PlanTripArea area={area.area} key={area.area} />
+          ))}
+
+          <Typography sx={{ marginTop: '1em' }}>
+            <Link href="/" color="inherit">
+              Back to Trips
+            </Link>
+          </Typography>
+        </>
+      )}
     </>
   )
 }
@@ -198,6 +279,7 @@ const FindFriend = () => {
         dbSaveMulti(saveMe)
         setLoading(false)
         setFailed(null)
+        addFriend(friendId)
         setCompleted(saveMe)
       },
       friendId,

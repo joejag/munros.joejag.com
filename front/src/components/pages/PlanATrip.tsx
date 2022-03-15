@@ -264,7 +264,8 @@ const FindFriend = () => {
   const [loading, setLoading] = React.useState(false)
   const [failed, setFailed] = React.useState<string | null>(null)
 
-  const fetchFriend = () => {
+  const fetchFriend = (friend?: string) => {
+    const friendToFetch = friend ? friend : friendId
     setLoading(true)
     fetchData(
       (res: any) => {
@@ -279,12 +280,14 @@ const FindFriend = () => {
         dbSaveMulti(saveMe)
         setLoading(false)
         setFailed(null)
-        addFriend(friendId)
+        addFriend(friendToFetch)
         setCompleted(saveMe)
       },
-      friendId,
+      friendToFetch,
       () => {
-        setFailed(`Could not fetch data for '${friendId}' on WalkHighlands`)
+        setFailed(
+          `Could not fetch data for '${friendToFetch}' on WalkHighlands`
+        )
         setLoading(false)
       }
     )
@@ -301,7 +304,20 @@ const FindFriend = () => {
       <Typography sx={{ marginTop: '1em' }}>
         You can use this to see a trip which you both need to bag
       </Typography>
-      <Grid container sx={{ paddingTop: '2em' }}>
+      {getFriends().length > 0 && (
+        <Typography sx={{ marginTop: '1em' }}>Recent friends: </Typography>
+      )}
+      {getFriends().map((friend) => (
+        <Button
+          key={friend}
+          onClick={(e: any) => {
+            fetchFriend(friend)
+          }}
+        >
+          {friend}
+        </Button>
+      ))}
+      <Grid container sx={{ paddingTop: '1em' }}>
         <TextField
           id="outlined-basic"
           label="Your Friends's WalkHighlands Id"

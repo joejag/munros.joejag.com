@@ -9,7 +9,7 @@ locals {
 module "python_lambda_archive" {
   source = "rojopolis/lambda-python-archive/aws"
 
-  src_dir     = "${path.module}/src"
+  src_dir     = "${path.module}/../src"
   output_path = "${path.module}/lambda.zip"
 }
 

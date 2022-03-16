@@ -9,3 +9,6 @@ deploy:
 
 back-deploy:
 	(cd back/infra && terraform apply -auto-approve)
+
+check-db:
+	aws dynamodb scan --table-name munro_cache | jq '.Items | .[].id' | grep "S"

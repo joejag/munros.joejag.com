@@ -19,7 +19,7 @@ import { Area, Trip } from '../../biz/types'
 import { hasCompletedAll, hoursSince } from '../../biz/utils'
 import { MUNRO_GROUPING, MUNROS } from '../../data/munros'
 import Banner from '../Banner'
-import { dbSaveMulti, WalkHighlandsContextV2 } from '../Context'
+import { WalkHighlandsContextV2 } from '../Context'
 import TripCard from '../TripCard'
 
 const getFriends = (): string[] => {
@@ -34,14 +34,9 @@ const addFriend = (friend: string) => {
   }
 }
 
-const removeFriend = (friend: string) => {
-  const friends: string[] = getFriends()
-  const arr = friends.filter((item) => item !== friend)
-  localStorage.setItem('friends', JSON.stringify(arr))
-}
-
 const PlanATrip = () => {
   const { completed } = React.useContext(WalkHighlandsContextV2)
+  const [friendData, setFriendData] = React.useState(null)
 
   return (
     <>
@@ -63,75 +58,43 @@ const PlanATrip = () => {
             </Typography>
           </>
         )}
-        {completed.name !== null && completed.buddy.name === null && (
-          <FindFriend />
+        {completed.name !== null && friendData === null && (
+          <FindFriend setFriendData={setFriendData} />
         )}
-        {completed.name !== null && completed.buddy.name !== null && (
-          <PlanTrip />
+        {completed.name !== null && friendData !== null && (
+          <PlanTrip friendData={friendData} setFriendData={setFriendData} />
         )}
       </Container>
     </>
   )
 }
 
-const PlanTrip = () => {
-  const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
+const PlanTrip = ({
+  setFriendData,
+  friendData,
+}: {
+  setFriendData: any
+  friendData: any
+}) => {
+  const { completed } = React.useContext(WalkHighlandsContextV2)
 
   const [friendId, setFriendId] = React.useState('')
   const [loading, setLoading] = React.useState(false)
   const [failed, setFailed] = React.useState<string | null>(null)
-
-  React.useEffect(() => {
-    if (completed.buddy.lastRefresh != null) {
-      const lastRefresh = new Date(completed.buddy.lastRefresh)
-      const dataAge = hoursSince(lastRefresh)
-      if (dataAge > 1) {
-        fetchData((result: any) => {
-          const saveMe = {
-            ...completed,
-            buddy: {
-              munrosCompleted: result.munros,
-              name: result.name,
-              buddyLastRefresh: new Date(),
-            },
-          }
-          dbSaveMulti(saveMe)
-          setCompleted(saveMe)
-        }, completed.name)
-      }
-    }
-  }, [completed, setCompleted])
-
-  const clearBuddy = () => {
-    const blank = {
-      ...completed,
-      buddy: {
-        name: null,
-        munrosCompleted: [],
-        buddyLastRefresh: null,
-      },
-    }
-    dbSaveMulti(blank)
-    setCompleted(blank)
-  }
 
   const fetchFriend = (friend: string) => {
     setLoading(true)
     fetchData(
       (res: any) => {
         const saveMe = {
-          ...completed,
-          buddy: {
-            munrosCompleted: res.munros,
-            name: res.name,
-            lastRefresh: new Date(),
-          },
+          munrosCompleted: res.munros,
+          name: res.name,
+          lastRefresh: new Date(),
         }
-        dbSaveMulti(saveMe)
         setLoading(false)
         setFailed(null)
         addFriend(friend)
-        setCompleted(saveMe)
+        setFriendData(saveMe)
       },
       friend,
       () => {
@@ -166,13 +129,13 @@ const PlanTrip = () => {
       {!loading && (
         <>
           <Typography variant="h2">
-            Plan a trip with {completed.buddy.name}
+            Plan a trip with {friendData.name}
           </Typography>
           <Grid container sx={{ marginTop: '1.5em', marginBottom: '1.5em' }}>
             <Button
               variant="outlined"
               onClick={(e: any) => {
-                clearBuddy()
+                setFriendData(null)
               }}
             >
               New buddy
@@ -196,7 +159,11 @@ const PlanTrip = () => {
           </Typography>
 
           {MUNRO_GROUPING.map((area: Area) => (
-            <PlanTripArea area={area.area} key={area.area} />
+            <PlanTripArea
+              area={area.area}
+              key={area.area}
+              friendData={friendData}
+            />
           ))}
 
           <Typography sx={{ marginTop: '1em' }}>
@@ -210,12 +177,18 @@ const PlanTrip = () => {
   )
 }
 
-const PlanTripArea = ({ area }: { area: string }) => {
+const PlanTripArea = ({
+  area,
+  friendData,
+}: {
+  area: string
+  friendData: any
+}) => {
   const { completed } = React.useContext(WalkHighlandsContextV2)
 
   const mergedMunros = [
     ...completed.munrosCompleted,
-    ...completed.buddy.munrosCompleted,
+    ...friendData.munrosCompleted,
   ]
 
   const areaTrips: Trip[] = Object.values(MUNROS).filter(
@@ -259,8 +232,8 @@ const PlanTripArea = ({ area }: { area: string }) => {
   )
 }
 
-const FindFriend = () => {
-  const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)
+const FindFriend = ({ setFriendData }: { setFriendData: any }) => {
+  const { completed } = React.useContext(WalkHighlandsContextV2)
 
   const [friendId, setFriendId] = React.useState('')
   const [loading, setLoading] = React.useState(false)
@@ -272,18 +245,14 @@ const FindFriend = () => {
     fetchData(
       (res: any) => {
         const saveMe = {
-          ...completed,
-          buddy: {
-            munrosCompleted: res.munros,
-            name: res.name,
-            lastRefresh: new Date(),
-          },
+          munrosCompleted: res.munros,
+          name: res.name,
+          lastRefresh: new Date(),
         }
-        dbSaveMulti(saveMe)
         setLoading(false)
         setFailed(null)
         addFriend(friendToFetch)
-        setCompleted(saveMe)
+        setFriendData(saveMe)
       },
       friendToFetch,
       () => {

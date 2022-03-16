@@ -9,11 +9,6 @@ export const BLANK_STATE = {
   name: null,
   lastRefresh: null,
   munrosCompleted: [],
-  buddy: {
-    name: null,
-    munrosCompleted: [],
-    buddyLastRefresh: null,
-  },
 }
 
 const dbReadMulti = () => {

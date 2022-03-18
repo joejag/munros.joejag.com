@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography'
 
 import { fetchData } from '../../biz/fetchData'
 import { Area, Trip } from '../../biz/types'
-import { hasCompletedAll, hoursSince } from '../../biz/utils'
+import { hasCompletedAll } from '../../biz/utils'
 import { MUNRO_GROUPING, MUNROS } from '../../data/munros'
 import Banner from '../Banner'
 import { WalkHighlandsContextV2 } from '../Context'
@@ -76,8 +76,6 @@ const PlanTrip = ({
   setFriendData: any
   friendData: any
 }) => {
-  const { completed } = React.useContext(WalkHighlandsContextV2)
-
   const [friendId, setFriendId] = React.useState('')
   const [loading, setLoading] = React.useState(false)
   const [failed, setFailed] = React.useState<string | null>(null)
@@ -233,8 +231,6 @@ const PlanTripArea = ({
 }
 
 const FindFriend = ({ setFriendData }: { setFriendData: any }) => {
-  const { completed } = React.useContext(WalkHighlandsContextV2)
-
   const [friendId, setFriendId] = React.useState('')
   const [loading, setLoading] = React.useState(false)
   const [failed, setFailed] = React.useState<string | null>(null)

@@ -49,7 +49,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
               <Link href="/" color="inherit" underline="none">
                 Trips
               </Link>{' '}
-              <ArrowForwardIosIcon />
+              <ArrowForwardIosIcon />{' '}
               <Link
                 href={`/munros/${safeName(area)}`}
                 color="inherit"

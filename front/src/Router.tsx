@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-
 
 import { urlAreaToHumanArea, urlGroupToHumanArea } from './biz/utils'
 import AllMunros from './components/pages/AllMunros'
-import DrivingPreferences from './components/pages/DrivingPreferences'
 import { MunrosByArea, MunrosByGroup } from './components/pages/MunrosBy'
 import PlanATrip from './components/pages/PlanATrip'
-import WalkHighlandsConnect from './components/pages/WalkHighlandsConnect'
+import Preferences from './components/pages/Preferences'
 
 function ScrollToTopOnMount() {
   React.useEffect(() => {
@@ -24,7 +23,7 @@ export default function Routes() {
           exact
           path="/"
           children={
-            <PageWithTitle title="Munros: All Possible Trips">
+            <PageWithTitle title="WalkMunros: All Possible Trips">
               <AllMunros />
             </PageWithTitle>
           }
@@ -32,25 +31,17 @@ export default function Routes() {
         <Route path="/munros/:area/:group" children={<MunroGroupRoute />} />
         <Route path="/munros/:area" children={<MunroAreaRoute />} />
         <Route
-          path="/walkhighlands"
+          path="/preferences"
           children={
-            <PageWithTitle title="Munros: Link Your WH Account">
-              <WalkHighlandsConnect />
-            </PageWithTitle>
-          }
-        />
-        <Route
-          path="/driving"
-          children={
-            <PageWithTitle title="Munros: Change Driving Origin">
-              <DrivingPreferences />
+            <PageWithTitle title="WalkMunros: Preferences">
+              <Preferences />
             </PageWithTitle>
           }
         />
         <Route
           path="/plan"
           children={
-            <PageWithTitle title="Munros: Plan a Trip">
+            <PageWithTitle title="WalkMunros: Plan a Trip">
               <PlanATrip />
             </PageWithTitle>
           }
@@ -78,7 +69,7 @@ function MunroAreaRoute() {
   let { area }: any = useParams()
 
   React.useEffect(() => {
-    document.title = 'Munro Area: ' + urlAreaToHumanArea(area)
+    document.title = 'WalkMunros Area: ' + urlAreaToHumanArea(area)
   }, [area])
 
   return (
@@ -93,7 +84,7 @@ function MunroGroupRoute() {
   let { group }: any = useParams()
 
   React.useEffect(() => {
-    document.title = 'Munro Group: ' + urlGroupToHumanArea(group)
+    document.title = 'WalkMunros Group: ' + urlGroupToHumanArea(group)
   }, [group])
 
   return (

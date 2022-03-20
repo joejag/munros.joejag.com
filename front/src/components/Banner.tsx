@@ -65,7 +65,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
           {!loggedIn && (
             <>
               <Typography variant="body1">
-                <Link href="/walkhighlands" color="inherit">
+                <Link href="/preferences" color="inherit">
                   Link to Walk Highlands
                 </Link>
               </Typography>
@@ -77,7 +77,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
                 <Tooltip
                   title={`Click to change your linked Walk Highlands account`}
                 >
-                  <Link href="/walkhighlands" color="inherit">
+                  <Link href="/preferences" color="inherit">
                     {completed?.name}
                     <PersonIcon
                       sx={{ marginLeft: '0.1em', verticalAlign: 'bottom' }}

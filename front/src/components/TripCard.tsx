@@ -213,7 +213,7 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
             <Tooltip
               title={`Time to drive from ${origin}. Click to change the start point`}
             >
-              <Link href="/driving" color="inherit" underline="none">
+              <Link href="/preferences" color="inherit" underline="none">
                 <Typography>
                   <DriveEtaIcon sx={{ verticalAlign: 'bottom' }} />{' '}
                   {humanDriveTime}

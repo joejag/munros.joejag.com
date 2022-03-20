@@ -92,7 +92,7 @@ export const AllMunros = () => {
             borderColor: 'divider',
           }}
         >
-          It is highly recommend to <Link href="/walkhighlands">link</Link> your
+          It is highly recommend to <Link href="/preferences">link</Link> your
           Walk Highlands munro map so you can see what Munros you've already
           bagged.
         </Typography>

@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography'
 
 import { allAreas } from '../../biz/findTrips'
 import { Area } from '../../biz/types'
-import { MUNROS } from '../../data/munros'
 import Banner from '../Banner'
 import { AllMunrosMap } from '../Maps'
 import MunroAreaCard from '../MunroAreaCard'
@@ -164,7 +163,7 @@ export const AllMunros = () => {
             </Typography>
           </Grid>
         </Grid>
-        <AllMunrosMap trips={MUNROS} />
+        <AllMunrosMap />
         <Grid container spacing={4}>
           {allAreas().map((area: Area) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={area.area}>

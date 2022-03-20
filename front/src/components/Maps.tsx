@@ -156,7 +156,7 @@ export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
   )
 }
 
-export const AllMunrosMap = ({ trips }: { trips: Trip[] }) => {
+export const AllMunrosMap = ({}) => {
   const polys = allAreas().map(({ area, groups }) => {
     const trips = tripsInArea(area)
     const munroCords = trips.map((t) => t.munros.map((m) => m.cords)).flat()

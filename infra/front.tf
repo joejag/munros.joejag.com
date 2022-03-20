@@ -1,5 +1,3 @@
-# arn:aws:acm:us-east-1:140551133576:certificate/56a68c0a-186b-431f-8536-483b8c4326e3
-
 # S3 bucket for website.
 resource "aws_s3_bucket" "www_bucket" {
   bucket = "walk.joejag.com"
@@ -21,7 +19,7 @@ resource "aws_s3_bucket" "www_bucket" {
 
 data "aws_acm_certificate" "issued" {
   provider = aws.us-east-1
-  domain   = "walk.joejag.com"
+  domain   = "walkmunros.com"
   statuses = ["ISSUED"]
 }
 
@@ -42,7 +40,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
   is_ipv6_enabled = true
   default_root_object = "index.html"
 
-  aliases = ["walk.joejag.com"]
+  aliases = ["walkmunros.com", "walk.joejag.com"]
 
   custom_error_response {
     error_caching_min_ttl = 0

@@ -8,7 +8,7 @@ deploy:
 	aws cloudfront create-invalidation --distribution-id E38443GSUN2P8A --paths "/*"
 
 back-deploy:
-	(cd back/infra && terraform apply -auto-approve)
+	(cd infra && terraform apply -auto-approve)
 
 check-db:
 	aws dynamodb scan --table-name munro_cache | jq '.Items | .[].id' | grep "S"

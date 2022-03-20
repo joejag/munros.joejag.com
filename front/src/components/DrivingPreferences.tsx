@@ -1,14 +1,11 @@
 import * as React from 'react'
 
 import Alert from '@mui/material/Alert'
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
-import Link from '@mui/material/Link'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import Typography from '@mui/material/Typography'
@@ -37,7 +34,7 @@ const DrivingPreferences = () => {
           component="img"
           alt="Highlands road"
           height="207"
-          image="/images/preferences/road.avif"
+          image="/images/preferences/road.png"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

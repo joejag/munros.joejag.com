@@ -17,9 +17,6 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
   const { completed } = React.useContext(WalkHighlandsContextV2)
   const loggedIn = completed.name !== null
 
-  const areaReadable = urlAreaToHumanArea(area)
-  const groupReadable = urlGroupToHumanArea(group)
-
   return (
     <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <Grid container>
@@ -41,7 +38,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
               <Link href="/" color="inherit" underline="none">
                 WalkMunros
               </Link>{' '}
-              <ArrowForwardIosIcon /> {areaReadable}
+              <ArrowForwardIosIcon /> {urlAreaToHumanArea(area)}
             </Typography>
           )}
           {area && group && (
@@ -57,7 +54,7 @@ const Banner = ({ area, group }: { area?: string; group?: string }) => {
               >
                 {area}
               </Link>{' '}
-              <ArrowForwardIosIcon /> {groupReadable}
+              <ArrowForwardIosIcon /> {urlGroupToHumanArea(group)}
             </Typography>
           )}
         </Grid>

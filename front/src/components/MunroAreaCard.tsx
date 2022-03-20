@@ -97,7 +97,9 @@ const MunroAreaCard = ({ target }: { target: Area }) => {
     (at) => at.url === BEST_IMAGE_FOR_AREA[target.area]
   )
   const coverImage =
-    coverImagePotential.length > 0 ? coverImagePotential[0].image : ''
+    coverImagePotential.length > 0
+      ? coverImagePotential[0].image
+      : areaTrips[0].image
 
   return (
     <Card>

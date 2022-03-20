@@ -7,7 +7,7 @@ export const allContains = (arr: string[], target: string[]) =>
 export const safeName = (a: string) =>
   a.replace(/[^a-z0-9]/gi, '_').toLowerCase()
 
-export const urlAreaToHumanArea = (area?: string) => {
+export const urlAreaToHumanArea = (area: string): string => {
   if (area) {
     const p = allAreas().find((mg: Area) => safeName(mg.area) === area)
     if (p) {
@@ -17,7 +17,7 @@ export const urlAreaToHumanArea = (area?: string) => {
   return area
 }
 
-export const urlGroupToHumanArea = (group?: string) => {
+export const urlGroupToHumanArea = (group: string) => {
   let result = group
   allAreas().forEach(({ groups }) => {
     groups.forEach((g) => {

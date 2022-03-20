@@ -98,6 +98,82 @@ export const BEST_IMAGE_FOR_AREA: {
   'The Islands': 'https://www.walkhighlands.co.uk/skye/sgurrnabanachdich.shtml',
 }
 
+export const WALK_HIGHLANDS_MUNRO_GROUPING: Area[] = [
+  {
+    area: 'Argyll',
+    groups: [
+      'Inveraray, Loch Awe, Lochgilphead and Knapdale',
+      'Tyndrum, Dalmally and Bridge of Orchy',
+      'Oban, Appin, Kerrera and Seil',
+    ],
+  },
+  {
+    area: 'Loch Lomond',
+    groups: [
+      'Arrochar Alps and Crianlarich',
+      'Drymen and Balmaha - South and East Loch Lomond',
+      'Strathyre, Lochearnhead and Balquhidder',
+    ],
+  },
+  {
+    area: 'Perthshire',
+    groups: [
+      'Crieff and Strathearn',
+      'Killin and Aberfeldy, Loch Tay and Glen Lyon',
+      'Pitlochry and Blair Atholl: North Perthshire',
+      'Dunkeld, Blairgowrie and Glen Shee',
+    ],
+  },
+  {
+    area: 'Fort William',
+    groups: [
+      'Glencoe and Kinlochleven',
+      'Fort William and Glen Nevis',
+      'Spean Bridge, Roybridge and Loch Ossian',
+      'Knoydart, Glen Garry and Loch Lochy',
+      'Mallaig, Glenfinnan and Arisaig',
+    ],
+  },
+  {
+    area: 'Cairngorms',
+    groups: [
+      'Kingussie and Newtonmore: Badenoch',
+      'Braemar and Upper Deeside',
+      'Ballater and Balmoral',
+      'Aviemore, Rothiemurchus and the Northern Cairngorms',
+    ],
+  },
+  { area: 'Angus', groups: ['Angus Glens, Forfar and Kirriemuir'] },
+  {
+    area: 'Kintail and Lochalsh',
+    groups: ['Dornie and Glen Shiel', 'Glenelg and Arnisdale'],
+  },
+  {
+    area: 'Loch Ness & Glen Affric',
+    groups: [
+      'Glen Affric, Strathfarrar and Beauly',
+      'Black Isle, Garve and Dingwall',
+    ],
+  },
+  {
+    area: 'Torridon and Gairloch',
+    groups: [
+      'Torridon: Shieldaig and Kinlochewe',
+      'Glen Carron: Lochcarron to Achnasheen',
+    ],
+  },
+  {
+    area: 'Ullapool, Assynt and Easter Ross',
+    groups: ['Ullapool and Dundonnell', 'Assynt and Coigach'],
+  },
+  { area: 'Sutherland and Caithness', groups: ['Durness, Tongue and Scourie'] },
+  { area: 'Isle of Mull', groups: ['Salen, Craignure and Central Mull'] },
+  {
+    area: 'Isle of Skye',
+    groups: ['The Cuillin and Minginish', 'Broadford and Elgol'],
+  },
+]
+
 export const STEVE_FALLON_MUNRO_GROUPING: Area[] = [
   {
     area: 'Loch Lomond to Loch Tay',

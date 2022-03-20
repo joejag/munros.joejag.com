@@ -3,11 +3,12 @@ import * as React from 'react'
 import Container from '@mui/material/Container'
 
 import { nameOfArea, tripsInArea, tripsInGroup } from '../../biz/findTrips'
+import { urlAreaToHumanArea, urlGroupToHumanArea } from '../../biz/utils'
 import Banner from '../Banner'
 import { TripsList } from '../TripsList'
 
 export const MunrosByArea = ({ area }: { area: string }) => {
-  const munros = tripsInArea(area)
+  const munros = tripsInArea(urlAreaToHumanArea(area))
 
   return (
     <>
@@ -24,7 +25,7 @@ export const MunrosByArea = ({ area }: { area: string }) => {
 }
 
 export const MunrosByGroup = ({ group }: { group: string }) => {
-  const munros = tripsInGroup(group)
+  const munros = tripsInGroup(urlGroupToHumanArea(group))
 
   return (
     <>

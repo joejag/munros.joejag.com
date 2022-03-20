@@ -94,7 +94,7 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
   const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
   const humanDriveTime = minutesToReadable(driveTime)
 
-  const showNaismith = isOnSkyeOrGradeFive(trip)
+  const showNaismith = !isOnSkyeOrGradeFive(trip)
 
   return (
     <Card

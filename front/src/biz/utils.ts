@@ -1,4 +1,4 @@
-import { MUNRO_GROUPING } from '../data/munros'
+import { allAreas } from './findTrips'
 import { Area, Trip } from './types'
 
 export const allContains = (arr: string[], target: string[]) =>
@@ -9,7 +9,7 @@ export const safeName = (a: string) =>
 
 export const urlAreaToHumanArea = (area?: string) => {
   if (area) {
-    const p = MUNRO_GROUPING.find((mg: Area) => safeName(mg.area) === area)
+    const p = allAreas().find((mg: Area) => safeName(mg.area) === area)
     if (p) {
       return p.area
     }
@@ -19,7 +19,7 @@ export const urlAreaToHumanArea = (area?: string) => {
 
 export const urlGroupToHumanArea = (group?: string) => {
   let result = group
-  MUNRO_GROUPING.forEach(({ groups }) => {
+  allAreas().forEach(({ groups }) => {
     groups.forEach((g) => {
       if (safeName(g) === group) {
         result = g

@@ -15,10 +15,9 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
 import { fetchData } from '../../biz/fetchData'
-import { tripsInArea } from '../../biz/findTrips'
+import { allAreas, tripsInArea } from '../../biz/findTrips'
 import { Area, Trip } from '../../biz/types'
 import { hasCompletedAll } from '../../biz/utils'
-import { MUNRO_GROUPING } from '../../data/munros'
 import Banner from '../Banner'
 import { WalkHighlandsContextV2 } from '../Context'
 import TripCard from '../TripCard'
@@ -157,7 +156,7 @@ const PlanTrip = ({
             These are trips that both of you have not completed yet.
           </Typography>
 
-          {MUNRO_GROUPING.map((area: Area) => (
+          {allAreas().map((area: Area) => (
             <PlanTripArea
               area={area.area}
               key={area.area}

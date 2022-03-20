@@ -7,10 +7,9 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 import * as React from 'react'
 import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet'
 
-import { isFarNorth, tripsInArea } from '../biz/findTrips'
+import { allAreas, isFarNorth, tripsInArea } from '../biz/findTrips'
 import { Trip } from '../biz/types'
 import { hasCompletedAll, safeName } from '../biz/utils'
-import { MUNRO_GROUPING, MUNROS } from '../data/munros'
 import { WalkHighlandsContextV2 } from './Context'
 
 // Assign the imported image assets before you do anything with Leaflet.
@@ -158,7 +157,7 @@ export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
 }
 
 export const AllMunrosMap = ({ trips }: { trips: Trip[] }) => {
-  const polys = MUNRO_GROUPING.map(({ area, groups }) => {
+  const polys = allAreas().map(({ area, groups }) => {
     const trips = tripsInArea(area)
     const munroCords = trips.map((t) => t.munros.map((m) => m.cords)).flat()
     const c = convexHull(munroCords)

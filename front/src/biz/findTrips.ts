@@ -1,4 +1,4 @@
-import { MUNRO_GROUPING, MUNROS } from '../data/munros'
+import { MUNROS, STEVE_FALLON_MUNRO_GROUPING } from '../data/munros'
 import { Area, Trip } from './types'
 
 export const isFarNorth = (trip: Trip) =>
@@ -10,6 +10,8 @@ export const isOnSkyeOrGradeFive = (trip: Trip) =>
   ) && trip.grade !== 5
 
 export const nameOfArea = (trip: Trip) => trip.location.steveFallon.area
+
+export const allAreas = (): Area[] => STEVE_FALLON_MUNRO_GROUPING
 
 export const tripsInArea = (area: string): Trip[] => {
   return Object.values(MUNROS).filter(

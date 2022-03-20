@@ -98,7 +98,7 @@ export const BEST_IMAGE_FOR_AREA: {
   'The Islands': 'https://www.walkhighlands.co.uk/skye/sgurrnabanachdich.shtml',
 }
 
-export const MUNRO_GROUPING: Area[] = [
+export const STEVE_FALLON_MUNRO_GROUPING: Area[] = [
   {
     area: 'Loch Lomond to Loch Tay',
     groups: [

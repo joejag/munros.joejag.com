@@ -16,6 +16,7 @@ import Link from '@mui/material/Link'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
+import { isOnSkyeOrGradeFive } from '../biz/findTrips'
 import { Trip } from '../biz/types'
 import { minutesToReadable, safeName } from '../biz/utils'
 import { DISTANCES } from '../data/distances'
@@ -93,10 +94,7 @@ const TripCard = ({ trip, completed }: { trip: Trip; completed: boolean }) => {
   const driveTime = Math.round(DISTANCES[origin][trip.url].seconds / 60)
   const humanDriveTime = minutesToReadable(driveTime)
 
-  const showNaismith =
-    !['Cuillin of Skye', 'Skye, Strathaird'].includes(
-      trip.location.steveFallon.group
-    ) && trip.grade !== 5
+  const showNaismith = isOnSkyeOrGradeFive(trip)
 
   return (
     <Card

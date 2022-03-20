@@ -7,6 +7,7 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 import * as React from 'react'
 import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet'
 
+import { isFarNorth, tripsInArea } from '../biz/findTrips'
 import { Trip } from '../biz/types'
 import { hasCompletedAll, safeName } from '../biz/utils'
 import { MUNRO_GROUPING, MUNROS } from '../data/munros'
@@ -111,7 +112,7 @@ export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
   })
 
   const mapCenter = averageGeolocation(munrosWithCords)
-  const zoomLevel = trips[0].location.steveFallon.area === 'Far North' ? 8 : 10
+  const zoomLevel = isFarNorth(trips[0]) ? 8 : 10
 
   return (
     <>
@@ -158,9 +159,7 @@ export const MunrosInAreaMap = ({ trips }: { trips: Trip[] }) => {
 
 export const AllMunrosMap = ({ trips }: { trips: Trip[] }) => {
   const polys = MUNRO_GROUPING.map(({ area, groups }) => {
-    const trips: Trip[] = Object.values(MUNROS).filter(
-      (m: Trip) => m.location.steveFallon.area === area
-    )
+    const trips = tripsInArea(area)
     const munroCords = trips.map((t) => t.munros.map((m) => m.cords)).flat()
     const c = convexHull(munroCords)
     return {

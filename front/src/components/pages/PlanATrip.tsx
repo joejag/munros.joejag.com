@@ -15,9 +15,10 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
 import { fetchData } from '../../biz/fetchData'
+import { tripsInArea } from '../../biz/findTrips'
 import { Area, Trip } from '../../biz/types'
 import { hasCompletedAll } from '../../biz/utils'
-import { MUNRO_GROUPING, MUNROS } from '../../data/munros'
+import { MUNRO_GROUPING } from '../../data/munros'
 import Banner from '../Banner'
 import { WalkHighlandsContextV2 } from '../Context'
 import TripCard from '../TripCard'
@@ -189,9 +190,7 @@ const PlanTripArea = ({
     ...friendData.munrosCompleted,
   ]
 
-  const areaTrips: Trip[] = Object.values(MUNROS).filter(
-    (m: Trip) => m.location.steveFallon.area === area
-  )
+  const areaTrips = tripsInArea(area)
 
   const tripsAvailable = areaTrips.filter(
     (t) => !hasCompletedAll(mergedMunros, t)

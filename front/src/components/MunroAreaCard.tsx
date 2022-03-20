@@ -18,10 +18,11 @@ import ListItemText from '@mui/material/ListItemText'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
-import { Area, Trip } from '../biz/types'
+import { tripsInArea, tripsInGroup } from '../biz/findTrips'
+import { Area } from '../biz/types'
 import { allContains, minutesToReadable, safeName } from '../biz/utils'
 import { DISTANCES } from '../data/distances'
-import { BEST_IMAGE_FOR_AREA, MUNROS, WEBCAMS } from '../data/munros'
+import { BEST_IMAGE_FOR_AREA, WEBCAMS } from '../data/munros'
 import { WalkHighlandsContextV2 } from './Context'
 
 const Grade = ({ grade, count }: { grade: number; count: number }) => {
@@ -77,9 +78,7 @@ const Grade = ({ grade, count }: { grade: number; count: number }) => {
 
 const MunroAreaCard = ({ target }: { target: Area }) => {
   const { area, groups } = target
-  const areaTrips: Trip[] = Object.values(MUNROS).filter(
-    (m: Trip) => m.location.steveFallon.area === area
-  )
+  const areaTrips = tripsInArea(area)
   const munroCount = areaTrips
     .map((t) => t.munros.length)
     .reduce((a, b) => a + b, 0)
@@ -164,9 +163,7 @@ const MunroAreaCard = ({ target }: { target: Area }) => {
 const MunroGroupSummary = ({ area, group }: any) => {
   const { completed } = React.useContext(WalkHighlandsContextV2)
 
-  const trips: Trip[] = Object.values(MUNROS).filter(
-    (m: Trip) => m.location.steveFallon.group === group
-  )
+  const trips = tripsInGroup(group)
 
   const userMunros = completed.munrosCompleted || ([] as string[])
   const tripsCompleted = trips.filter((t) =>

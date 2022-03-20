@@ -13,10 +13,10 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { fetchData } from '../../biz/fetchData'
+import { fetchData } from '../biz/fetchData'
 import {
     BLANK_STATE, dbClearMulti, dbSaveMulti, dbUpdateMulti, WalkHighlandsContextV2
-} from '../Context'
+} from './Context'
 
 const WalkHighlandsConnect = () => {
   const { completed, setCompleted } = React.useContext(WalkHighlandsContextV2)

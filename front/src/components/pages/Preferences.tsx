@@ -3,12 +3,11 @@ import * as React from 'react'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
-import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
 import Banner from '../Banner'
 import DrivingPreferences from '../DrivingPreferences'
-import WalkHighlandsConnect from './WalkHighlandsConnect'
+import WalkHighlandsConnect from '../WalkHighlandsConnect'
 
 const Preferences = () => {
   return (

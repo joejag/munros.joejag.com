@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 
 import Banner from '../Banner'
 import DrivingPreferences from '../DrivingPreferences'
+import Footer from '../Footer'
 import WalkHighlandsConnect from '../WalkHighlandsConnect'
 
 const Preferences = () => {
@@ -33,6 +34,7 @@ const Preferences = () => {
           </Link>
         </Typography>
       </Container>
+      <Footer />
     </>
   )
 }

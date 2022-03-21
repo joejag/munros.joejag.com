@@ -5,6 +5,7 @@ import Container from '@mui/material/Container'
 import { nameOfArea, tripsInArea, tripsInGroup } from '../../biz/findTrips'
 import { urlAreaToHumanArea, urlGroupToHumanArea } from '../../biz/utils'
 import Banner from '../Banner'
+import Footer from '../Footer'
 import { TripsList } from '../TripsList'
 
 export const MunrosByArea = ({ area }: { area: string }) => {
@@ -20,6 +21,7 @@ export const MunrosByArea = ({ area }: { area: string }) => {
       >
         <TripsList munros={munros} />
       </Container>
+      <Footer />
     </>
   )
 }
@@ -37,6 +39,7 @@ export const MunrosByGroup = ({ group }: { group: string }) => {
       >
         <TripsList munros={munros} />
       </Container>
+      <Footer />
     </>
   )
 }

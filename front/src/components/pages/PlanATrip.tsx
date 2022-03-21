@@ -20,6 +20,7 @@ import { Area, Trip } from '../../biz/types'
 import { hasCompletedAll } from '../../biz/utils'
 import Banner from '../Banner'
 import { WalkHighlandsContextV2 } from '../Context'
+import Footer from '../Footer'
 import TripCard from '../TripCard'
 
 const getFriends = (): string[] => {
@@ -65,6 +66,7 @@ const PlanATrip = () => {
           <PlanTrip friendData={friendData} setFriendData={setFriendData} />
         )}
       </Container>
+      <Footer />
     </>
   )
 }

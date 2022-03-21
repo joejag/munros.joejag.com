@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography'
 import { allAreas } from '../../biz/findTrips'
 import { Area } from '../../biz/types'
 import Banner from '../Banner'
+import Footer from '../Footer'
 import { AllMunrosMap } from '../Maps'
 import MunroAreaCard from '../MunroAreaCard'
 
@@ -174,6 +175,7 @@ export const AllMunros = () => {
           ))}
         </Grid>
       </Container>
+      <Footer />
     </>
   )
 }

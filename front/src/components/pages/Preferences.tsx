@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useLocation } from 'react-router-dom'
 
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
@@ -11,6 +12,22 @@ import Footer from '../Footer'
 import WalkHighlandsConnect from '../WalkHighlandsConnect'
 
 const Preferences = () => {
+  const location = useLocation()
+  const [focus, setFocus] = React.useState(false)
+  const myRef = React.useRef<HTMLDivElement>(null)
+
+  if (focus === false && location.hash === `#focus=driving`) {
+    setFocus(true)
+  }
+  if (focus === true && location.hash !== `#focus=driving`) {
+    setFocus(false)
+  }
+  React.useLayoutEffect(() => {
+    if (focus) {
+      myRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
+
   return (
     <>
       <Banner />
@@ -23,8 +40,17 @@ const Preferences = () => {
           <Grid item xs={12} sm={6} md={4}>
             <WalkHighlandsConnect />
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <DrivingPreferences />
+          <Grid item xs={12} sm={6} md={4} ref={myRef}>
+            <DrivingPreferences
+              elevation={focus ? 12 : 1}
+              sx={
+                focus
+                  ? {
+                      border: `3px solid gold`,
+                    }
+                  : {}
+              }
+            />
           </Grid>
         </Grid>
 

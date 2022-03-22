@@ -10,7 +10,13 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import Typography from '@mui/material/Typography'
 
-const DrivingPreferences = () => {
+const DrivingPreferences = ({
+  sx,
+  elevation,
+}: {
+  sx: any
+  elevation: number
+}) => {
   const stored = localStorage.getItem('drivingOrigin') || 'Glasgow'
   const [town, setTown] = React.useState(stored)
   const [changed, setChanged] = React.useState(false)
@@ -29,7 +35,7 @@ const DrivingPreferences = () => {
         </Alert>
       )}
 
-      <Card>
+      <Card sx={sx} elevation={elevation}>
         <CardMedia
           component="img"
           alt="Highlands road"

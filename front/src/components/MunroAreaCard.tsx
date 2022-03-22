@@ -145,7 +145,11 @@ const MunroAreaCard = ({ target }: { target: Area }) => {
       <CardActions>
         <Grid container>
           <Grid item xs={6} textAlign="start">
-            <Link href="/preferences" color="inherit" underline="none">
+            <Link
+              href="/preferences#focus=driving"
+              color="inherit"
+              underline="none"
+            >
               <Tooltip
                 title={`Average time to drive from ${origin} to any of these trips. Click to change the start point`}
               >

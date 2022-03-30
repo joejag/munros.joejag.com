@@ -21,3 +21,12 @@ export const tripsInArea = (area: string): Trip[] =>
 
 export const tripsInGroup = (group: string): Trip[] =>
   MUNROS.filter((m: Trip) => m.location[currentScheme].group === group)
+
+export const groupsInArea = (area: string): string[] =>
+  Array.from(
+    new Set(
+      MUNROS.filter((m: Trip) => m.location[currentScheme].area === area).map(
+        (t: Trip) => t.location.steveFallon.group
+      )
+    )
+  )

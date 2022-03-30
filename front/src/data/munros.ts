@@ -1,5 +1,159 @@
 import { Area, Trip } from '../biz/types'
 
+export const STEVE_FALLON_ALTERNATIVES_FOR_AREA: { [area: string]: string } = {
+  'Loch Lomond to Loch Tay': 'https://www.stevenfallon.co.uk/routessouth.html',
+  'Loch Tay to Rannoch Moor': 'https://www.stevenfallon.co.uk/routessouth.html',
+  'Strath Orchy to Glencoe':
+    'https://www.stevenfallon.co.uk/routescentral.html',
+  'Loch Linnhe to Loch Ericht':
+    'https://www.stevenfallon.co.uk/routescentral.html',
+  'Drumochter Hills': 'https://www.stevenfallon.co.uk/routescentral.html',
+  'Glen Garry to Braemar': 'https://www.stevenfallon.co.uk/routeseast.html',
+  'Glenshee to Mount Keen': 'https://www.stevenfallon.co.uk/routeseast.html',
+  'Cairngorms and Glen Feshie':
+    'https://www.stevenfallon.co.uk/routeseast.html',
+  'Monadh Liath and Creag Meagaidh':
+    'https://www.stevenfallon.co.uk/routescentral.html',
+  'Loch Eil to Glen Shiel': 'https://www.stevenfallon.co.uk/routeswest.html',
+  'Kintail and Glen Shiel': 'https://www.stevenfallon.co.uk/routeswest.html',
+  'Affric, Cannich and Strathfarrar':
+    'https://www.stevenfallon.co.uk/routeswest.html',
+  'Glen Carron and Torridon': 'https://www.stevenfallon.co.uk/routesnorth.html',
+  'Loch Maree to the Fannichs':
+    'https://www.stevenfallon.co.uk/routesnorth.html',
+  'Far North': 'https://www.stevenfallon.co.uk/routesnorth.html',
+  'The Islands': 'https://www.stevenfallon.co.uk/routesislands.html',
+}
+
+export const STEVE_FALLON_ALTERNATIVES_FOR_GROUP: {
+  [group: string]: { name: string; url: string; munros: number }[]
+} = {
+  'Ben Lomond and Arrochar Alps': [
+    {
+      name: 'Arrochar Alps',
+      url: 'https://www.stevenfallon.co.uk/arrochar.html',
+      munros: 4,
+    },
+  ],
+  'Ben Lui group': [
+    {
+      name: 'Ben Lui & neighbouring Munros',
+      url: 'https://www.stevenfallon.co.uk/luimunros.html',
+      munros: 4,
+    },
+  ],
+  'Glen Lochay': [
+    {
+      name: 'Glen Lochay Munros',
+      url: 'https://www.stevenfallon.co.uk/lochaymunros.html',
+      munros: 5,
+    },
+  ],
+  'Above Orchy': [
+    {
+      name: 'Bridge of Orchy Munros',
+      url: 'https://www.stevenfallon.co.uk/dorainmunros.html',
+      munros: 5,
+    },
+  ],
+  Lawers: [
+    {
+      name: 'Ben Lawers Range',
+      url: 'https://www.stevenfallon.co.uk/lawers.html',
+      munros: 7,
+    },
+  ],
+  Cruachan: [
+    {
+      name: 'Ben Cruachan and the Kinglass peaks',
+      url: 'https://www.stevenfallon.co.uk/cruachanroute.html',
+      munros: 4,
+    },
+  ],
+  'East of Etive': [
+    {
+      name: 'Ben Starav & neighbours',
+      url: 'https://www.stevenfallon.co.uk/starav.html',
+      munros: 5,
+    },
+  ],
+  'Glen Kingie': [
+    {
+      name: 'Rough Bounds of Knoydart',
+      url: 'https://www.stevenfallon.co.uk/ciche.html',
+      munros: 5,
+    },
+  ],
+  'Loch Chuaich (Quoich)': [
+    {
+      name: 'Loch Quoich Munros',
+      url: 'https://www.stevenfallon.co.uk/quoich.html',
+      munros: 4,
+    },
+  ],
+  'Above Loch Cluanie': [
+    {
+      name: 'Munros above Loch Cluanie',
+      url: 'https://www.stevenfallon.co.uk/achralaig.html',
+      munros: 5,
+    },
+  ],
+  Kintail: [
+    {
+      name: "Kintail's Brothers and Sisters",
+      url: 'https://www.stevenfallon.co.uk/kintailroute.html',
+      munros: 9,
+    },
+  ],
+  'Mullardoch circuit': [
+    {
+      name: 'Mullardoch & Affric Munros',
+      url: 'https://www.stevenfallon.co.uk/mullardochmunros.html',
+      munros: 12,
+    },
+  ],
+  Monar: [
+    {
+      name: "Monar's Munros",
+      url: 'https://www.stevenfallon.co.uk/lurgmhor.html',
+      munros: 6,
+    },
+  ],
+  Coulin: [
+    {
+      name: 'Coulin Munros',
+      url: 'https://www.stevenfallon.co.uk/coulinroute.html',
+      munros: 3,
+    },
+  ],
+  Fannaichs: [
+    {
+      name: 'Fannichs in the Northern Highlands',
+      url: 'https://www.stevenfallon.co.uk/fannaichs.html',
+      munros: 10,
+    },
+  ],
+  'Inverlael and Strath Vaich': [
+    {
+      name: 'Inverlael Munros',
+      url: 'https://www.stevenfallon.co.uk/seana.html',
+      munros: 6,
+    },
+  ],
+  'Cuillin of Skye': [
+    {
+      name: 'Sgurr nan Gillean, Am Basteir & Bruach na Frithe',
+      url: 'https://www.stevenfallon.co.uk/gillean.html',
+      munros: 3,
+    },
+    {
+      name: "Skye's Black Cuillin ridge Munros (south)",
+      url: 'https://www.stevenfallon.co.uk/cuillinsouth.html',
+      munros: 8,
+    },
+  ],
+}
+
 export const WEBCAMS: {
   [group: string]: { url: string; description: string }
 } = {

@@ -73,7 +73,7 @@ export const AllMunros = () => {
         sx={{ paddingBottom: '2em', paddingTop: '1em' }}
       >
         <Typography align="center">
-          This site combines Steve Fallon's{' '}
+          This site combines Steven Fallon's{' '}
           <Link href="https://www.stevenfallon.co.uk/munrosr.html">
             Munros by region
           </Link>{' '}

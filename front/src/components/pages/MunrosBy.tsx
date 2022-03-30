@@ -50,7 +50,7 @@ export const MunrosByGroup = ({ group }: { group: string }) => {
   const fallonArea =
     STEVE_FALLON_ALTERNATIVES_FOR_AREA[munros[0].location.steveFallon.area]
   const fallonGroup =
-    STEVE_FALLON_ALTERNATIVES_FOR_GROUP[urlGroupToHumanArea(group)]
+    STEVE_FALLON_ALTERNATIVES_FOR_GROUP[urlGroupToHumanArea(group)] || []
 
   return (
     <>
